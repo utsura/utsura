@@ -1,4 +1,4 @@
 .env
 html/user_data/assets/img/*
 html/user_data/assets/pdf/*
-var/cache/install/*
+var/*
