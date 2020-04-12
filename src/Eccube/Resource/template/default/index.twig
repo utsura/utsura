@@ -90,6 +90,7 @@ file that was distributed with this source code.
     </style>
 {% endblock %}
 
+{# TODO:@ sugiyamajota #}
 {% block javascript %}
     <script>
         $(function() {
@@ -97,7 +98,8 @@ file that was distributed with this source code.
                 dots: true,
                 arrows: false,
                 autoplay: true,
-                speed: 300
+                speed: 300,
+                centerMode: true,
             });
         });
     </script>
@@ -106,8 +108,9 @@ file that was distributed with this source code.
 {% block main %}
     <div class="ec-sliderRole">
         <div class="main_visual">
-            <div class="item slick-slide"><img src="{{ asset('assets/img/top/img_hero_pc1.jpg') }}"></div>
-            <div class="item slick-slide"><img src="{{ asset('assets/img/top/img_hero_pc2.jpg') }}"></div>
+            <div class="item slick-slide" style="margin-right: 5px;"><img src="{{ asset('assets/img/top/img_hero_pc1.jpg') }}"></div>
+            <div class="item slick-slide" style="margin-right: 5px;"><img src="{{ asset('assets/img/top/img_hero_pc2.jpg') }}"></div>
+            <div class="item slick-slide" style="margin-right: 5px;"><img src="{{ asset('assets/img/top/img_hero_pc3.jpg') }}"></div>
         </div>
     </div>
 {% endblock %}
