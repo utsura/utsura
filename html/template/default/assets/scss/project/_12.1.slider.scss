@@ -12,15 +12,14 @@ include /assets/tmpl/elements/12.1.slider.pug
 
 Styleguide 12.1
 */
-// .ec-sliderRole{
-//   @include container;
-//   margin-bottom: 24px;
-//   ul{
-//     padding: 0;
-//     list-style: none;
-//   }
-// }
-// TODO@: sugiyama 戻す
+.ec-sliderRole{
+  @include container;
+  margin-bottom: 24px;
+  ul{
+    padding: 0;
+    list-style: none;
+  }
+}
 .ec-sliderItemRole{
   @include container;
   margin-bottom: 24px;
