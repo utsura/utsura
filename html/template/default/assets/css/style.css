@@ -4566,10 +4566,7 @@ Styleguide 11.2
   .ec-layoutRole .ec-layoutRole__contentTop {
     padding: 0; }
   .ec-layoutRole .ec-layoutRole__contents {
-    margin-right: auto;
-    margin-left: auto;
     width: 100%;
-    max-width: 1150px;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: nowrap;
@@ -5325,16 +5322,12 @@ include /assets/tmpl/elements/12.1.slider.pug
 Styleguide 12.1
 */
 .ec-sliderRole {
-  margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
   box-sizing: border-box;
   font-size: 16px;
   line-height: 1.4;
   color: #525263;
   -webkit-text-size-adjust: 100%;
   width: 100%;
-  max-width: 1130px;
   margin-bottom: 24px; }
   .ec-sliderRole:after {
     content: " ";
@@ -5353,7 +5346,8 @@ Styleguide 12.1
   .ec-sliderRole *:after {
     box-sizing: inherit; }
   .ec-sliderRole img {
-    width: 100%; }
+    width: 100%;
+  }
   .ec-sliderRole ul {
     padding: 0;
     list-style: none; }
@@ -5406,6 +5400,9 @@ Styleguide 12.1
       -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
     .ec-sliderItemRole .slideThumb img {
       width: 80%; }
+.ec-sliderRole-Img {
+  margin-right: 5px;
+}
 
 /**
 メディアクエリ
