@@ -1,0 +1,227 @@
+{#
+This file is part of EC-CUBE
+
+Copyright(c) LOCKON CO.,LTD. All Rights Reserved.
+
+http://www.lockon.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+{% extends '@admin/default_frame.twig' %}
+
+{% set menus = ['store', 'plugin', 'plugin_list'] %}
+
+{% block title %}{{ 'yamato_payment.admin.config.title'|trans }}{% endblock %}
+{% block sub_title %}{{ 'yamato_payment.admin.config.sub_title'|trans }}{% endblock %}
+
+{% form_theme form '@admin/Form/bootstrap_4_horizontal_layout.html.twig' %}
+
+{% block stylesheet %}
+
+{% endblock stylesheet %}
+
+{% block main %}
+    <form role="form" method="post">
+
+        {{ form_widget(form._token) }}
+
+        <div class="c-contentsArea__cols">
+            <div class="c-contentsArea__primaryCol">
+                <div class="c-primaryCol">
+                    <div class="card rounded border-0 mb-4">
+                        <div class="card-header"><span>{{ 'yamato_payment.admin.config.header1'|trans }}</span></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.exec_mode'|trans }}</span><span
+                                            class="badge badge-primary ml-1">{{ 'yamato_payment.admin.config.required'|trans }}</span></div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.exec_mode, {'label_attr': {'class': 'radio-inline'}}) }}
+                                    {{ form_errors(form.exec_mode) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.enable_payment_type'|trans }}</span><span
+                                            class="badge badge-primary ml-1">{{ 'yamato_payment.admin.config.required'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.enable_payment_type, {'label_attr': {'class': 'checkbox-inline'}}) }}
+                                    {{ form_errors(form.enable_payment_type) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card rounded border-0 mb-4">
+                        <div class="card-header"><span>{{ 'yamato_payment.admin.config.header2'|trans }}</span></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.shop_id'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.shop_id) }}
+                                    {{ form_errors(form.shop_id) }}
+                                    (半角数字 9 桁)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.access_key'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.access_key) }}
+                                    {{ form_errors(form.access_key) }}
+                                    (半角数字 7 桁)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.use_option'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.use_option, {'label_attr': {'class': 'radio-inline'}}) }}
+                                    {{ form_errors(form.use_option) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card rounded border-0 mb-4">
+                        <div class="card-header"><span>{{ 'yamato_payment.admin.config.header3'|trans }}</span></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.ycf_str_code'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.ycf_str_code) }}
+                                    {{ form_errors(form.ycf_str_code) }}
+                                    (半角数字 11 桁)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.ycf_str_password'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.ycf_str_password) }}
+                                    {{ form_errors(form.ycf_str_password) }}
+                                    (半角数字 8 桁)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <span>{{ 'yamato_payment.admin.config.ycf_send_div'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.ycf_send_div, {'label_attr': {'class': 'radio-inline'}}) }}
+                                    {{ form_errors(form.ycf_send_div) }}
+                                    (同梱は事前申し込みがないとご利用いただけません。)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <span>{{ 'yamato_payment.admin.config.ycf_sms_flg'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.ycf_sms_flg, {'label_attr': {'class': 'radio-inline'}}) }}
+                                    {{ form_errors(form.ycf_sms_flg) }}
+                                    (スマホタイプは事前申し込みがないとご利用いただけません。)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.ycf_ship_ymd'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.ycf_ship_ymd) }}
+                                    {{ form_errors(form.ycf_ship_ymd) }}
+                                    (半角数字 2 桁 / 当該日を経過して伝票番号が未登録の場合に「受注日+出荷予定日」という設定でアラート表示します。)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <span>{{ 'yamato_payment.admin.config.ycf_deliv_disp'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.ycf_deliv_disp, {'label_attr': {'class': 'radio-inline'}}) }}
+                                    {{ form_errors(form.ycf_deliv_disp) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.ycf_invoice_reissue_mail_address'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.ycf_invoice_reissue_mail_address) }}
+                                    {{ form_errors(form.ycf_invoice_reissue_mail_address) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.ycf_invoice_reissue_mail_header'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.ycf_invoice_reissue_mail_header) }}
+                                    {{ form_errors(form.ycf_invoice_reissue_mail_header) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.ycf_invoice_reissue_mail_footer'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.ycf_invoice_reissue_mail_footer) }}
+                                    {{ form_errors(form.ycf_invoice_reissue_mail_footer) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card rounded border-0 mb-4">
+                        <div class="card-header"><span>{{ 'yamato_payment.admin.config.header4'|trans }}</span></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    <span>{{ 'yamato_payment.admin.config.delivery_service_code'|trans }}</span>
+                                    <span class="badge badge-primary ml-1">{{ 'yamato_payment.admin.config.required'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.delivery_service_code, {'label_attr': {'class': 'radio-inline'}}) }}
+                                    {{ form_errors(form.delivery_service_code) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <span>{{ 'yamato_payment.admin.config.result_notification_url'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    <div>{{ result_notification_url }}</div>
+                                    <div>
+                                        ※クロネコ代金後払いサービス画面よりログイン頂き、「加盟店情報修正」＞判定結果のPOST受信設定で「POSTで受信する」を選択後、判定結果のPOST受信URLに設定してください。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="c-conversionArea">
+            <div class="c-conversionArea__container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-6">
+                        <div class="c-conversionArea__leftBlockItem">
+                            <a class="c-beseLink"
+                               href="{{ url('admin_store_plugin') }}">
+                                <i class="fa fa-backward" aria-hidden="true"></i>
+                                <span>{{ 'yamato_payment.admin.config.back'|trans }}</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="row align-items-center justify-content-end">
+                            <div class="col-auto">
+                                <button class="btn btn-ec-conversion px-5"
+                                        type="submit">{{ 'yamato_payment.admin.config.save'|trans }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

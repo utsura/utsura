@@ -1,0 +1,162 @@
+{#
+Copyright(c) 2018 GMO Payment Gateway, Inc. All rights reserved.
+http://www.gmo-pg.com/
+#}
+<div class="card-body">
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col1'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.PaymentTermDay) }} {{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col1.day'|trans }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.payment_term_day.caution'|trans }}</span>
+      {{ form_errors(form.PaymentTermDay) }}
+      <p class="small" style="margin-top:10px;">{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.payment_term_day.note1'|trans }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col2'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.enable_mail) }}
+      {{ form_errors(form.enable_mail) }}
+      <p class="small" style="margin-top:10px;">{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.enable_mail.note1'|trans }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col3'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp1) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp1) }}
+      <p class="small">{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp1.note1'|trans }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col4'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp2) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp2) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col5'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp3) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp3) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col6'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp4) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp4) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col7'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp5) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp5) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col8'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp6) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp6) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col9'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp7) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp7) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col10'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp8) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp8) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col11'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp9) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp9) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col12'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp10) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp10) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col13'|trans }}</span><span class="badge badge-primary ml-1">{{ 'gmo_payment_gateway.com.required'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp11) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp11.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp11) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col14'|trans }}</span><span class="badge badge-primary ml-1">{{ 'gmo_payment_gateway.com.required'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp12_1) }} － {{ form_widget(form.ReceiptsDisp12_2) }} － {{ form_widget(form.ReceiptsDisp12_3) }} <span class='caution'>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.receipts_disp12.caution'|trans }}</span>
+      {{ form_errors(form.ReceiptsDisp12_1) }}{{ form_errors(form.ReceiptsDisp12_2) }}{{ form_errors(form.ReceiptsDisp12_3) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col15'|trans }}</span><span class="badge badge-primary ml-1">{{ 'gmo_payment_gateway.com.required'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ReceiptsDisp13_1) }} ： {{ form_widget(form.ReceiptsDisp13_2) }} － {{ form_widget(form.ReceiptsDisp13_3) }} ： {{ form_widget(form.ReceiptsDisp13_4) }}
+      {{ form_errors(form.ReceiptsDisp13_1) }}{{ form_errors(form.ReceiptsDisp13_2) }}{{ form_errors(form.ReceiptsDisp13_3) }}{{ form_errors(form.ReceiptsDisp13_4) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col16'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.order_mail_title1) }}<span class="caution">{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.order_mail_title1.caution'|trans }}</span>
+      {{ form_errors(form.order_mail_title1) }}
+      <p class="small" style="margin-top:10px;">{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.order_mail_title1.note1'|trans }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col17'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.order_mail_body1) }}<span class="caution">{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.order_mail_body1.caution'|trans }}</span>
+      {{ form_errors(form.order_mail_body1) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col18'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ClientField1) }}<span class="caution">{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.ClientField1.caution'|trans }}</span>
+      {{ form_errors(form.ClientField1) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.col19'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ClientField2) }}<span class="caution">{{ 'gmo_payment_gateway.admin.payment_edit.payeasy_net.ClientField2.caution'|trans }}</span>
+      {{ form_errors(form.ClientField2) }}
+    </div>
+  </div>
+</div>

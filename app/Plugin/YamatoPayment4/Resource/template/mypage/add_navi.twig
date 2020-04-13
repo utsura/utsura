@@ -1,0 +1,5 @@
+<script>$(function() { $("ul.ec-navlistRole__navlist").first().append($('#kuronekocredit'))})</script>
+
+        <li class="ec-navlistRole__item {% if mypageno|default('') == 'kuronekocredit' %}active{% endif %}" id="kuronekocredit">
+            <a href="{{ url('mypage_kuronekocredit') }}">{{ 'カード編集'|trans }}</a>
+        </li>

@@ -1,0 +1,303 @@
+{#
+Copyright(c) 2018 GMO Payment Gateway, Inc. All rights reserved.
+http://www.gmo-pg.com/
+#}
+{% extends 'default_frame.twig' %}
+
+{% set mypageno = 'gmo_card_edit' %}
+
+{% set body_class = 'mypage' %}
+
+{% block main %}
+<script src="{{ GmoConfig.getJsServerUrl }}/ext/js/token.js"></script>
+<script type="text/javascript">
+  function bindData(CardSeq, CardNo, Expire, HolderName) {
+    var Expire = Expire.match(/.{1,2}/g);
+      
+    $("#mypage_card_card_name1").val(HolderName);
+    $("#mypage_card_expire_month").val(Expire[1]);
+    $("#mypage_card_expire_year").val(Expire[0]);
+    $("#mypage_card_CardSeq").val(CardSeq);
+    $("#mypage_card_card_no").val('');
+      
+    $("#cardSeq").show();
+
+    return false;
+  }
+
+  // GMO-PG との通信完了後に呼び出される
+  function execPurchase(response) {
+    if (response.resultCode != 000) {
+      window.alert("{{ 'gmo_payment_gateway.mypage.card_edit.token.error1'|trans }}");
+      window.location.assign(window.location.href);
+      return;
+    }
+
+    // クレジットトークンをセット
+    $('#mypage_card_token').val(response.tokenObject.token);
+    // クレジットカードをクリアする
+    $('#mypage_card_card_no').val('');
+
+    $('#form1').submit();
+  }
+
+  // 入力内容のチェックとトークン取得
+  function getToken() {
+    var cardno = $('#mypage_card_card_no').val();
+    if (cardno == "") {
+      alert("{{ 'gmo_payment_gateway.mypage.card_edit.token.error2'|trans }}");
+      $('#mypage_card_card_no').focus();
+      return false;
+    }
+
+    // カード番号の数値のみチェック
+    var pat = /^\d*$/;
+    if (!pat.test(cardno)) {
+      alert("{{ 'gmo_payment_gateway.mypage.card_edit.token.error3'|trans }}");
+      $('#mypage_card_card_no').focus();
+      return false;
+    }
+
+    // カード番号の7桁未満チェック
+    if (cardno.length < 7) {
+      alert("{{ 'gmo_payment_gateway.mypage.card_edit.token.error4'|trans }}");
+      $('#mypage_card_card_no').focus();
+      return false;
+    }
+
+    var date = new Date();
+    var year = date.getFullYear();
+    year = String(year);
+    year = year.substring(0,2);
+    var expire = year + $('#mypage_card_expire_year').val()
+                      + $('#mypage_card_expire_month').val();
+
+    var holdername = $('#mypage_card_card_name1').val();
+    if (holdername == "") {
+      alert("{{ 'gmo_payment_gateway.mypage.card_edit.token.error5'|trans }}");
+      $('#mypage_card_card_name1').focus();
+      return false;
+    }
+    // 名義人の文字種チェック
+    var pat = /^[0-9a-zA-Z ]*$/;
+    if (!pat.test(holdername)) {
+      alert("{{ 'gmo_payment_gateway.mypage.card_edit.token.error6'|trans }}");
+      $('#mypage_card_card_name1').focus();
+      return false;
+    }
+
+    $('.ec-inlineBtn').attr('disabled', true);
+
+    Multipayment.init("{{ GmoConfig.getShopId }}");
+    Multipayment.getToken({
+      cardno: cardno,
+      expire: expire,
+      securitycode: '',
+      holdername: holdername
+    }, execPurchase);
+
+    return false;
+  }
+
+  $(function () {
+    // 番号を読み取り専用に設定する
+    var elem = document.getElementById('mypage_card_CardSeq');
+    elem.readOnly = true;
+
+    // 選択したカードを削除
+    $('#delete_card_action').on('click', function () {
+      if (!$('input:checkbox[name^="delete_card_seq"]:checked').length) {
+        alert("{{ 'gmo_payment_gateway.mypage.card_edit.noselect'|trans }}");
+        return false;
+      }
+
+      $('.ec-inlineBtn').attr('disabled', true);
+
+      $('#form1').attr('action', "{{ url('gmo_mypage_card_edit_delete') }}");
+      $('#form1').submit();
+
+      return false;
+    });
+
+    // 入力内容を保存
+    $('#save_card_action').on('click', function () {
+      // クレジットトークンを取得
+      return getToken();
+    });
+  });
+</script>
+<style type="text/css">
+  .ec-cardRole__actions {
+    margin-bottom: 30px;
+  }
+  .ec-halfInput input[type='tel'],
+  .ec-halfInput input[type='text'] {
+    display: block;
+    width: 45%;
+    margin-bottom: 0;
+  }
+  #mypage_card_CardSeq {
+    width: 20%;
+  }
+  .cardNoCaution {
+    color: red;
+  }
+</style>
+<div class="ec-layoutRole__main">
+  <div class="ec-mypageRole">
+    <div class="ec-pageHeader">
+      <h1>{{ 'gmo_payment_gateway.mypage.card_edit.title'|trans }}/{{ 'gmo_payment_gateway.mypage.card_edit.sub_title'|trans }}</h1>
+    </div>
+    {% include 'Mypage/navi.twig' %}
+  </div>
+
+  <form id="form1" name="form1" method="post" action="{{ url('gmo_mypage_card_edit') }}">
+    {{ form_widget(form._token) }}
+
+    <div class="ec-mypageRole">
+      <div class="ec-cardRole">
+	{% for message in app.flashes('eccube.front.success') %}
+	<div class="alert alert-success alert-dismissible show m-3" role="alert">
+	  <i class="fa fa-check fa-lg mr-2"></i>
+          <span class="font-weight-bold">{{ message }}</span>
+          <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+	</div>
+	{% endfor %}
+
+	{% for message in app.flashes('eccube.front.danger') %}
+	<div class="alert alert-danger alert-dismissible show m-3" role="alert">
+	  <i class="fa fa-warning fa-lg mr-2"></i>
+          <span class="font-weight-bold">{{ message }}</span>
+          <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+	</div>
+	{% endfor %}
+      </div>
+    </div>
+
+    <div class="ec-mypageRole">
+      <div class="ec-off1Grid">
+        <div class="ec-off1Grid__cell">
+          <div class="ec-cardRole">
+            {% if cardList|length == 0 %}
+            <p class="ec-para-normal">{{ 'gmo_payment_gateway.mypage.card_edit.nodata'|trans }}</p>
+            {% else %}
+            <div class="ec-cardList">
+              <table class="table" style="width:100%;">
+                <thead>
+                  <tr>
+                    <th class="text-center">{{ 'gmo_payment_gateway.mypage.card_edit.col1'|trans }}</th>
+                    <th class="text-center">{{ 'gmo_payment_gateway.mypage.card_edit.col2'|trans }}</th>
+                    <th class="text-left">{{ 'gmo_payment_gateway.mypage.card_edit.col3'|trans }}</th>
+                    <th class="text-center">{{ 'gmo_payment_gateway.mypage.card_edit.col4'|trans }}</th>
+                    <th class="text-left">{{ 'gmo_payment_gateway.mypage.card_edit.col5'|trans }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for card in cardList %}
+                  <tr>
+                    <td class="text-center">
+                      <input type="checkbox" id="delete_card_seq_{{ card.CardSeq }}" name="delete_card_seq[]" value="{{ card.CardSeq }}" class="form-check-input" />
+                    </td>
+                    <td class="text-center">
+                      {{ card.CardSeq }}
+                    </td>
+                    <td class="text-left">
+                      <a href="#" onclick="return bindData('{{ card.CardSeq }}', '{{ card.CardNo }}', '{{ card.Expire }}', '{{ card.HolderName }}');">
+                        {{ card.CardNo }}
+                      </a>
+                    </td>
+                    <td class="text-center">
+                      {{card.expire_year}}{{ 'gmo_payment_gateway.mypage.card_edit.year'|trans }}{{card.expire_month}}{{ 'gmo_payment_gateway.mypage.card_edit.month'|trans }}
+                    </td>
+                    <td class="text-left">
+                      {{ card.HolderName }}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="ec-cardRole__actions">
+              <a id="delete_card_action" class="ec-inlineBtn" href="#">{{ 'gmo_payment_gateway.mypage.card_edit.button.delete'|trans }}</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ec-mypageRole">
+      <div class="ec-off1Grid">
+        <div class="ec-off1Grid__cell">
+          <div class="ec-cardRole">
+            <div class="ec-borderedDefs">
+              <dl>
+                <dt>
+                  {{ form_label(form.card_no, 'gmo_payment_gateway.mypage.card_edit.col3'|trans, { 'label_attr': { 'class': 'ec-label' }}) }}
+                </dt>
+                <dd>
+                  <div class="ec-halfInput">
+                    {{ form_widget(form.card_no, { type : 'tel' }) }}
+                    <span class="cardNoCaution">{{ 'gmo_payment_gateway.mypage.card_edit.col3.caution'|trans }}</span>
+                    {{ form_errors(form.card_no) }}
+                    {{ form_widget(form.token) }}
+                  </div>
+                </dd>
+              </dl>
+              
+              <dl>
+                <dt>
+                  {{ form_label(form.expire_month, 'gmo_payment_gateway.mypage.card_edit.col4'|trans, { 'label_attr': { 'class': 'ec-label' }}) }}
+                </dt>
+                <dd>
+                  <div class="ec-select">
+                    {{ form_widget(form.expire_month) }}{{ 'gmo_payment_gateway.mypage.card_edit.month'|trans }} / 20
+                    {{ form_widget(form.expire_year) }}{{ 'gmo_payment_gateway.mypage.card_edit.year'|trans }}
+                    {{ form_errors(form.expire_month) }}
+                    {{ form_errors(form.expire_year) }}
+                  </div>
+                </dd>
+              </dl>
+              
+              <dl>
+                <dt>
+                  {{ form_label(form.card_name1, 'gmo_payment_gateway.mypage.card_edit.col5'|trans, { 'label_attr': { 'class': 'ec-label' }}) }}
+                </dt>
+                <dd>
+                  <div class="ec-halfInput">
+                    {{ form_widget(form.card_name1) }}
+                    <span>{{ 'gmo_payment_gateway.mypage.card_edit.col5.caution'|trans }}</span>
+                    {{ form_errors(form.card_name1) }}
+                  </div>
+                </dd>
+              </dl>
+              
+              <dl id="cardSeq" style="display:none">
+                <dt>
+                  {{ form_label(form.CardSeq, 'gmo_payment_gateway.mypage.card_edit.col2'|trans, { 'label_attr': { 'class': 'ec-label' }}) }}
+                </dt>
+                <dd>
+                  <div class="ec-halfInput">
+                    {{ form_widget(form.CardSeq) }}
+                    {{ form_errors(form.CardSeq) }}
+                  </div>
+                </dd>
+              </dl>
+            </div>
+
+            <div class="ec-cardRole__actions">
+              <a id="save_card_action" class="ec-inlineBtn" href="#">{{ 'gmo_payment_gateway.mypage.card_edit.button.save'|trans }}</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'default_frame.twig' %}
+{% block javascript %}
+<script>
+$(function () {
+  $.each($('input'), function($k, $v) {
+    $v.type = 'tel';
+  })
+
+  $('input').on('keyup', function () {
+    id = $(this).attr("id");
+    n = parseInt(id.slice(-1));
+
+    $x = $('#form_auth_param0' + n).val();
+    if (n < 4 && $x.length == 1) {
+        $('#form_auth_param0' + (n + 1)).focus();
+    } else if (1 < n && $x.length == 0) {
+        $('#form_auth_param0' + (n - 1)).focus();
+    }
+  });
+});
+</script>
+{% endblock %}
+
+{% block main %}
+
+<style>
+.heading {
+  margin: 3rem 0;
+  font-size: 3rem;
+}
+
+.auth > input {
+  height: 6rem;
+  width: 6rem;
+  margin: 0 0.05rem;
+  font-size: 3rem;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border: 5px;
+}
+
+.notice {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  line-height: 5rem;
+  font-size: 2.5rem;
+  border: solid #888888;
+  background-color: #ffffff;
+}
+
+.notice > span {
+  font-size: 3rem;
+}
+
+.info {
+  max-width: 500px;
+  margin: 3rem auto;
+  font-size: 2rem;
+  text-align: left;
+}
+</style>
+
+<div class="container">
+  <div class="ec-role">
+    <div class="ec-pageHeader">
+        <h1>クロネコ代金後払い認証画面</h1>
+    </div>
+  </div>
+  <div class="ec-cartRole">
+    <div class="ec-cartRole__progress">
+      <ul class="ec-progress">
+        {% set step = 1 %}
+        <li class="ec-progress__item">
+          <div class="ec-progress__number">{{ step }}{% set step = step + 1 %}
+          </div>
+          <div class="ec-progress__label">{{ 'front.cart.nav__cart_items'|trans }}
+          </div>
+        </li>
+        {% if is_granted('ROLE_USER') == false %}
+          <li class="ec-progress__item">
+            <div class="ec-progress__number">{{ step }}{% set step = step + 1 %}</div>
+            <div class="ec-progress__label">{{ 'front.cart.nav__customer_info'|trans }}</div>
+          </li>
+        {% endif %}
+        <li class="ec-progress__item">
+          <div class="ec-progress__number">{{ step }}{% set step = step + 1 %}</div>
+          <div class="ec-progress__label">{{ 'front.cart.nav__order'|trans }}</div>
+        </li>
+        <li class="ec-progress__item is-complete">
+          <div class="ec-progress__number">{{ step }}{% set step = step + 1 %}</div>
+          <div class="ec-progress__label">{{ 'front.cart.nav__confirm'|trans }}</div>
+        </li>
+        <li class="ec-progress__item">
+          <div class="ec-progress__number">{{ step }}{% set step = step + 1 %}</div>
+          <div class="ec-progress__label">{{ 'front.cart.nav__complete'|trans }}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <form id="shopping-form" method="post" action="{{ url('yamato_sms_complete') }}">
+    <div class="ec-totalBox text-center" >
+      <div class="heading">SMSで届いた認証コードを入力してください。</div>
+      <div>
+        <div class="auth">
+          {{ form_widget(form.auth_param01, {'attr':{'id':'form_auth_param01'}}) }}
+          {{ form_widget(form.auth_param02, {'attr':{'id':'form_auth_param02'}}) }}
+          {{ form_widget(form.auth_param03, {'attr':{'id':'form_auth_param03'}}) }}
+          {{ form_widget(form.auth_param04, {'attr':{'id':'form_auth_param04'}}) }}
+        </div>
+        <div class="notice text-center">
+          <span>{{ phone_number }}</span>へ<br />送信しました。
+        </div>
+        <div class="info">
+          SMSが届かない場合は支払方法選択画面へ戻り、再度決済を行ってください。
+        </div>
+        <div class="ec-totalBox__btn">
+          <button type="submit" class="ec-blockBtn--action">確認する</button>
+          <a href="{{ url('shopping') }}" class="ec-blockBtn--cancel">戻る</a>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

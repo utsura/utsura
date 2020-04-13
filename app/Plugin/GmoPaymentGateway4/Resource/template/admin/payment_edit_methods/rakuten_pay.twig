@@ -1,0 +1,49 @@
+{#
+Copyright(c) 2018 GMO Payment Gateway, Inc. All rights reserved.
+http://www.gmo-pg.com/
+#}
+<div class="card-body">
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.rakuten_pay.col1'|trans }}</span><span class="badge badge-primary ml-1">{{ 'gmo_payment_gateway.com.required'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.JobCd) }}
+      {{ form_errors(form.JobCd) }}
+      <p class="small" style="margin-top:10px;">{{ 'gmo_payment_gateway.admin.payment_edit.jobcd.note1'|trans }}</p>
+      <p class="small">{{ 'gmo_payment_gateway.admin.payment_edit.jobcd.note2'|trans }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.rakuten_pay.col2'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.order_mail_title1) }}<span class="caution">{{ 'gmo_payment_gateway.admin.payment_edit.rakuten_pay.order_mail_title1.caution'|trans }}</span>
+      {{ form_errors(form.order_mail_title1) }}
+      <p class="small" style="margin-top:10px;">{{ 'gmo_payment_gateway.admin.payment_edit.rakuten_pay.order_mail_title1.note1'|trans }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.rakuten_pay.col3'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.order_mail_body1) }}<span class="caution">{{ 'gmo_payment_gateway.admin.payment_edit.rakuten_pay.order_mail_body1.caution'|trans }}</span>
+      {{ form_errors(form.order_mail_body1) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.rakuten_pay.col4'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ClientField1) }}<span class="caution">{{ 'gmo_payment_gateway.admin.payment_edit.rakuten_pay.ClientField1.caution'|trans }}</span>
+      {{ form_errors(form.ClientField1) }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3"><span>{{ 'gmo_payment_gateway.admin.payment_edit.rakuten_pay.col5'|trans }}</span>
+    </div>
+    <div class="col mb-2">
+      {{ form_widget(form.ClientField2) }}<span class="caution">{{ 'gmo_payment_gateway.admin.payment_edit.rakuten_pay.ClientField2.caution'|trans }}</span>
+      {{ form_errors(form.ClientField2) }}
+    </div>
+  </div>
+</div>

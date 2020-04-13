@@ -1,0 +1,410 @@
+{#
+Copyright(c) 2018 GMO Payment Gateway, Inc. All rights reserved.
+http://www.gmo-pg.com/
+#}
+
+{% if Order.getPayment and Order.getPayment.getMethodClass matches '{Plugin\\\\GmoPaymentGateway4\\\\.*}' %}
+<script>
+    function fnGmoConfirm() {
+        message  = "決済操作を行います。\n";
+        message += "受注データを編集した場合は先に保存して下さい。\n";
+        message += "よろしいですか？";
+
+        return window.confirm(decNumRefToString(message));
+    }
+
+    function decNumRefToString(decNumRef) {
+        return decNumRef.replace(/&#(\d+);/ig, function (match, $1, idx, all) {
+            return String.fromCharCode($1);
+        });
+    }
+
+    $(function () {
+        // 支払方法を選択不可にする（代わりに hidden 項目を追加）
+        var paymentId = $('#order_Payment').val();
+        $('#order_Payment').after('<input type="hidden" name="order[Payment]" id="order_payment" value="' + paymentId + '" />');
+        $('#order_Payment').attr('disabled', 'disabled');
+
+        // ページ最下部に移動
+        $('#gmo_payment_gateway-info').appendTo($('#form1 > div.c-contentsArea__cols > div > div'));
+
+        // 売上確定(実売上)実行
+        $('#gmo_payment_gateway-action__commit').on('click', function () {
+            if (!fnGmoConfirm()) {
+                return;
+            }
+            $('#gmo_payment_gateway-info__body button').prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: '{{ url('gmo_payment_gateway_admin_order_commit', { id: Order.id }) }}',
+            }).always(function () {
+                location.href = location.href.replace(/#.*$/, '');
+            });
+        });
+
+        // 取消(返品)実行
+        $('#gmo_payment_gateway-action__cancel').on('click', function () {
+            if (!fnGmoConfirm()) {
+                return;
+            }
+            $('#gmo_payment_gateway-info__body button').prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: '{{ url('gmo_payment_gateway_admin_order_cancel', { id: Order.id }) }}',
+            }).always(function () {
+                location.href = location.href.replace(/#.*$/, '');
+            });
+        });
+
+        // 決済金額変更
+        $('#gmo_payment_gateway-action__change').on('click', function () {
+            if (!fnGmoConfirm()) {
+                return;
+            }
+            $('#gmo_payment_gateway-info__body button').prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: '{{ url('gmo_payment_gateway_admin_order_change', { id: Order.id }) }}',
+            }).always(function () {
+                location.href = location.href.replace(/#.*$/, '');
+            });
+        });
+
+        // 再オーソリ実行
+        $('#gmo_payment_gateway-action__reauth').on('click', function () {
+            if (!fnGmoConfirm()) {
+                return;
+            }
+            $('#gmo_payment_gateway-info__body button').prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: '{{ url('gmo_payment_gateway_admin_order_reauth', { id: Order.id }) }}',
+            }).always(function () {
+                location.href = location.href.replace(/#.*$/, '');
+            });
+        });
+
+        // 決済状態確認・反映
+        $('#gmo_payment_gateway-action__status').on('click', function () {
+            if (!fnGmoConfirm()) {
+                return;
+            }
+            $('#gmo_payment_gateway-info__body button').prop('disabled', true);
+            $.ajax({
+                type: 'POST',
+                url: '{{ url('gmo_payment_gateway_admin_order_status', { id: Order.id }) }}',
+            }).always(function () {
+                location.href = location.href.replace(/#.*$/, '');
+            });
+        });
+
+        // 決済ログの表示・非表示を制御
+        $('#gmo_payment_gateway_log_a').on('click', function () {
+            $('#gmo_payment_gateway_log_table').slideToggle();
+        });
+    });
+</script>
+<div class="d-none">
+  <div id="gmo_payment_gateway-info" class="card rounded border-0 mb-4">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-8">
+          <span class="card-title">{{ 'gmo_payment_gateway.admin.order_edit.title'|trans }}</span>
+        </div>
+        <div class="col-4 text-right">
+          <a data-toggle="collapse" href="#gmo_payment_gateway-info__body" aria-expanded="false" aria-controls="gmo_payment_gateway-info__body">
+            <i class="fa fa-angle-up fa-lg"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="collapse show ec-cardCollapse" id="gmo_payment_gateway-info__body">
+      <div class="card-body">
+
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.payment_method'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getPayment.getMethod }}
+          </div>
+        </div>
+
+	{% if Order.getGmoPaymentInfo.pay_status is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.pay_status'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.pay_status }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.OrderID is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.order_id'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.OrderID }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.ErrInfo is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.err_info'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.ErrInfo }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.error_msg is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.err_msg'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.error_msg }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.Approve is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.approve'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.Approve }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.Method is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.method'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.Method }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.Forward is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.forward'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.Forward }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.TranID is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.tran_id'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.TranID }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.TranDate is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.tran_date'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.TranDate }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.Convenience is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.convenience'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.Convenience }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.CustID is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.cust_id'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.CustID }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.BkCode is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.bk_code'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.BkCode }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.ConfNo is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.conf_no'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.ConfNo }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.ReceiptNo is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.receipt_no'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.ReceiptNo }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.PaymentTerm is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.payment_term'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.PaymentTerm }}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.Amount is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.amount'|trans }}</span>
+          </div>
+          <div class="col">
+            {{ Order.getGmoPaymentInfo.Amount|number_format }}{{ 'gmo_payment_gateway.com.yen'|trans }}
+	    {% if Order.getGmoPaymentInfo.attention is defined %}
+	    <span class="attention">{{ Order.getGmoPaymentInfo.attention }}</span>
+	    {% endif %}
+          </div>
+        </div>
+	{% endif %}
+
+	{% if Order.getGmoPaymentInfo.buttons is defined and Order.getGmoPaymentInfo.buttons|length %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.action'|trans }}</span>
+          </div>
+          <div class="col">
+            <ul class="list-inline">
+	      {% if Order.getGmoPaymentInfo.buttons.commit is defined %}
+              <li class="list-inline-item">
+                <button id="gmo_payment_gateway-action__commit" type="button" class="btn btn-success px-5">{{ 'gmo_payment_gateway.admin.order_edit.button.commit'|trans }}</button>
+              </li>
+	      {% endif %}
+	      {% if Order.getGmoPaymentInfo.buttons.cancel is defined %}
+              <li class="list-inline-item">
+                <button id="gmo_payment_gateway-action__cancel" type="button" class="btn btn-danger px-5">{{ 'gmo_payment_gateway.admin.order_edit.button.cancel'|trans }}</button>
+              </li>
+	      {% endif %}
+	      {% if Order.getGmoPaymentInfo.buttons.change is defined %}
+              <li class="list-inline-item">
+                <button id="gmo_payment_gateway-action__change" type="button" class="btn btn-info px-5">{{ 'gmo_payment_gateway.admin.order_edit.button.change'|trans }}</button>
+              </li>
+	      {% endif %}
+	      {% if Order.getGmoPaymentInfo.buttons.reauth is defined %}
+              <li class="list-inline-item">
+                <button id="gmo_payment_gateway-action__reauth" type="button" class="btn btn-info px-5">{{ 'gmo_payment_gateway.admin.order_edit.button.reauth'|trans }}</button>
+              </li>
+	      {% endif %}
+	      {% if Order.getGmoPaymentInfo.buttons.status is defined %}
+              <li class="list-inline-item">
+                <button id="gmo_payment_gateway-action__status" type="button" class="btn btn-ec-regular px-5">{{ 'gmo_payment_gateway.admin.order_edit.button.status'|trans }}</button>
+              </li>
+	      {% endif %}
+            </ul>
+          </div>
+        </div>
+	{% endif %}
+
+        {% if Order.getGmoPaymentInfo.Amount is defined %}
+        <div class="row mb-2">
+          <div class="col-2">
+            <span>{{ 'gmo_payment_gateway.admin.order_edit.col.log'|trans }}</span>
+          </div>
+          <div class="col">
+            <a href="javascript:;" id="gmo_payment_gateway_log_a">{{ 'gmo_payment_gateway.admin.order_edit.col.log.a'|trans }}</a><br/>
+            <table id="gmo_payment_gateway_log_table" style="display:none; margin-top:10px; border:#ccc; table-layout:fixed;width:100%;" class="list" border="1">
+              <thead>
+                <tr>
+                  <th width='20%'>{{ 'gmo_payment_gateway.admin.order_edit.col.log.time'|trans }}</th>
+                  <th>{{ 'gmo_payment_gateway.admin.order_edit.col.log.contents'|trans }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for paymentLog in Order.getGmoPaymentInfo.payment_log %}
+                  {% for key, logs in paymentLog %}
+                <tr>
+                  <td>{{ key }}</td>
+                  <td style="word-wrap:break-word;">
+                    {% for lkey, log in logs %}
+                      {# check log whether is array or not #}
+                      {% if log is not empty %}
+                        {% if log is iterable %}
+                          {% for error in log %}
+                            {{ error }}
+                          {% endfor %}
+                        {% else %}
+                          {{ lkey }}={{ log }}
+                          {{ loop.last ? '' : ',' }}
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  </td>
+                </tr>
+                  {% endfor %}
+                {% else %}
+                <tr>
+                  <td colspan="2">No any log</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+{# GMO-PG 決済以外または新規注文の場合 #}
+<script>
+    $(function() {
+        // GMO-PG 決済を選択項目から削除する
+        {% for paymentId in Order.getGmoPaymentIds %}
+            $('#order_Payment option[value={{ paymentId }}]').remove();
+        {% endfor %}
+    });
+</script>
+{% endif %}

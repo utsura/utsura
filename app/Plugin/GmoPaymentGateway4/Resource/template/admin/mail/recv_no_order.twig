@@ -1,0 +1,25 @@
+受注情報に存在しないオーダーIDの決済結果を受信しました。
+
+受注ID: {{ data.order_id }}
+決済オーダーID： {{ data.OrderID }}
+{% if data.Amount is not empty %}
+利用金額: {{ data.Amount|number_format }}円
+{% endif %}
+決済方法: {{ data.pay_type }}
+{% if data.ReceiptDate is defined %}
+受付日時: {{ data.ReceiptDate }}
+{% endif %}
+{% if data.TranDate is defined %}
+処理日時: {{ data.TranDate }}
+{% endif %}
+
+大変お手数ですが、ご確認お願い致します。
+
+GMO-PGから結果通知プログラムURLに結果を返却した際、EC-CUBE側
+（dtb_order）に該当データが存在しないため「不一致」となり、
+本メールが送信されています。
+
+まずは、EC-CUBE管理画面とPGマルチペイメントサービスのショップ
+管理画面とで決済データをご確認いただき、決済結果に相違がないこと
+をご確認ください。
+

@@ -1,0 +1,25 @@
+{#
+Copyright(c) 2018 GMO Payment Gateway, Inc. All rights reserved.
+http://www.gmo-pg.com/
+#}
+{% extends 'default_frame.twig' %}
+
+{% block javascript %}
+<script>
+  $(function () {
+    loadingOverlay();
+    $('#form1').submit();
+  });
+</script>
+{% endblock javascript %}
+
+{% block main %}
+<div style="margin: 50px 0; font-size: 110%;">
+  <p>{{ 'gmo_payment_gateway.shopping.carrier.note1'|trans }}</p>
+  <span style="color:red;">{{ 'gmo_payment_gateway.shopping.carrier.note2'|trans }}</span>
+</div>
+<form id="form1" name="form1" action="{{ sendData.StartURL }}" method="POST">
+  <input type="hidden" name="AccessID" value="{{ sendData.AccessID }}" />
+  <input type="hidden" name="Token" value="{{ sendData.Token }}" />
+</form>
+{% endblock %}

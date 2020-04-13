@@ -1,0 +1,338 @@
+{#
+This file is part of EC-CUBE
+
+Copyright(c) LOCKON CO.,LTD. All Rights Reserved.
+
+http://www.lockon.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+{% extends '@admin/default_frame.twig' %}
+
+{% set menus = ['order', 'yamato_payment4_admin_deferred_status'] %}
+
+{% block title %}{{ 'yamato_payment.admin.deferred_status.title'|trans }}{% endblock %}
+{% block sub_title %}{{ 'yamato_payment.admin.payment_status.sub_title'|trans }}{% endblock %}
+
+{% form_theme searchForm '@admin/Form/bootstrap_4_layout.html.twig' %}
+
+{% block stylesheet %}
+{% endblock stylesheet %}
+
+{% block javascript %}
+    <script>
+        $(function () {
+            if ($('[type="date"]').prop('type') != 'date') {
+                // input type属性でdateが利用できるかどうか(カレンダー表示できないブラウザ対応)
+                $.when(
+                    $.getScript("{{ asset('assets/js/vendor/moment.min.js', 'admin') }}"),
+                    $.getScript("{{ asset('assets/js/vendor/moment-with-locales.min.js', 'admin') }}"),
+                    $.getScript("{{ asset('assets/js/vendor/tempusdominus-bootstrap-4.min.js', 'admin') }}")
+                ).done(function() {
+                    $('input[id$=_date_starts][type!=text]').datetimepicker({
+                        locale: '{{ eccube_config.locale }}',
+                        format: 'YYYY-MM-DD',
+                        useCurrent: false,
+                        buttons: {
+                            showToday: true,
+                            showClose: true
+                        }
+                    });
+
+                    $('input[id$=_date_ends][type!=text]').datetimepicker({
+                        locale: '{{ eccube_config.locale }}',
+                        format: 'YYYY-MM-DD',
+                        useCurrent: false,
+                        buttons: {
+                            showToday: true,
+                            showClose: true
+                        }
+                    });
+                });
+            }
+            // 登録チェックボックス
+            $('#check_all').on('change', function() {
+                var checked = $(this).prop('checked');
+                if (checked) {
+                    $('input[id^="yamato_check_"]').prop('checked', true);
+                } else {
+                    $('input[id^="yamato_check_"]').prop('checked', false);
+                }
+            });
+
+            $('#change_status').click(function(){
+                var check_cnt = countCheck();
+                if(check_cnt == 0) {
+                    alert("チェックボックスが選択されていません");
+                    return false;
+                }
+                if($('#search_payment_status').val().length == 0) {
+                    alert("対応状況が選択されていません");
+                    return false;
+                }
+                if(confirm('対応状況を更新します。よろしいですか？')) {
+                    $('#yamato_request').val('change_status');
+                    $('#yamato_mode').val($('#search_payment_status').val());
+                    $('#form_bulk').submit();
+                }
+            });
+
+            $('#change_payment_status').click(function(){
+                var check_cnt = countCheck();
+                if(check_cnt == 0) {
+                    alert("チェックボックスが選択されていません");
+                    return false;
+                }
+                if($('#search_payment_deferred_status').val().length == 0) {
+                    alert("決済処理が選択されていません");
+                    return false;
+                }
+                if(confirm('決済処理を行います。よろしいですか？')) {
+                    $('#yamato_request').val('change_payment_status');
+                    $('#yamato_mode').val($('#search_payment_deferred_status').val());
+                    $('#form_bulk').submit();
+                }
+            });
+
+            $('#deferredCsvDownload').click(function(){
+                var check_cnt = countCheck();
+                if(check_cnt == 0) {
+                    alert("チェックボックスが選択されていません");
+                    return false;
+                }
+                if(confirm('買手情報CSVの出力を行います。よろしいですか？')) {
+                    $('#yamato_request').val('export_deferred_csv');
+                    $('#form_bulk').submit();
+                }
+            });
+        });
+        
+        function countCheck() {
+            var check_count = 0;
+            $('input[id^="yamato_check_"]').each(function(){
+                if($(this).prop('checked')) {
+                    check_count++;
+                }
+            });
+            return check_count;
+        }
+    </script>
+{% endblock javascript %}
+
+{% block main %}
+    <!--検索条件設定テーブルここから-->
+    <div class="c-outsideBlock">
+        <form name="search_form" method="POST" action="{{ url('yamato_payment4_admin_deferred_status') }}">
+            {{ form_widget(searchForm._token) }}
+            <div class="c-outsideBlock__contents">
+                <div class="row">
+                    <div class="col">
+                        <label class="col-form-label">{{ 'yamato_payment.admin.payment_status.search_condition_order_date'|trans }}</label>
+                        <div class="form-row align-items-center">
+                            <div class="col">
+                                {{ form_widget(searchForm.order_date_starts) }}
+                                {{ form_errors(searchForm.order_date_starts) }}
+                            </div>
+                            <div class="col-form-label">{{ 'admin.common.separator__range'|trans }}</div>
+                            <div class="col">
+                                {{ form_widget(searchForm.order_date_ends) }}
+                                {{ form_errors(searchForm.order_date_ends) }}
+                            </div>
+                            <div class="col"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-outsideBlock__contents">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <p class="col-form-label">{{ 'yamato_payment.admin.payment_status.search_condition_order_status'|trans }}</p>
+                                {{ form_widget(searchForm.OrderStatuses, {'label_attr': {'class': 'checkbox-inline'}}) }}
+                                {{ form_errors(searchForm.OrderStatuses) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-outsideBlock__contents">
+                <div class="row">
+                    <div class="mb-4">
+                        <div class="col-12">
+                            <button class="btn btn-ec-conversion px-5" type="submit">検索</button>
+                            {% if pagination %}
+                                <span class="font-weight-bold ml-2">{{ 'yamato_payment.admin.payment_status.search_result_count'|trans({ '%count%': pagination.totalItemCount }) }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="c-outsideBlock__contents" id="collective_setting_box__body">
+                <div class="box-header">
+                    <h3 class="box-title">一括設定</h3>
+                </div>
+
+                <div id="collective_setting__body" class="box-body">
+                    <div id="collective_setting__list" class="table_list">
+                        <div id="collective_setting__list_body" class="table-responsive with-border">
+                            <table class="table">
+                                <tr>
+                                    <td class="text-center" style="background-color: #f9f9f9;">
+                                        <label class="control-label required ">対応状況更新</label>
+                                    </td>
+                                    <td>{{ form_widget(searchForm.status) }}</td>
+                                    <td><a href="#" class="btn btn-success" id="change_status">一括更新</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center" style="background-color: #f9f9f9;">
+                                        <label class="control-label required ">決済処理</label>
+                                    </td>
+                                    <td>{{ form_widget(searchForm.deferred_status) }}</td>
+                                    <td><a href="#" class="btn btn-success" id="change_payment_status">一括処理</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <!--検索条件設定テーブルここまで-->
+
+    <div class="c-contentsArea__cols">
+        <div class="c-contentsArea__primaryCol">
+            <div class="c-primaryCol">
+                {% if pagination and pagination.totalItemCount %}
+                    <form id="form_bulk" method="POST" action="{{ url('yamato_payment4_admin_deferred_status_request') }}">
+                        <input type="hidden" name="yamato_request" id="yamato_request" value="" />
+                        <input type="hidden" name="yamato_mode" id="yamato_mode" value="" />
+                        <input type="hidden" name="{{ constant('Eccube\\Common\\Constant::TOKEN_NAME') }}" value="{{ csrf_token(constant('Eccube\\Common\\Constant::TOKEN_NAME')) }}">
+                        <div class="row justify-content-between mb-2">
+                            <div class="col-6"></div>
+                            <div class="col-5 text-right">
+                                <div class="d-inline-block">
+                                    <select class="custom-select" onchange="location.href = this.value;">
+                                        {% for pageMax in pageMaxis %}
+                                            <option {% if pageMax.name == page_count%} selected {% endif %}
+                                                    value="{{ path('yamato_payment4_admin_deferred_status', {'page_no': 1, 'page_count': pageMax.name}) }}">
+                                                {{ 'yamato_payment.admin.payment_status.display_count'|trans({ '%count%': pageMax.name|e }) }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card rounded border-0 mb-4">
+                            <div class="card-body p-0">
+                                <table class="table table-sm" id="search_result">
+                                    <thead>
+                                    <tr>
+                                        <th class="border-top-0 pt-2 pb-2 text-center pl-3">
+                                            <input type="checkbox" id="check_all" name="filter" value="open">
+                                        </th>
+                                        <th class="border-top-0 pt-2 pb-2 text-center">{{ 'yamato_payment.admin.payment_status.col_order_date'|trans }}</th>
+                                        <th class="border-top-0 pt-2 pb-2 text-center">{{ 'yamato_payment.admin.payment_status.col_order_no'|trans }}</th>
+                                        <th class="border-top-0 pt-2 pb-2 text-center">{{ 'yamato_payment.admin.payment_status.col_order_id'|trans }}</th>
+                                        <th class="border-top-0 pt-2 pb-2 text-center">{{ 'yamato_payment.admin.payment_status.col_order_name'|trans }}</th>
+                                        <th class="border-top-0 pt-2 pb-2 text-center">{{ 'yamato_payment.admin.payment_status.col_order_payment'|trans }}</th>
+                                        <th class="border-top-0 pt-2 pb-2 text-center">{{ 'yamato_payment.admin.payment_status.col_order_price'|trans }}</th>
+                                        <th class="border-top-0 pt-2 pb-2 text-center">{{ 'yamato_payment.admin.payment_status.col_order_staus'|trans }}</th>
+                                        <th class="border-top-0 pt-2 pb-2 text-center">決済状況</th>
+                                        <th class="border-top-0 pt-2 pb-2 text-center">与信承認日</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% set cssClassStatus = {
+                                        (constant('Eccube\\Entity\\Master\\OrderStatus::NEW')): "badge-ec-blue",
+                                        (constant('Eccube\\Entity\\Master\\OrderStatus::CANCEL')): "badge-ec-glay",
+                                        (constant('Eccube\\Entity\\Master\\OrderStatus::IN_PROGRESS')): "badge-ec-blue",
+                                        (constant('Eccube\\Entity\\Master\\OrderStatus::DELIVERED')): "badge-ec-glay",
+                                        (constant('Eccube\\Entity\\Master\\OrderStatus::PAID')): "badge-ec-green",
+                                        (constant('Eccube\\Entity\\Master\\OrderStatus::PENDING')): "badge-ec-yellow",
+                                        (constant('Eccube\\Entity\\Master\\OrderStatus::PROCESSING')): "badge-ec-yellow",
+                                        (constant('Eccube\\Entity\\Master\\OrderStatus::RETURNED')): "badge-ec-glay",
+                                    }
+                                    %}
+                                    {% set yamatoDeferredStatus = {
+                                        1: "承認済み",
+                                        2: "取消済み",
+                                        3: "送り状番号登録済み",
+                                        5: "配送要調査",
+                                        10: "売上確定",
+                                        11: "請求書発行済み",
+                                        12: "入金済み",
+                                    }
+                                    %}
+                                    {% for Order in pagination %}
+                                        <tr>
+                                            <td class="align-middle text-center pl-3">
+                                                <input type="checkbox"  name="ids[]" id="yamato_check_{{ Order.id }}" value="{{ Order.id }}">
+                                            </td>
+                                            <td class="align-middle text-left" id="order_date--{{ Order.id }}">{{ Order.order_date|date_min }}</td>
+                                            <td class="align-middle text-center" id="id--{{ Order.id }}"><a class="action-edit" href="{{ url('admin_order_edit', { id : Order.id }) }}">{{ Order.order_no }}</a></td>
+                                            <td class="align-middle text-center" id="name--{{ Order.id }}">{{ Order.id }}</td>
+                                            <td class="align-middle text-center" id="name--{{ Order.id }}">{{ Order.name01 }} {{ Order.name02 }}</td>
+                                            <td class="align-middle text-center" id="payment_method--{{ Order.id }}">{{ Order.payment_method }}</td>
+                                            <td class="align-middle text-right" id="payment_total--{{ Order.id }}">
+                                                {{ Order.payment_total|price }}
+                                                {% for yamato in Order.YamatoOrder %}
+                                                    {% if yamato.memo07 != Order.payment_total %}
+                                                        <br /><span class="badge badge-danger">[金額変更未連携:{{yamato.memo07|price}}]</span>
+                                                    {% endif %}
+                                                {% endfor %}
+
+                                            </td>
+                                            <td class="align-middle text-center"  id="order_status--{{ Order.id }}">
+                                                <span class="badge {{ attribute(cssClassStatus, Order.OrderStatus.id) }}">{{ Order.OrderStatus }}</span>
+                                            </td>
+                                            <td class="align-middle text-center"  id="order_yamato_status--{{ Order.id }}">
+                                            {% for yamato in Order.YamatoOrder %}
+                                                {% if yamato.memo03 == ("60") or ("80") %}
+                                                    {{ attribute(yamatoDeferredStatus, yamato.memo04) }}
+                                                {% else %}
+                                                    不明
+                                                {% endif %}
+                                            {% endfor %}
+                                            </td>
+                                            <td class="align-middle text-center"  id="order_yamato_auth_datetime--{{ Order.id }}">
+                                                {{ attribute(lastAuthDates, Order.id)|date_min }}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="row justify-content-md-center mb-4"></div>
+                            </div>
+
+                            <div class="row justify-content-md-center mb-4">
+                                {% if pagination.totalItemCount > 0 %}
+                                    {% include "@admin/pager.twig" with { 'pages' : pagination.paginationData, 'routes' : 'yamato_payment4_admin_deferred_status_pageno' } %}
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </form>
+                {# 検索条件エラー時 #}
+                {% elseif has_errors %}
+                    <div class="card rounded border-0">
+                        <div class="card-body p-4">
+                            <div class="text-center text-muted mb-4 h5">{{ 'yamato_payment.admin.payment_status.invalid_condition'|trans }}</div>
+                            <div class="text-center text-muted">{{ 'yamato_payment.admin.payment_status.change_condition'|trans }}</div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="card rounded border-0">
+                        <div class="card-body p-4">
+                            <div class="text-center text-muted mb-4 h5">{{ 'yamato_payment.admin.payment_status.no_result'|trans }}</div>
+                            <div class="text-center text-muted">{{ 'yamato_payment.admin.payment_status.change_condition'|trans }}</div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

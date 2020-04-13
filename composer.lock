@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de522a5bb47c02ba5539f3b8167c80ed",
+    "content-hash": "5dcba652c6095dac8f9cdd58247ec92d",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1660,6 +1660,30 @@
             "time": "2018-07-27T15:41:37+00:00"
         },
         {
+            "name": "ec-cube/GmoPaymentGateway4",
+            "version": "1.0.4",
+            "dist": {
+                "type": "tar",
+                "url": "https://package-api.ec-cube.net/ec-cube/GmoPaymentGateway4/1.0.4/GmoPaymentGateway4-1.0.4.tgz"
+            },
+            "require": {
+                "ec-cube/plugin-installer": "~0.0.6"
+            },
+            "type": "eccube-plugin",
+            "extra": {
+                "code": "GmoPaymentGateway4",
+                "id": 1797
+            },
+            "description": "PGマルチペイメントサービス決済プラグイン",
+            "transport-options": {
+                "http": {
+                    "header": [
+                        "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                    ]
+                }
+            }
+        },
+        {
             "name": "ec-cube/Securitychecker4",
             "version": "4.0.0",
             "dist": {
@@ -1680,6 +1704,30 @@
                     "email": "support@ec-cube.net"
                 }
             ],
+            "transport-options": {
+                "http": {
+                    "header": [
+                        "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "ec-cube/YamatoPayment4",
+            "version": "1.1.2",
+            "dist": {
+                "type": "tar",
+                "url": "https://package-api.ec-cube.net/ec-cube/YamatoPayment4/1.1.2/YamatoPayment4-1.1.2.tgz"
+            },
+            "require": {
+                "ec-cube/plugin-installer": "~0.0.3"
+            },
+            "type": "eccube-plugin",
+            "extra": {
+                "code": "YamatoPayment4",
+                "id": 1754
+            },
+            "description": "クロネコヤマト　カード・後払い一体型決済サービス",
             "transport-options": {
                 "http": {
                     "header": [

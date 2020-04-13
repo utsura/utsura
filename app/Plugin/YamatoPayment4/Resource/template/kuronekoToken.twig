@@ -1,0 +1,12 @@
+{#
+#}
+<script>
+    $('button.ec-blockBtn--action').click( function () {
+        r = executePay();
+        if( r == false || r == undefined) {
+            loadingOverlay('hide');
+            r = false;
+        }
+        return r;
+    });
+</script>

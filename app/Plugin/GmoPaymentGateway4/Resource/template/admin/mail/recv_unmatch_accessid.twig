@@ -1,0 +1,30 @@
+受注情報で取引IDが一致しない決済通知を受信しました。
+
+受注ID: {{ data.order_id }}
+決済オーダーID： {{ data.OrderID }}
+通知取引ID:  {{ data.AccessID }}
+受注取引ID:  {{ orderData.AccessID }}
+{% if data.Amount is not empty %}
+利用金額: {{ data.Amount|number_format }}円
+{% endif %}
+決済方法: {{ data.pay_type }}
+{% if data.ReceiptDate is defined %}
+受付日時: {{ data.ReceiptDate }}
+{% endif %}
+{% if data.TranDate is defined %}
+処理日時: {{ data.TranDate }}
+{% endif %}
+
+大変お手数ですが、ご確認お願い致します。
+
+対象の受注に対して通知データは処理出来ましたが、取引IDが異なる
+ため念のため多重決済などが無いか確認することを推奨いたします。
+
+GMO-PGから結果通知プログラムURLに結果を返却した際、EC-CUBE側
+の受注の取引ID(AccessID)が異なるため「不一致」となり、本メール
+が送信されています。
+
+まずは、EC-CUBE管理画面とPGマルチペイメントサービスのショップ
+管理画面とで決済データをご確認いただき、決済結果に相違がないこと
+をご確認ください。
+

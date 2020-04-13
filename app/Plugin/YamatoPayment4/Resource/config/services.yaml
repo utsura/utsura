@@ -1,0 +1,1466 @@
+# パラメータ定義
+parameters:
+
+    YAMATO_SERVICE_NAME: ネット総合決済サービス
+
+    #決済通信タイムアウト値
+    YAMATO_API_HTTP_TIMEOUT: 20
+
+    # 支払方法 種別ID
+    YAMATO_PAYID_CREDIT: 10         # クレジット支払ID
+    YAMATO_PAYID_CVS: 30            # コンビニ支払ID
+    YAMATO_PAYID_EDY: 42            # Edy支払ID
+    YAMATO_PAYID_MOBILEEDY: 43      # モバイルEdy支払ID
+    YAMATO_PAYID_SUICA: 44          # SUICA支払ID
+    YAMATO_PAYID_MOBILESUICA: 45    # モバイルSUICA支払ID
+    YAMATO_PAYID_WAON: 46           # WAON支払ID
+    YAMATO_PAYID_MOBILEWAON: 47     # モバイルWAON支払ID
+    YAMATO_PAYID_NETBANK: 52        # ネットバンク支払ID
+    YAMATO_PAYID_DEFERRED: 60       # クロネコ代金後払い
+    YAMATO_PAYID_SMS_DEFERRED: 80   # クロネコSMS代金後払い
+
+    # 支払方法 種別ID
+    YAMATO_PAYID:
+        CREDIT: 10
+        DEFERRED: 60
+        SMS_DEFERRED: 80
+
+    # 決済ステータス
+    YAMATO_ACTION_STATUS_SEND_REQUEST: 0           # 決済依頼済み
+    YAMATO_ACTION_STATUS_COMP_REQUEST: 1           # 決済申込完了
+    YAMATO_ACTION_STATUS_PROMPT_REPORT: 2          # 入金完了（速報）
+    YAMATO_ACTION_STATUS_DIFINIT_REPORT: 3         # 入金完了（確報）
+    YAMATO_ACTION_STATUS_COMP_AUTH: 4              # 与信完了
+    YAMATO_ACTION_STATUS_COMP_RESERVE: 5           # 予約受付完了
+    YAMATO_ACTION_STATUS_NG_CUSTOMER: 11           # 購入者都合エラー
+    YAMATO_ACTION_STATUS_NG_SHOP: 12               # 加盟店都合エラー
+    YAMATO_ACTION_STATUS_NG_PAYMENT: 13            # 決済機関都合エラー
+    YAMATO_ACTION_STATUS_NG_SYSTEM: 14             # その他システムエラー
+    YAMATO_ACTION_STATUS_NG_RESERVE: 15            # 予約販売与信エラー
+    YAMATO_ACTION_STATUS_NG_REQUEST_CANCEL: 16     # 決済依頼取消エラー
+    YAMATO_ACTION_STATUS_NG_CHANGE_PAYMENT: 17     # 金額変更NG
+    YAMATO_ACTION_STATUS_NG_TRANSACTION: 20        # 決済中断
+    YAMATO_ACTION_STATUS_WAIT: 21                  # 決済手続き中
+    YAMATO_ACTION_STATUS_WAIT_SETTLEMENT: 30       # 精算確定待ち
+    YAMATO_ACTION_STATUS_COMMIT_SETTLEMENT: 31     # 精算確定
+    YAMATO_ACTION_STATUS_CANCEL: 40                # 取消
+    YAMATO_ACTION_STATUS_3D_WAIT: 50               # 3Dセキュア認証中
+
+    # クロネコ代金後払い用決済ステータス
+    DEFERRED_STATUS_AUTH_OK: 1              # 承認済み
+    DEFERRED_STATUS_AUTH_CANCEL: 2          # 取消済み
+    DEFERRED_STATUS_REGIST_DELIV_SLIP: 3    # 送り状番号登録済み
+    DEFERRED_STATUS_RESEARCH_DELIV: 5       # 配送要調査
+    DEFERRED_STATUS_SEND_WARNING: 6         # 警報メール送信済み
+    DEFERRED_STATUS_SALES_OK: 10            # 売上確定
+    DEFERRED_STATUS_SEND_BILL: 11           # 請求書発行済み
+    DEFERRED_STATUS_PAID: 12                # 入金済み
+
+    # クロネコ代金後払い用審査結果
+    DEFERRED_AVAILABLE: 0                   # ご利用可
+    DEFERRED_NOT_AVAILABLE: 1               # ご利用不可
+    DEFERRED_OVER_LIMIT: 2                  # 限度額超過
+    DEFERRED_UNDER_EXAM: 3                  # 審査中
+
+    # SMS型後払い用審査結果
+    DEFERRED_SMS_AVAILABLE: 1
+    DEFERRED_SMS_CODE_INVALID: 2    # 認証コードが一致しない場合
+    DEFERRED_SMS_CODE_EXPIRED: 3    # SMS 認証の有効期限が切れている場合
+    DEFERRED_SMS_BAD_DELIVERY: 4    # SMS の送達確認が取れていない場合
+    DEFERRED_SMS_BAD_STATUS: 5      # 未認証の与信データでない場合
+
+    MESSAGE_DEFERRED_SMS_CODE_INVALID: 認証コードが間違っています。
+    MESSAGE_DEFERRED_SMS_CODE_EXPIRED: 認証コードの有効期限が切れています。
+    MESSAGE_DEFERRED_SMS_BAD_DELIVERY: 認証コードの受信に失敗しました。
+    MESSAGE_DEFERRED_SMS_BAD_STATUS: 与信が必要なお取引ではありませんでした。
+    MESSAGE_DEFERRED_SMS_GENERAL: 認証に失敗しました。
+
+    # クロネコ代金後払い オーソリエラーメッセージ
+    DEFFERED_FALL_AUTH: 申し訳ありません。今回のご注文分に関してはお取引できません。別の決済手段にて再度ご注文いただけますようお願いいたします。
+
+    # クロネコ代金後払い 請求書再発行APIご依頼内容
+    DEFERRED_INVOICE_REISSUE: 1             # 請求内容変更・請求書再発行
+    DEFERRED_INVOICE_REISSUE_WITHDRAWN: 3 # 請求書再発行取下げ
+
+    # 注文ステータス関連
+    ORDER_SHIPPING_REGISTERED: 9625        # クレジットカード出荷登録済み
+
+    # 配送完了メール関連
+    DELIV_COMPLETE_MAIL_ID: 9625           # 配送完了メールID
+
+    # 後払い用追跡URL
+    DEFERRED_DELIV_SLIP_URL: http://toi.kuronekoyamato.co.jp/cgi-bin/tneko
+
+    # 支払方法名
+    YAMATO_PAYNAME_CREDIT: クレジットカード決済
+    YAMATO_PAYNAME_CVS: コンビニ決済
+    YAMATO_PAYNAME_DEFERRED: クロネコ代金後払い決済
+    
+    # 支払方法コード
+    YAMATO_PAYCODE_CREDIT: Credit
+    YAMATO_PAYCODE_CVS: CVS
+    YAMATO_PAYCODE_DEFERRED: Deferred
+
+    # 支払方法 - 手数料
+    DEFERRED_SEND_DELIV_CHARGE: 100         # 請求書同梱あり
+    DEFERRED_CHARGE: 190                    # 請求書同梱なし
+
+    # クレジットカード決済手段
+    CREDIT_METHOD_UC: 1             # UC
+    CREDIT_METHOD_DINERS: 2         # ダイナース
+    CREDIT_METHOD_JCB: 3            # JCB
+    CREDIT_METHOD_DC: 4             # DC
+    CREDIT_METHOD_MITSUISUMITOMO: 5 # 三井住友クレジット
+    CREDIT_METHOD_UFJ: 6            # UFJ
+    CREDIT_METHOD_SAISON: 7         # クレディセゾン
+    CREDIT_METHOD_NICOS: 8          # NICOS
+    CREDIT_METHOD_VISA: 9           # VISA
+    CREDIT_METHOD_MASTER: 10        # MASTER
+    CREDIT_METHOD_AEON: 11          # イオンクレジット
+    CREDIT_METHOD_AMEX: 12          # アメックス
+    CREDIT_METHOD_TOP: 13           # TOP＆カード
+    CREDIT_METHOD_OTHER: 99         # その他
+
+    # コンビニ情報
+    CONVENI_ID_SEVENELEVEN: 21
+    CONVENI_ID_LAWSON: 22
+    CONVENI_ID_FAMILYMART: 23
+    CONVENI_ID_SEICOMART: 24
+    CONVENI_ID_MINISTOP: 25
+    CONVENI_ID_CIRCLEK: 26
+
+    CONVENI_NAME_SEVENELEVEN: セブンイレブン
+    CONVENI_NAME_LAWSON: ローソン
+    CONVENI_NAME_FAMILYMART: ファミリーマート
+    CONVENI_NAME_SEICOMART: セイコーマート
+    CONVENI_NAME_MINISTOP: ミニストップ
+    CONVENI_NAME_CIRCLEK: サークルKサンクス
+
+    CONVENI_FUNCTION_DIV_21: B01
+    CONVENI_FUNCTION_DIV_22: B03
+    CONVENI_FUNCTION_DIV_23: B02
+    CONVENI_FUNCTION_DIV_24: B06
+    CONVENI_FUNCTION_DIV_25: B05
+    CONVENI_FUNCTION_DIV_26: B04
+
+    # 電子マネー決済手段
+    EMONEY_METHOD_RAKUTENEDY: 61    # 楽天Edy
+    EMONEY_METHOD_M_RAKUTENEDY: 62  # 楽天モバイルEdy
+    EMONEY_METHOD_SUICA: 63         # Suica
+    EMONEY_METHOD_M_SUICA: 64       # モバイルSuica
+    EMONEY_METHOD_WAON: 65          # WAON
+    EMONEY_METHOD_M_WAON: 66        # モバイルWAON
+
+    EMONEY_NAME_RAKUTENEDY: 楽天Edy決済
+    EMONEY_NAME_M_RAKUTENEDY: 楽天モバイルEdy決済
+    EMONEY_NAME_SUICA: Suica決済
+    EMONEY_NAME_M_SUICA: モバイルSuica決済
+    EMONEY_NAME_WAON: WAON決済
+    EMONEY_NAME_M_WAON: モバイルWAON決済
+
+    # ネットバンク決済手段
+    NETBANK_METHOD_RAKUTENBANK: 41  # 楽天銀行
+
+    # マスタ：タイムコード
+    DELIV_TIMECODE:
+        0: ''
+        1: '0812'
+        2: '1214'
+        3: '1416'
+        4: '1618'
+        5: '1820'
+        9: '1921'
+        6: '2021'
+        7: '0010'
+        8: '0017'
+
+    # 廃止になるタイムコード
+    DELETE_DELIV_TIMECODE:
+        2: '1214'
+        6: '2021'
+
+    # マスタ：送り状種別
+    DELIV_SLIP_TYPE_CORECT: 2
+    DELIV_SLIP_TYPE_NEKOPOS: 7
+
+    # カード登録上限数
+    CREDIT_SAVE_LIMIT: 3
+    
+
+    # プラグインステータス（有効・無効）
+    YAMATO_ENABLE_PAYMENT_VALUE: 0
+    YAMATO_DISABLE_PAYMENT_VALUE: 1
+
+    # カード情報登録/削除時のイベント名
+    YAMATO_MYPAGE_CARD_REGISTER: 'yamato.mypage.card.register'
+    YAMATO_MYPAGE_CARD_DELETE: 'yamato.mypage.card.delete'
+
+    # 出荷情報登録関連
+    # 1注文に対する配送先上限数
+    YAMATO_DELIV_ADDR_MAX: 99
+    # 1送り状に対する登録可能受注番号件数（同梱件数）
+    YAMATO_SHIPPED_MAX: 3
+    
+    # 1注文に対する配送先上限件数
+    DEFERRED_DELIV_ADDR_MAX: 10
+
+    #################################
+    # 予約販売商品関連
+    #################################
+    # 商品種別ID(リンクタイプに合わせる)
+    PRODUCT_TYPE_ID_RESERVE: 9625
+    # 予約販売再与信期限(再与信日を含む10日前のため9で設定)
+    YAMATO_DEADLINE_RECREDIT: 9
+
+    #################################
+    # 3Dセキュア関連
+    #################################
+    # 加盟店ECサイトURL
+    YAMATO_TRADER_URL: shopping/load_payment_module.php?mode=3dTran
+    # 3Dセキュア認証対象外エラーコード
+    YAMATO_3D_EXCLUDED: A012050002
+
+    #################################
+    # 入力パラメータ桁数
+    #################################
+    # カード番号桁数
+    CREDIT_NO_LEN: 16
+    # セキュリティコード最小桁数
+    SECURITY_CODE_MIN_LEN: 3
+    # セキュリティコード最大桁数
+    SECURITY_CODE_MAX_LEN: 4
+    # カード名義桁数
+    CARD_ORNER_LEN: 20
+    # 商品名桁数
+    ITEM_NAME_LEN: 200
+
+    #################################
+    # 決済API
+    #################################
+
+    # APIのコード番号
+    DEF_REQ_AUTH: KAAAU0010APIAction
+    DEF_GET_AUTH_RESULT: KAARS0010APIAction
+    DEF_ENTRY_SHIPMENT: KAASL0010APIAction
+    DEF_GET_TRAN_STATUS: KAAST0010APIAction
+    DEF_CANCEL_AUTH: KAACL0010APIAction
+    DEF_GET_INVOICE: KAASD0010APIAction
+    DEF_REQ_AUTH_REALTIME: KAARA0010APIAction
+    DEF_CHANGE_AMOUNT: KAAKK0010APIAction
+    DEF_REISSUE_INVOICE: KAARR0010APIAction
+    DEF_SMS_REQ_AUTH: KAASA0020APIAction    # スマホタイプ
+
+    api.name:
+        A01: クレジット決済登録通常用
+        A02: クレジット決済登録３Ｄセキュア結果用
+        A03: クレジットカードのお預かり情報照会
+        A04: クレジットカードのお預かり情報変更
+        A05: クレジットカードのお預かり情報削除
+        A06: クレジット決済取消
+        A07: クレジット金額変更
+        A08: クレジット決済登録通常用(トークン)
+        A09: クレジット決済登録３Ｄセキュア結果用(トークン)
+        A11: クレジット再与信
+        B01: コンビニ（オンライン払い）セブン-イレブン
+        B02: コンビニ（オンライン払い）ファミリーマート
+        B03: コンビニ（オンライン払い）ローソン
+        B04: コンビニ（オンライン払い）サークルＫサンクス
+        B05: コンビニ（オンライン払い）ミニストップ
+        B06: コンビニ（オンライン払い）セイコーマート
+        C01: 電子マネー決済登録(楽天Edy(Cyber))
+        C02: 電子マネー決済登録(楽天Edy(Mobile))
+        C03: 電子マネー決済登録(Suica(インターネットサービス))
+        C04: 電子マネー決済登録(Suica(Mobile))
+        C05: 電子マネー決済登録(Waon(PC))
+        C06: 電子マネー決済登録(Waon(MB))
+        D01: ネットバンク決済登録（楽天銀行）
+        E01: 出荷情報登録
+        E02: 出荷情報取消
+        E03: 出荷予定日変更
+        E04: 取引情報照会
+        F01: 接続元加盟店ECサーバ認証
+        F02: 出荷情報登録（切売）
+        F03: 出荷情報取消（切売）
+        F04: 取引情報照会（切売）
+        H01: グローバルＩＰアドレス照会
+        KAAAU0010APIAction: 後払い与信依頼
+        KAARS0010APIAction: 後払い与信結果取得
+        KAASL0010APIAction: 後払い出荷情報登録
+        KAAST0010APIAction: 後払い取引状況取得
+        KAACL0010APIAction: 後払い与信取消依頼
+        KAASD0010APIAction: 後払い請求書印字データ取得
+        KAARA0010APIAction: 後払いリアルタイムオーソリ
+        KAAKK0010APIAction: 後払い金額変更(減額)
+        KAARR0010APIAction: 後払い請求書再発行
+
+    api.url:
+        A01: https://api.kuronekoyamato.co.jp/api/credit
+        A02: https://api.kuronekoyamato.co.jp/api/credit3D
+        A03: https://api.kuronekoyamato.co.jp/api/creditInfoGet
+        A04: https://api.kuronekoyamato.co.jp/api/creditInfoUpdate
+        A05: https://api.kuronekoyamato.co.jp/api/creditInfoDelete
+        A06: https://api.kuronekoyamato.co.jp/api/creditCancel
+        A07: https://api.kuronekoyamato.co.jp/api/creditChangePrice
+        A08: https://api.kuronekoyamato.co.jp/api/creditToken
+        A09: https://api.kuronekoyamato.co.jp/api/creditToken3D
+        A11: https://api.kuronekoyamato.co.jp/api/reAuth
+        B01: https://api.kuronekoyamato.co.jp/api/cvs1
+        B02: https://api.kuronekoyamato.co.jp/api/cvs2
+        B03: https://api.kuronekoyamato.co.jp/api/cvs3
+        B04: https://api.kuronekoyamato.co.jp/api/cvs3
+        B05: https://api.kuronekoyamato.co.jp/api/cvs3
+        B06: https://api.kuronekoyamato.co.jp/api/cvs3
+        C01: https://api.kuronekoyamato.co.jp/api/e_money1
+        C02: https://api.kuronekoyamato.co.jp/api/e_money2
+        C03: https://api.kuronekoyamato.co.jp/api/e_money3
+        C04: https://api.kuronekoyamato.co.jp/api/e_money4
+        C05: https://api.kuronekoyamato.co.jp/api/e_money5
+        C06: https://api.kuronekoyamato.co.jp/api/e_money6
+        D01: https://api.kuronekoyamato.co.jp/api/bank1
+        E01: https://api.kuronekoyamato.co.jp/api/shipmentEntry
+        E02: https://api.kuronekoyamato.co.jp/api/shipmentCancel
+        E03: https://api.kuronekoyamato.co.jp/api/changeDate
+        E04: https://api.kuronekoyamato.co.jp/api/tradeInfo
+        F01: https://apixp.kuronekoyamato.co.jp/api/xp/authXp
+        F02: https://apixp.kuronekoyamato.co.jp/api/xp/shipmentEntryXp
+        F03: https://apixp.kuronekoyamato.co.jp/api/xp/shipmentCancelXp
+        F04: https://apixp.kuronekoyamato.co.jp/api/xp/tradeInfoXp
+        H01: https://ptwebcollect.jp/test_gateway/traderIp.api
+        KAAAU0010APIAction: https://atobarai.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAAAU0010APIAction_execute.action
+        KAARS0010APIAction: https://atobarai.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAARS0010APIAction_execute.action
+        KAASL0010APIAction: https://atobarai.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAASL0010APIAction_execute.action
+        KAAST0010APIAction: https://atobarai.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAAST0010APIAction_execute.action
+        KAACL0010APIAction: https://atobarai.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAACL0010APIAction_execute.action
+        KAASD0010APIAction: https://atobarai.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAASD0010APIAction_execute.action
+        KAARA0010APIAction: https://atobarai.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAARA0010APIAction_execute.action
+        KAAKK0010APIAction: https://atobarai.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAAKK0010APIAction_execute.action
+        KAARR0010APIAction: https://atobarai.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAARR0010APIAction_execute.action
+        KAASA0020APIAction: https://atobarai.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAASA0020APIAction_execute.action    # スマホタイプ
+
+    api.test.gateway:
+        A01: https://ptwebcollect.jp/test_gateway/credit.api
+        A02: https://ptwebcollect.jp/test_gateway/credit3D.api
+        A03: https://ptwebcollect.jp/test_gateway/creditInfoGet.api
+        A04: https://ptwebcollect.jp/test_gateway/creditInfoUpdate.api
+        A05: https://ptwebcollect.jp/test_gateway/creditInfoDelete.api
+        A06: https://ptwebcollect.jp/test_gateway/creditCancel.api
+        A07: https://ptwebcollect.jp/test_gateway/creditChangePrice.api
+        A08: https://ptwebcollect.jp/test_gateway/creditToken.api
+        A09: https://ptwebcollect.jp/test_gateway/creditToken3D.api
+        A11: https://ptwebcollect.jp/test_gateway/reAuth.api
+        B01: https://ptwebcollect.jp/test_gateway/cvs1.api
+        B02: https://ptwebcollect.jp/test_gateway/cvs2.api
+        B03: https://ptwebcollect.jp/test_gateway/cvs3.api
+        B04: https://ptwebcollect.jp/test_gateway/cvs3.api
+        B05: https://ptwebcollect.jp/test_gateway/cvs3.api
+        B06: https://ptwebcollect.jp/test_gateway/cvs3.api
+        C01: https://ptwebcollect.jp/test_gateway/e_money1.api
+        C02: https://ptwebcollect.jp/test_gateway/e_money2.api
+        C03: https://ptwebcollect.jp/test_gateway/e_money3.api
+        C04: https://ptwebcollect.jp/test_gateway/e_money4.api
+        C05: https://ptwebcollect.jp/test_gateway/e_money5.api
+        C06: https://ptwebcollect.jp/test_gateway/e_money6.api
+        D01: https://ptwebcollect.jp/test_gateway/bank1.api
+        E01: https://ptwebcollect.jp/test_gateway/shipmentEntry.api
+        E02: https://ptwebcollect.jp/test_gateway/shipmentCancel.api
+        E03: https://ptwebcollect.jp/test_gateway/changeDate.api
+        E04: https://ptwebcollect.jp/test_gateway/tradeInfo.api
+        F01: https://ptwebcollect.jp/test_gateway/xp/authXp.api
+        F02: https://ptwebcollect.jp/test_gateway/xp/shipmentEntryXp.api
+        F03: https://ptwebcollect.jp/test_gateway/xp/shipmentCancelXp.api
+        F04: https://ptwebcollect.jp/test_gateway/xp/tradeInfoXp.api
+        H01: https://ptwebcollect.jp/test_gateway/traderIp.api
+        KAARS0010APIAction: https://atobarai-test.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAARS0010APIAction_execute.action
+        KAASL0010APIAction: https://atobarai-test.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAASL0010APIAction_execute.action
+        KAAST0010APIAction: https://atobarai-test.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAAST0010APIAction_execute.action
+        KAACL0010APIAction: https://atobarai-test.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAACL0010APIAction_execute.action
+        KAASD0010APIAction: https://atobarai-test.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAASD0010APIAction_execute.action
+        KAARA0010APIAction: https://atobarai-test.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAARA0010APIAction_execute.action
+        KAAKK0010APIAction: https://atobarai-test.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAAKK0010APIAction_execute.action
+        KAARR0010APIAction: https://atobarai-test.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAARR0010APIAction_execute.action
+        KAASA0020APIAction: https://atobarai-test.kuronekoyamato.co.jp/kuroneko-atobarai-api/KAASA0020APIAction_execute.action    # スマホタイプ
+
+    TOKEN_URL_1: https://api.kuronekoyamato.co.jp/api/token/js/embeddedTokenLib.js
+    TOKEN_URL_0: https://ptwebcollect.jp/test_gateway/token/js/embeddedTokenLib.js
+    USE_SECURITY_CODE: 1
+
+    YAMATO_MULTI_ATACK_PERMIT_COUNT: 2
+    YAMATO_MULTI_ATACK_WAIT: 10
+
+    # 決済APIエラーコード
+    ERR_DEF_AMOUNT_NOT_CHANGE: kaakk049E
+
+    yamato_error_msg:
+        A011010201: 加盟店コードなし
+        A011010202: 加盟店コードの桁数不正
+        A011010204: 加盟店コードに禁止文字あり
+        A011010301: 端末区分なし
+        A011010306: 端末区分の不正セット
+        A011010401: 受付番号なし
+        A011010402: 受付番号の桁数不正
+        A011010404: 受付番号に禁止文字あり
+        A011010501: 決済金額なし
+        A011010502: 決済金額の桁数不正
+        A011010504: 決済金額に禁止文字あり
+        A011010601: 購入者名(漢字)なし
+        A011010603: 購入者名(漢字)のバイト数不正
+        A011010701: 購入者TELなし
+        A011010702: 購入者TELの桁数不正
+        A011010704: 購入者TELに禁止文字あり
+        A011010801: 購入者E-Mailなし
+        A011010802: 購入者E-Mailの桁数不正
+        A011010901: 認証区分なし
+        A011011001: 支払回数なし
+        A011011002: 支払回数の桁数不正
+        A011011004: 支払回数に禁止文字あり
+        A011011101: オプションサービス区分なし
+        A011011106: オプションサービス区分の不正セット
+        A011010571: 決済金額の下限額オーバ
+        A011011271: 商品名に禁止文字あり
+        A011011272: 商品名の半角桁・全角桁・バイト数不正
+        A011010671: 購入者名(漢字)に禁止文字あり
+        A011010672: 購入者名(漢字)の半角桁・全角桁・バイト数不正
+        A011010871: 購入者E-Mailに禁止文字あり
+        A011010971: 認証区分の不正セット
+        A011010972: 認証区分の不正セット
+        A011011371: カード会社コード(API用)なし
+        A011011372: カード番号が不正です。確認し再入力するか、別のカードをご利用ください。
+        A011011471: カード番号なし
+        A011011472: カード番号の桁数不正
+        A011011473: カード番号に禁止文字あり
+        A011011571: セキュリティコードなし
+        A011011572: セキュリティコードの桁数不正
+        A011011573: セキュリティコードに禁止文字あり
+        A011011671: カード名義人なし
+        A011011672: カード名義人の桁数不正
+        A011011673: カード名義人に禁止文字あり
+        A011011771: カード有効期限なし
+        A011011772: カード有効期限の形式不正
+        A011011773: カード有効期限の期限不正
+        A011011871: 加盟店ECサイトURLなし
+        A011011872: 加盟店ECサイトURLの桁数不正
+        A011011873: 加盟店ECサイトURLの形式不正
+        A011011971: 会員ＩＤなし
+        A011011972: 会員ＩＤの桁数不正
+        A011011973: 会員ＩＤに禁止文字あり
+        A011012071: 認証キーなし
+        A011012072: 認証キーの桁数不正
+        A011012073: 認証キーに禁止文字あり
+        A011012171: カード識別キーの不正セット
+        A011012271: 最終利用日時の形式不正
+        A011012371: 出荷予定日なし
+        A011012372: 出荷予定日の形式不正
+        A011012373: 出荷予定日の日付不正（下限日）
+        A011012374: 出荷予定日の日付不正（上限日）
+        A011012471: チェックサムなし
+        A011012472: チェックサムの改ざんあり
+        A012000001: 当該加盟店の利用デバイス決済利用不可
+        A012000002: 当該加盟店のクレジット決済利用不可
+        A012000003: 当該加盟店の認証不可
+        A011010572: 決済金額の上限額オーバ
+        A012010001: 当該受注の二重決済
+        A012020001: 当該加盟店のお預かり利用不可
+        A012030001: 当該加盟店のお預かり取得不可
+        A012040001: 当該加盟店のカード会社情報取得不可
+        A012040002: 当該加盟店の支払方法取得不可
+        A012050001: ３Ｄ認証に失敗しました。別のカードをご利用ください。
+        A012050002: 3D認証対象外
+        A012060001: カード情報に誤りがあります。確認し再入力するか、別のカードをご利用ください。
+        A012070001: 当該加盟店のお預かり処理不可
+        A012080001: 各種マスタ取得失敗
+        A012090001: 請求後取消用のお預かり処理失敗
+        A021010201: 加盟店コードなし
+        A021010202: 加盟店コードの桁数不正
+        A021010204: 加盟店コードに禁止文字あり
+        A021010301: 受付番号なし
+        A021010302: 受付番号の桁数不正
+        A021010304: 受付番号に禁止文字あり
+        A021010401: 3D認証応答電文パラメータ不正
+        A021010501: 3D認証応答電文パラメータ不正
+        A021010601: 3D認証応答電文パラメータ不正
+        A021010701: 3D認証応答電文パラメータ不正
+        A021010801: 3D認証応答電文パラメータ不正
+        A021010901: 3D認証応答電文パラメータ不正
+        A021011001: 3D認証応答電文パラメータ不正
+        A021011101: 3D認証応答電文パラメータ不正
+        A021011201: 3D認証応答電文パラメータ不正
+        A021011501: 3D認証応答電文パラメータ不正
+        A021011701: 3D認証応答電文パラメータ不正
+        A021011801: 3D認証応答電文パラメータ不正
+        A021011901: 3D認証応答電文パラメータ不正
+        A021012001: 3Dトークンなし
+        A021012002: 3Dトークンの桁数不正
+        A022000001: 当該加盟店の利用デバイス決済利用不可
+        A022000002: 当該加盟店のクレジット決済利用不可
+        A022010001: 当該受注の二重決済
+        A022020001: 3D認証応答電文不正
+        A022020002: 3D認証結果不正
+        A022030001: カード情報に誤りがあります。確認し再入力するか、別のカードをご利用ください。
+        A022040001: 当該加盟店のお預かり処理不可
+        A022050001: 各種マスタ取得失敗
+        A022060001: 請求後取消失敗
+        A061010201: 加盟店コードなし
+        A061010202: 加盟店コードの桁数不正
+        A061010204: 加盟店コードに禁止文字あり
+        A061010301: 受付番号なし
+        A061010302: 受付番号の桁数不正
+        A061010304: 受付番号に禁止文字あり
+        A062010001: 受注データが存在しない
+        A062010002: 受注データ方式不正
+        A062010003: 受注データが取消不可ステータス
+        A062010004: 決済機関に処理レコードが存在しない（クレジットカード精算済み）
+        A062010005: 与信エラー：ステータスNG
+        A062010007: 与信エラー：更新無し
+        A062030001: 請求後取消失敗
+        A070000000: バッチ処理時間帯により金額変更機能使用不可
+        A071010201: 加盟店コードなし
+        A071010202: 加盟店コードの桁数不正
+        A071010204: 加盟店コードに禁止文字あり
+        A071010301: 受付番号なし
+        A071010302: 受付番号の桁数不正
+        A071010304: 受付番号に禁止文字あり
+        A071010401: 変更後決済金額なし
+        A071010402: 変更後決済金額の桁数不正
+        A071010404: 決済金額に禁止文字あり
+        A071010471: 決済金額の下限額オーバ
+        A071010472: 決済金額の上限額オーバ
+        A072000001: 当該加盟店の金額変更サービス利用不可
+        A073000001: 受付番号の受注データ不正
+        A073000002: 同梱中受注
+        A074000001: 金額変更なし
+        A074000002: 当該加盟店の増額利用不可
+        A075000001: 金額変更に利用するクレジットカード情報なし
+        A076000001: 金額変更時の与信処理に失敗
+        A077000001: 金額変更時の取消処理に失敗
+        A082000003: 受注番号が一意(ユニーク)ではありません。
+        A082000011: ご入力いただいたカードは既に登録済です。「登録カードを利用する」を選択して決済を行ってください。
+        A031010201: 加盟店コードなし
+        A031010202: 加盟店コードの桁数不正
+        A031010204: 加盟店コードに禁止文字あり
+        A031010301: 会員IDなし
+        A031010302: 会員IDの桁数不正
+        A031010401: 認証キーなし
+        A031010402: 認証キーの桁数不正
+        A031010501: チェックサムなし
+        A031010371: 会員IDに禁止文字あり
+        A031010471: 認証キーに禁止文字あり
+        A031010571: チェックサム不正
+        A032000001: 当該加盟店のお預かりサービス利用不可
+        A033000001: お預かり情報の取得エラー
+        A041010201: 加盟店コードなし
+        A041010202: 加盟店コードの桁数不正
+        A041010204: 加盟店コードに禁止文字あり
+        A041010301: 会員IDなし
+        A041010302: 会員IDの桁数不正
+        A041010401: 認証キーなし
+        A041010402: 認証キーの桁数不正
+        A041010501: チェックサムなし
+        A041010601: カード識別キーなし
+        A041010606: カード識別キーの不正セット
+        A041010705: カード有効期限のフォーマット不正
+        A041010802: カード名義人の桁数不正
+        A041010804: カード名義人に禁止文字あり
+        A041010906: カード会社コードの不正セット
+        A041011001: 最終利用日時なし
+        A041011005: 最終利用日時のフォーマット不正
+        A041010371: 会員IDに禁止文字あり
+        A041010471: 認証キーに禁止文字あり
+        A041010571: チェックサム不正
+        A041010771: カードの有効期限切れ
+        A042000001: 当該加盟店の決済利用不可
+        A042000002: 当該加盟店のクレジット利用不可
+        A042000003: 当該加盟店のお預かりサービス利用不可
+        A042000004: 当該加盟店のカード会社利用不可
+        A043000001: 当該カードの排他エラー
+        A043000002: 当該カードの変更なし
+        A043000003: 当該カードの取得エラー
+        A044000001: 当該カードの有効性エラー
+        A045000001: 当該カードの更新エラー
+        A051010201: 加盟店コードなし
+        A051010202: 加盟店コードの桁数不正
+        A051010204: 加盟店コードに禁止文字あり
+        A051010301: 会員IDなし
+        A051010302: 会員IDの桁数不正
+        A051010401: 認証キーなし
+        A051010402: 認証キーの桁数不正
+        A051010501: チェックサムなし
+        A051010601: カード識別キーなし
+        A051010606: カード識別キーの不正セット
+        A051010701: 最終利用日時なし
+        A051010705: 最終利用日時のフォーマット不正
+        A051010371: 会員IDに禁止文字あり
+        A051010471: 認証キーに禁止文字あり
+        A051010571: チェックサム不正
+        A052000001: 当該加盟店のお預かりサービス利用不可
+        A053000001: 当該カードの排他エラー
+        A054000001: 当該カードの削除エラー
+        A081010201: 加盟店コードの設定がありません。
+        A081010202: 加盟店コードの桁数をオーバーしております。加盟店コードをご確認ください。
+        A081010204: 半角英数以外の値が設定されております。加盟店コードをご確認ください。
+        A081010301: 端末区分の設定がありません。
+        A081010306: 端末区分に「1」、「2」以外の値が設定されておりますので、リクエスト内容をご確認ください。
+        A081010401: 受付番号の設定がありません。
+        A081010402: 受付番号の桁数をオーバーしております。23桁以下にして頂きますようお願い致します。
+        A081010404: 受付番号にご利用頂けない文字種別が設定されております。
+        A081010501: 決済金額の設定がありません。
+        A081010502: ご利用可能な決済金額をオーバーしております。
+        A081010504: 決済金額に半角数字以外の文字種別が設定されております。
+        A081010571: 決済金額は１円以上となっております。
+        A081010572: ご利用可能な決済金額上限をご確認ください。
+        A081010601: 購入者名(漢字)の設定がありません。
+        A081010671: 購入者名(漢字)にサポート対象外の文字が含まれております。
+        A081010672: 購入者名(漢字)の桁数もしくはバイト数がオーバーしております。
+        A081010701: 購入者TELの設定がありません。
+        A081010702: 購入者TELの桁数に誤りがございます。
+        A081010704: 購入者TELに半角数字、「-（半角ハイフン）」以外の文字種別が設定されております。
+        A081010801: 購入者E-Mailの設定がありません。
+        A081010802: 購入者E-Mailの桁数をオーバーしております。
+        A081010871: 購入者E-Mailが誤っております。
+        A081010872: 購入者E-mailのアカウント部分（@(アットマーク)より前）もしくはドメイン部分（@(アットマーク)より後）が入力されておりません。
+        A081010901: 支払回数の設定がありません。
+        A081010902: 支払回数の桁数が誤っております。支払回数をご確認ください。
+        A081010904: 支払回数に半角数字以外の文字種別が設定されております。
+        A081011071: 商品名にサポート対象外の文字が含まれております。商品名をご確認ください。
+        A081011072: 商品名の桁数もしくはバイト数がオーバーしております。
+        A081011171: カード会社コード(API用)の設定がありません。
+        A081011172: 決済手段一覧区分1～13以外の値が設定されておりますので、リクエスト内容をご確認ください。
+        A081011201: トークンの設定がありません。
+        A081011202: トークンの桁数に誤りがございます。
+        A081011204: トークンにサポート対象外の文字が含まれております。トークンをご確認ください。
+        A081011371: 加盟店ECサイトURLの設定がありません。
+        A081011372: 加盟店ECサイトURLの桁数をオーバーしております。
+        A081011373: 加盟店様ECサイトURLがhttps形式ではございません。
+        A081011471: 出荷予定日の日付形式が誤っております。
+        A081011472: 出荷予定日に過去日が設定されております。有効期限をご確認下さい。
+        A081011473: 出荷予定日に誤りがあります。
+        A082000001: 加盟店の決済利用不可
+        A082000002: クレジット決済利用開始日設定不備
+        A082000003: リクエスト頂いた受付番号がすでに登録されております。受付番号をご確認ください。
+        A082000004: トークンのカード情報取得に失敗しました。
+        A082000005: オプションサービスの契約がございません。
+        A082000006: システムエラーが発生しています。時間をおいて再度リクエストしてください。
+        A082000007: ご利用可能なクレジットカード支払回数が設定されておりません。支払回数をご確認ください。
+        A082000008: 決済を行うクレジットカード情報のご確認をお願い致します
+        A082000010: 与信処理不可
+        A082000011: お預かり処理不可。①登録できるカードは3件までです。or ②リクエスト頂いたクレジットカード情報は、すでにお預け済み（登録済）です。
+        A082000012: システムエラーが発生しています。時間をおいて再度リクエストしてください。
+        A091010201: 加盟店コードの設定がありません。
+        A091010202: 加盟店コードの桁数をオーバーしております。加盟店コードをご確認ください。
+        A091010204: 半角英数以外の値が設定されております。加盟店コードをご確認ください。
+        A091010301: 受付番号の設定がありません。
+        A091010302: 受付番号の桁数をオーバーしております。23桁以下にして頂きますようお願い致します。
+        A091010304: 受付番号文字種別誤り
+        A091010401: 3Dセキュア応答電文パラメータ誤り
+        A091010501: 3Dセキュア応答電文パラメータ誤り
+        A091010601: 3Dセキュア応答電文パラメータ誤り
+        A091010701: 3Dセキュア応答電文パラメータ誤り
+        A091010801: 3Dセキュア応答電文パラメータ誤り
+        A091010901: 3Dセキュア応答電文パラメータ誤り
+        A091011001: 3Dセキュア応答電文パラメータ誤り
+        A091011101: 3Dセキュア応答電文パラメータ誤り
+        A091011201: 3Dセキュア応答電文パラメータ誤り
+        A091011501: 3Dセキュア応答電文パラメータ誤り
+        A091011701: 3Dセキュア応答電文パラメータ誤り
+        A091011801: 3Dセキュア応答電文パラメータ誤り
+        A091011901: 3Dセキュア応答電文パラメータ誤り
+        A091012001: 3Dトークンの設定がありません。
+        A091012002: 3Dトークンの桁数が誤っております。
+        A092000001: リクエスト頂いた受付番号がすでに登録されております。
+        A092000002: システムエラー（カード情報取得）
+        A092000003: 3Dセキュア応答電文誤り
+        A092000004: ３Dセキュアがキャンセルされました。
+        A092000005: 与信処理不可
+        A092000006: お預かり処理不可。①登録できるカードは3件までです。or ②リクエスト頂いたクレジットカード情報は、すでにお預け済み（登録済）です。
+        A110000000: 23：00～1:00は、夜間処理中の為、再与信が行えません。
+        A111010201: 加加盟店コードの設定がありません。
+        A111010202: 加盟店コードの桁数をオーバーしております。加盟店コードをご確認ください。
+        A111010204: 加盟店コードに半角英数以外の値が設定されております。加盟店コードをご確認ください。
+        A111010301: 受付番号の設定がありません。
+        A111010302: 受付番号の桁数をオーバーしております。
+        A111010304: 受付番号にご利用頂けない文字種別が設定されております。
+        A112000001: 加盟店のクレジット設定不備
+        A112000002: 再与信対象外　該当の受注に対して再与信は行えません。
+        A112000003: システムエラーが発生しています。時間をおいて再度リクエストしてください。
+        A112000004: 再与信NG　再与信を行いましたが、カードの有効性が確認できずNGとなりました。
+        B011010201: 加盟店コードなし
+        B011010202: 加盟店コードの桁数不正
+        B011010204: 加盟店コードに禁止文字あり
+        B011010301: 端末区分なし
+        B011010306: 端末区分の不正セット
+        B011010401: 受付番号なし
+        B011010402: 受付番号の桁数不正
+        B011010404: 受付番号に禁止文字あり
+        B011010601: 決済金額なし
+        B011010602: 決済金額の桁数不正
+        B011010604: 決済金額に禁止文字あり
+        B011010701: 購入者名(漢字)なし
+        B011010702: 購入者名(漢字)の桁数不正
+        B011010801: 購入者E-Mailなし
+        B011010802: 購入者E-Mailの桁数不正
+        B011010671: 決済金額の下限額オーバー
+        B011010672: 決済金額のセブン-イレブン上限額オーバー
+        B011010571: 商品名に禁止文字あり
+        B011010572: 商品名の半角桁・全角桁・バイト数不正
+        B011010771: 購入者名(漢字)に禁止文字あり
+        B011010772: 購入者名(漢字)の半角桁・全角桁・バイト数不正
+        B011010871: 購入者E-Mailに禁止文字あり
+        B012000001: 当該加盟店の利用デバイス決済利用不可
+        B012000002: 当該加盟店のセブン-イレブン利用不可
+        B013000001: 当該受注の二重決済
+        B014000001: 決済申込み失敗
+        B021010201: 加盟店コードなし
+        B021010202: 加盟店コードの桁数不正
+        B021010204: 加盟店コードに禁止文字あり
+        B021010301: 端末区分なし
+        B021010306: 端末区分の不正セット
+        B021010401: 受付番号なし
+        B021010402: 受付番号の桁数不正
+        B021010404: 受付番号に禁止文字あり
+        B021010601: 決済金額なし
+        B021010602: 決済金額の桁数不正
+        B021010604: 決済金額に禁止文字あり
+        B021010701: 購入者名(漢字)なし
+        B021010702: 購入者名(漢字)の桁数不正
+        B021010801: 購入者名(フリガナ)なし
+        B021010802: 購入者名(フリガナ)の桁数不正
+        B021010901: 購入者TELなし
+        B021010902: 購入者TELの桁数不正
+        B021010904: 購入者TELに禁止文字あり
+        B021011001: 購入者E-Mailなし
+        B021011002: 購入者E-Mailの桁数不正
+        B021010671: 決済金額の下限額オーバー
+        B021010672: 決済金額のファミリーマート上限額オーバー
+        B021010571: 商品名に禁止文字あり
+        B021010572: 商品名の半角桁・全角桁・バイト数不正
+        B021010771: 購入者名(漢字)に禁止文字あり
+        B021010871: 購入者名(フリガナ)に禁止文字あり
+        B021011071: 購入者E-Mailに禁止文字あり
+        B022000001: 当該加盟店の利用デバイス決済利用不可
+        B022000002: 当該加盟店のファミリーマート利用不可
+        B023000001: 当該受注の二重決済
+        B024000001: 決済申込み失敗
+        B031010201: 加盟店コードなし
+        B031010202: 加盟店コードの桁数不正
+        B031010204: 加盟店コードに禁止文字あり
+        B031010301: 端末区分なし
+        B031010306: 端末区分の不正セット
+        B031010401: 受付番号なし
+        B031010402: 受付番号の桁数不正
+        B031010404: 受付番号に禁止文字あり
+        B031010501: 商品名なし
+        B031010601: 決済金額なし
+        B031010602: 決済金額の桁数不正
+        B031010604: 決済金額に禁止文字あり
+        B031010701: 購入者名(漢字)なし
+        B031010702: 購入者名(漢字)の桁数不正
+        B031010801: 購入者TELなし
+        B031010802: 購入者TELの桁数不正
+        B031010804: 購入者TELに禁止文字あり
+        B031010901: 購入者E-Mailなし
+        B031010902: 購入者E-Mailの桁数不正
+        B031010671: 決済金額の下限額オーバー
+        B031010672: 決済金額のローソン上限額オーバー
+        B031010571: 商品名に禁止文字あり
+        B031010572: 商品名の半角桁・全角桁・バイト数不正
+        B031010771: 購入者名(漢字)に禁止文字あり
+        B031010871: 購入者TELの桁数不正
+        B031010971: 購入者E-Mailに禁止文字あり
+        B032000001: 当該加盟店の利用デバイス決済利用不可
+        B032000002: 当該加盟店のローソン利用不可
+        B033000001: 当該受注の二重決済
+        B034000001: 決済申込み失敗
+        B034000002: サイト注文番号重複エラー(決済申込み時)
+        B041010201: 加盟店コードなし
+        B041010202: 加盟店コードの桁数不正
+        B041010204: 加盟店コードに禁止文字あり
+        B041010301: 端末区分なし
+        B041010306: 端末区分の不正セット
+        B041010401: 受付番号なし
+        B041010402: 受付番号の桁数不正
+        B041010404: 受付番号に禁止文字あり
+        B041010501: 商品名なし
+        B041010601: 決済金額なし
+        B041010602: 決済金額の桁数不正
+        B041010604: 決済金額に禁止文字あり
+        B041010701: 購入者名(漢字)なし
+        B041010702: 購入者名(漢字)の桁数不正
+        B041010801: 購入者TELなし
+        B041010802: 購入者TELの桁数不正
+        B041010804: 購入者TELに禁止文字あり
+        B041010901: 購入者E-Mailなし
+        B041010902: 購入者E-Mailの桁数不正
+        B041010671: 決済金額の下限額オーバー
+        B041010672: 決済金額のサークルＫサンクス上限額オーバー
+        B041010571: 商品名に禁止文字あり
+        B041010572: 商品名の半角桁・全角桁・バイト数不正
+        B041010771: 購入者名(漢字)に禁止文字あり
+        B041010871: 購入者TELの桁数不正
+        B041010971: 購入者E-Mailに禁止文字あり
+        B042000001: 当該加盟店の利用デバイス決済利用不可
+        B042000002: 当該加盟店のサークルＫサンクス利用不可
+        B043000001: 当該受注の二重決済
+        B044000001: 決済申込み失敗
+        B044000002: サイト注文番号重複エラー(決済申込み時)
+        B051010201: 加盟店コードなし
+        B051010202: 加盟店コードの桁数不正
+        B051010204: 加盟店コードに禁止文字あり
+        B051010301: 端末区分なし
+        B051010306: 端末区分の不正セット
+        B051010401: 受付番号なし
+        B051010402: 受付番号の桁数不正
+        B051010404: 受付番号に禁止文字あり
+        B051010501: 商品名なし
+        B051010601: 決済金額なし
+        B051010602: 決済金額の桁数不正
+        B051010604: 決済金額に禁止文字あり
+        B051010701: 購入者名(漢字)なし
+        B051010702: 購入者名(漢字)の桁数不正
+        B051010801: 購入者TELなし
+        B051010802: 購入者TELの桁数不正
+        B051010804: 購入者TELに禁止文字あり
+        B051010901: 購入者E-Mailなし
+        B051010902: 購入者E-Mailの桁数不正
+        B051010671: 決済金額の下限額オーバー
+        B051010672: 決済金額のミニストップ上限額オーバー
+        B051010571: 商品名に禁止文字あり
+        B051010572: 商品名の半角桁・全角桁・バイト数不正
+        B051010771: 購入者名(漢字)に禁止文字あり
+        B051010871: 購入者TELの桁数不正
+        B051010971: 購入者E-Mailに禁止文字あり
+        B052000001: 当該加盟店の利用デバイス決済利用不可
+        B052000002: 当該加盟店のミニストップ利用不可
+        B053000001: 当該受注の二重決済
+        B054000001: 決済申込み失敗
+        B054000002: サイト注文番号重複エラー(決済申込み時)
+        B061010201: 加盟店コードなし
+        B061010202: 加盟店コードの桁数不正
+        B061010204: 加盟店コードに禁止文字あり
+        B061010301: 端末区分なし
+        B061010306: 端末区分の不正セット
+        B061010401: 受付番号なし
+        B061010402: 受付番号の桁数不正
+        B061010404: 受付番号に禁止文字あり
+        B061010501: 商品名なし
+        B061010601: 決済金額なし
+        B061010602: 決済金額の桁数不正
+        B061010604: 決済金額に禁止文字あり
+        B061010701: 購入者名(漢字)なし
+        B061010702: 購入者名(漢字)の桁数不正
+        B061010801: 購入者TELなし
+        B061010802: 購入者TELの桁数不正
+        B061010804: 購入者TELに禁止文字あり
+        B061010901: 購入者E-Mailなし
+        B061010902: 購入者E-Mailの桁数不正
+        B061010671: 決済金額の下限額オーバー
+        B061010672: 決済金額のセイコーマート上限額オーバー
+        B061010571: 商品名に禁止文字あり
+        B061010572: 商品名の半角桁・全角桁・バイト数不正
+        B061010771: 購入者名(漢字)に禁止文字あり
+        B061010871: 購入者TELの桁数不正
+        B061010971: 購入者E-Mailに禁止文字あり
+        B062000001: 当該加盟店の利用デバイス決済利用不可
+        B062000002: 当該加盟店のセイコーマート利用不可
+        B063000001: 当該受注の二重決済
+        B064000001: 決済申込み失敗
+        B064000002: サイト注文番号重複エラー(決済申込み時)
+        C011010201: 加盟店コードなし
+        C011010202: 加盟店コードの桁数不正
+        C011010204: 加盟店コードに禁止文字あり
+        C011010301: 端末区分なし
+        C011010306: 端末区分の不正セット
+        C011010401: 受付番号なし
+        C011010402: 受付番号の桁数不正
+        C011010404: 受付番号に禁止文字あり
+        C011010601: 決済金額なし
+        C011010602: 決済金額の桁数不正
+        C011010604: 決済金額に禁止文字あり
+        C011010701: 購入者名(漢字)なし
+        C011010801: 購入者E-Mailなし
+        C011010802: 購入者E-Mailの桁数不正
+        C011010901: 決済完了通知URL必須エラー
+        C011011071: 決済金額の下限額オーバー
+        C011011072: 決済金額の上限額オーバー
+        C011011171: 商品名に禁止文字あり
+        C011011172: 商品名の半角・全角桁・バイト数不正
+        C011011271: 購入者名に禁止文字あり
+        C011011272: 購入者名(漢字)の半角・全角桁・バイト数不正
+        C011011371: 購入者E-Mailに禁止文字あり
+        C011011473: 決済完了通知URLの文字形式不正
+        C011010572: 決済完了通知URL桁数エラー
+        C012000174: 当該加盟店のパソコン決済利用不可
+        C012000175: 当該加盟店の楽天Edy利用不可
+        C012000251: 当該受注の二重決済
+        C012000371: 決済申込み失敗
+        C021010201: 加盟店コードなし
+        C021010202: 加盟店コードの桁数不正
+        C021010204: 加盟店コードに禁止文字あり
+        C021010301: 端末区分なし
+        C021010306: 端末区分の不正セット
+        C021010401: 受付番号なし
+        C021010402: 受付番号の桁数不正
+        C021010404: 受付番号に禁止文字あり
+        C021010601: 決済金額なし
+        C021010602: 決済金額の桁数不正
+        C021010604: 決済金額に禁止文字あり
+        C021010701: 購入者名(漢字)なし
+        C021010801: 購入者E-Mailなし
+        C021010802: 購入者E-Mailの桁数不正
+        C021010971: 決済金額の下限額オーバー
+        C021010972: 決済金額の上限額オーバー
+        C021011071: 商品名に禁止文字あり
+        C021011072: 商品名の半角・全角桁・バイト数不正
+        C021011171: 購入者名(漢字)に禁止文字あり
+        C021011172: 購入者名(漢字)の半角・全角桁・バイト数不正
+        C021011271: 購入者E-Mailに禁止文字あり
+        C022000171: 当該加盟店のスマートフォン決済利用不可
+        C022000172: 当該加盟店のパソコン決済利用不可
+        C022000173: 当該加盟店の携帯電話決済利用不可
+        C022000174: 当該加盟店の楽天Edy（Mobile）利用不可
+        C022000251: 当該受注の二重決済
+        C022000371: 決済申込み失敗
+        C031010201: 加盟店コードなし
+        C031010202: 加盟店コードの桁数不正
+        C031010204: 加盟店コードに禁止文字あり
+        C031010301: 端末区分なし
+        C031010306: 端末区分の不正セット
+        C031010401: 受付番号なし
+        C031010402: 受付番号の桁数不正
+        C031010404: 受付番号に禁止文字あり
+        C031010501: 商品名なし
+        C031010601: 決済金額なし
+        C031010602: 決済金額の桁数不正
+        C031010604: 決済金額に禁止文字あり
+        C031010701: 購入者名(漢字)なし
+        C031010801: 購入者E-Mailなし
+        C031010802: 購入者E-Mailの桁数不正
+        C031010901: 戻り先URL必須エラー
+        C031011071: 決済金額の下限額オーバー
+        C031011072: 決済金額の上限額オーバー
+        C031011171: 商品名に禁止文字あり
+        C031011172: 商品名の半角桁・全角桁・バイト数不正
+        C031011271: 購入者名(漢字)に禁止文字あり
+        C031011272: 購入者名(漢字)の半角桁・全角桁・バイト数不正
+        C031011371: 購入者E-Mail不正
+        C031011471: 戻り先URLの文字形式不正
+        C031011472: 戻り先URL桁数エラー
+        C032000001: 当該加盟店のパソコン決済利用不可
+        C032000002: 当該加盟店のSuica（インターネットサービス）利用不可
+        C032010001: 当該受注の二重決済
+        C032020001: 決済申込み失敗：その他
+        C032020002: 決済申込み失敗：Suica未加入
+        C032020003: 決済申込み失敗：決済依頼件数上限超過
+        C032020004: 決済申込み失敗：一時利用停止
+        C032020005: 決済申込み失敗：メンテナンス
+        C041010201: 加盟店コードなし
+        C041010202: 加盟店コードの桁数不正
+        C041010204: 加盟店コードに禁止文字あり
+        C041010301: 端末区分なし
+        C041010306: 端末区分の不正セット
+        C041010401: 受付番号なし
+        C041010402: 受付番号の桁数不正
+        C041010404: 受付番号に禁止文字あり
+        C041010501: 商品名なし
+        C041010601: 決済金額なし
+        C041010602: 決済金額の桁数不正
+        C041010604: 決済金額に禁止文字あり
+        C041010701: 購入者名(漢字)なし
+        C041010801: 購入者E-Mailなし
+        C041010802: 購入者E-Mailの桁数不正
+        C041011071: 決済金額の下限額オーバー
+        C041011072: 決済金額の上限額オーバー
+        C041011171: 商品名に禁止文字あり
+        C041011172: 商品名の半角桁・全角桁・バイト数不正
+        C041011271: 購入者名(漢字)に禁止文字あり
+        C041011272: 購入者名(漢字)の半角桁・全角桁・バイト数不正
+        C041011371: 購入者E-Mail不正
+        C042000001: 当該加盟店のスマートフォン決済利用不可
+        C042000002: 当該加盟店のパソコン決済利用不可
+        C042000003: 当該加盟店の携帯電話決済利用不可
+        C042000004: 当該加盟店のSuica（モバイル）利用不可
+        C042010001: 当該受注の二重決済
+        C042020001: 決済申込み失敗：その他
+        C042020002: 決済申込み失敗：モバイルSuica未加入
+        C042020003: 決済申込み失敗：決済依頼件数上限超過
+        C042020004: 決済申込み失敗：一時利用停止
+        C042020005: 決済申込み失敗：メンテナンス
+        C051010201: 加盟店コードなし
+        C051010202: 加盟店コードの桁数不正
+        C051010204: 加盟店コードに禁止文字あり
+        C051010301: 端末区分なし
+        C051010306: 端末区分の不正セット
+        C051010401: 受付番号なし
+        C051010402: 受付番号の桁数不正
+        C051010404: 受付番号に禁止文字あり
+        C051010501: 商品名なし
+        C051010601: 決済金額なし
+        C051010602: 決済金額の桁数不正
+        C051010604: 決済金額に禁止文字あり
+        C051010701: 購入者名(漢字)なし
+        C051010801: 購入者E-Mailなし
+        C051010802: 購入者E-Mailの桁数不正
+        C051010901: 戻り先URL必須エラー
+        C051010902: 戻り先URL桁数エラー
+        C051010904: 戻り先URLに禁止文字あり
+        C051010671: 決済金額の下限額オーバー
+        C051010672: 決済金額の上限額オーバー
+        C051010571: 商品名に禁止文字あり
+        C051010572: 商品名の半角桁・全角桁・バイト数不正
+        C051010771: 購入者名(漢字)に禁止文字あり
+        C051010772: 購入者名(漢字)の半角桁・全角桁・バイト数不正
+        C051010871: 購入者E-Mail不正
+        C051010971: 戻り先URLの文字形式不正
+        C052000001: 当該加盟店のパソコン決済利用不可
+        C052000002: 当該加盟店のWaon(パソコン)利用不可
+        C052010001: 当該受注の二重決済
+        C052000003: 当該加盟店のWAON決済利用不可
+        C052020001: 決済情報通知エラー
+        C061010201: 加盟店コードなし
+        C061010202: 加盟店コードの桁数不正
+        C061010204: 加盟店コードに禁止文字あり
+        C061010301: 端末区分なし
+        C061010306: 端末区分の不正セット
+        C061010401: 受付番号なし
+        C061010402: 受付番号の桁数不正
+        C061010404: 受付番号に禁止文字あり
+        C061010501: 商品名なし
+        C061010601: 決済金額なし
+        C061010602: 決済金額の桁数不正
+        C061010604: 決済金額に禁止文字あり
+        C061010701: 購入者名(漢字)なし
+        C061010801: 購入者E-Mailなし
+        C061010802: 購入者E-Mailの桁数不正
+        C061010671: 決済金額の下限額オーバー
+        C061010672: 決済金額の上限額オーバー
+        C061010571: 商品名に禁止文字あり
+        C061010572: 商品名の半角桁・全角桁・バイト数不正
+        C061010771: 購入者名(漢字)に禁止文字あり
+        C061010772: 購入者名(漢字)の半角桁・全角桁・バイト数不正
+        C061010871: 購入者E-Mail不正
+        C062000001: 当該加盟店の携帯電話決済利用不可
+        C062000002: 当該加盟店の11：モバイルWAON／モバイル JMB WAON利用不可
+        C062010001: 当該受注の二重決済
+        C062000003: 当該加盟店のWAON決済利用不可
+        C062020001: 決済情報通知エラー
+        D011010201: 加盟店コードなし
+        D011010202: 加盟店コードの桁数不正
+        D011010204: 加盟店コードに禁止文字あり
+        D011010301: 端末区分なし
+        D011010306: 端末区分の不正セット
+        D011010401: 受付番号なし
+        D011010402: 受付番号の桁数不正
+        D011010404: 受付番号に禁止文字あり
+        D011010601: 決済金額なし
+        D011010602: 決済金額の桁数不正
+        D011010604: 決済金額に禁止文字あり
+        D011010701: 購入者名(漢字)なし
+        D011010801: 購入者E-Mailなし
+        D011010802: 購入者E-Mailの桁数不正
+        D011010901: 完了画面URLなし
+        D011010903: 完了戻りURLbyte数エラー
+        D011011071: 決済金額の下限額オーバー
+        D011011072: 決済金額の上限額オーバー
+        D011011171: 商品名に禁止文字あり
+        D011011172: 商品名の半角桁・全角桁・バイト数不正
+        D011011271: 購入者名(漢字)に禁止文字あり
+        D011011272: 購入者名(漢字)の半角桁・全角桁・バイト数不正
+        D011011371: 購入者E-Mail不正
+        D011011471: 完了戻りURLの文字形式不正
+        D012000001: 当該加盟店のパソコン決済利用不可
+        D012000002: 当該加盟店の携帯電話決済利用不可
+        D012000003: 当該加盟店の楽天銀行決済利用不可
+        D012010001: 当該受注の二重決済
+        E011010201: 加盟店コードなし
+        E011010202: 加盟店コードの桁数不正
+        E011010204: 加盟店コードに禁止文字あり
+        E011010301: 受付番号なし
+        E011010302: 受付番号の桁数不正
+        E011010304: 受付番号に禁止文字あり
+        E011010401: 送り状番号なし
+        E011010402: 送り状番号の桁数不正
+        E011010404: 送り状番号に禁止文字あり
+        E011010251: 加盟店の状態が出荷情報登録不可
+        E011010351: 受注データ不正
+        E011010451: 送り状番号不正
+        E012000001: 送り状番号登録済みエラー
+        E012000002: 送り状番号が99件超
+        E012000003: 同梱の合計金額が30万円超
+        E012000004: 同梱対象が既に3件以上登録済み
+        E012000005: 登録済み受注データが修正不可
+        E012000006: 登録しようとした送り状番号が同梱済み
+        E013000001: 排他制御エラー
+        E021010201: 加盟店コードなし
+        E021010202: 加盟店コードの桁数不正
+        E021010204: 加盟店コードに禁止文字あり
+        E021010301: 受付番号なし
+        E021010302: 受付番号の桁数不正
+        E021010304: 受付番号に禁止文字あり
+        E021010401: 送り状番号なし
+        E021010402: 送り状番号の桁数不正
+        E021010404: 送り状番号に禁止文字あり
+        E021010251: 加盟店の状態が出荷情報取消不可
+        E021010351: 受注データ不正
+        E022000001: 送り状番データ不正
+        E022000002: 複数送り状番号取消時、受注データに紐づく送り状番号が他の受注データを同梱
+        E022000003: 登録済み受注データが修正不可
+        E023000001: 排他制御エラー
+        E031010201: 加盟店コードなし
+        E031010202: 加盟店コードの桁数不正
+        E031010204: 加盟店コードに禁止文字あり
+        E031010301: 受付番号なし
+        E031010302: 受付番号の桁数不正
+        E031010304: 受付番号に禁止文字あり
+        E031010401: 出荷予定日なし
+        E031010405: 出荷予定日のフォーマット不正
+        E032000001: 当該加盟店のオプションサービス利用不可
+        E031010351: 受付番号の受注データ不正
+        E031010471: 出荷予定日下限チェック不正　（過去日チェック）
+        E031010472: 出荷予定日上限チェック不正　（与信承認日より180日が上限）
+        E033000001: 排他制御エラー
+        E041010201: 加盟店コードなし
+        E041010202: 加盟店コードの桁数不正
+        E041010204: 加盟店コードに禁止文字あり
+        E041010301: 受付番号なし
+        E041010302: 受付番号の桁数不正
+        E041010304: 受付番号に禁止文字あり
+        H011010201: 加盟店コードなし
+        H011010202: 加盟店コードの桁数オーバー
+        H011010204: 加盟店コード文字種別誤り
+        Z012000001: POST以外のリクエスト方式
+        Z012000002: 機能区分なし
+        Z012000003: 機能区分の不正セット
+        Z012000004: 同受注番号にて決済中エラー
+        Z012000005: リクエストタイムアウト
+        Z012000006: APIトランザクションのプール数オーバー
+        Z012000007: 当該加盟店の取引停止
+        Z012000008: 当該加盟店のAPI利用不可
+        Z012000009: 当該加盟店のAPI利用不可
+        Z012000010: 認証パスワードエラー
+        Z019999999: システムエラー
+        Z010000000: メンテナンスエラー
+        kaara001E: 加盟店コードが未入力です。
+        kaara002E: 加盟店コードは半角数字で入力してください。
+        kaara003E: 加盟店コードが桁数エラーです。
+        kaara004E: 未登録の加盟店コードです。
+        kaara005E: 利用できない加盟店コードです。
+        kaara006E: 受注番号が未入力です。
+        kaara007E: 受注番号は半角英数字、'-''_'以外は入力出来ません。
+        kaara008E: 受注番号が桁数エラーです。
+        kaara009E: 受注番号が一意(ユニーク)ではありません。
+        kaara010E: 受注日が未入力です。
+        kaara011E: 受注日は半角数字で入力してください。
+        kaara012E: 受注日が桁数エラーです。
+        kaara013E: 受注日が日付として妥当ではありません。
+        kaara014E: 出荷予定日が未入力です。
+        kaara015E: 出荷予定日は半角数字で入力してください。
+        kaara016E: 出荷予定日が桁数エラーです。
+        kaara017E: 出荷予定日が日付として妥当ではありません。
+        kaara018E: 出荷予定日が既定期間内ではありません。
+        kaara019E: 氏名が未入力です。
+        kaara020E: 氏名は全角文字で入力してください。
+        kaara021E: 氏名が桁数エラーです。
+        kaara022E: 氏名が指定された文字コードの範囲文字ではありません。
+        kaara023E: 氏名カナは半角カナで入力してください。
+        kaara024E: 氏名カナが桁数エラーです。
+        kaara025E: 郵便番号が未入力です。
+        kaara026E: 郵便番号は半角数字、'-'以外は入力出来ません。
+        kaara027E: 郵便番号の'-'は1つのみ入力できます。
+        kaara028E: 郵便番号が桁数エラーです。
+        kaara029E: 郵便番号が実在しません。
+        kaara030E: 住所1が未入力です。
+        kaara031E: 住所1は全角文字で入力してください。
+        kaara032E: 住所1が桁数エラーです。
+        kaara033E: 住所1が指定された文字コードの範囲文字ではありません。
+        kaara034E: 住所1は都道府県から入力してください。
+        kaara035E: 住所2は全角文字で入力してください。
+        kaara036E: 住所2が桁数エラーです。
+        kaara037E: 住所2が指定された文字コードの範囲文字ではありません。
+        kaara038E: 電話番号が未入力です。
+        kaara039E: 電話番号は半角数字、'-'以外は入力出来ません。
+        kaara040E: 電話番号が桁数エラーです。
+        kaara043E: メールアドレスは半角英数字で入力してください。
+        kaara044E: メールアドレスが桁数エラーです。
+        kaara045E: メールアドレスに'@'が含まれていません。
+        kaara046E: 決済金額総計が未入力です。
+        kaara047E: 決済金額総計は半角数字で入力してください。
+        kaara048E: 決済金額総計が桁数エラーです。
+        kaara049E: 決済金額総計は1円以上、999999円以内で入力してください。
+        kaara050E: 送り先区分が未入力です。
+        kaara051E: 送り先区分は半角数字で入力してください。
+        kaara052E: 送り先区分は'0''1'のいずれかを入力してください。
+        kaara053E: 送り先区分は'0''1''2'のいずれかを入力してください。
+        kaara054E: 購入商品名称は全角文字で入力してください。
+        kaara055E: 購入商品名称が桁数エラーです。
+        kaara056E: 購入商品名称が指定された文字コードの範囲文字ではありません。
+        kaara057E: 購入商品名称1が未入力です。
+        kaara058E: 購入商品数量は半角数字で入力してください。
+        kaara059E: 購入商品数量が桁数エラーです。
+        kaara060E: 購入商品単価は半角数字、'-'以外は入力出来ません。
+        kaara061E: 購入商品単価が桁数エラーです。
+        kaara062E: 購入商品単価が桁数エラーです。
+        kaara063E: 購入商品小計は半角数字、'-'以外は入力出来ません。
+        kaara064E: 購入商品小計が桁数エラーです。
+        kaara065E: 購入商品小計が桁数エラーです。
+        kaara066E: 送り先名称は全角文字で入力してください。
+        kaara067E: 送り先名称が桁数エラーです。
+        kaara068E: 送り先名称が指定された文字コードの範囲文字ではありません。
+        kaara070E: 送り先郵便番号は半角数字、'-'以外は入力出来ません。
+        kaara071E: 送り先郵便番号の'-'は1つのみ入力できます。
+        kaara072E: 送り先郵便番号が桁数エラーです。
+        kaara073E: 送り先郵便番号が実在しません。
+        kaara075E: 送り先住所1は全角文字で入力してください。
+        kaara076E: 送り先住所1が桁数エラーです。
+        kaara077E: 送り先住所1が指定された文字コードの範囲文字ではありません。
+        kaara078E: 送り先住所1は都道府県から入力してください。
+        kaara079E: 送り先住所2は全角文字で入力してください。
+        kaara080E: 送り先住所2が桁数エラーです。
+        kaara081E: 送り先住所2が指定された文字コードの範囲文字ではありません。
+        kaara082E: 送り先電話番号は半角数字、'-'以外は入力出来ません。
+        kaara083E: 送り先電話番号の'-'は2つ入力してください。
+        kaara084E: 送り先電話番号が桁数エラーです。
+        kaara086E: 依頼日時が未入力です。
+        kaara087E: 依頼日時は半角数字で入力してください。
+        kaara088E: 依頼日時が桁数エラーです。
+        kaara089E: 依頼日時が日付及び時刻として妥当ではありません。
+        kaara090E: パスワードが未入力です。
+        kaara091E: パスワードは半角英数字で入力してください。
+        kaara092E: パスワードが不正です。
+        kaara093E: 電話番号は0から入力してください。
+        kaara094E: 送り先電話番号は0から入力してください。
+        kaara100E: 出荷予定日は受注日以降の日付で入力してください。
+        kaara101E: 決済金額総計と、購入商品小計の合計金額が一致しません。
+        kaara102E: 送り先名称、送り先郵便番号、送り先住所1を入力してください。
+        kaara103E: 住所1と住所2を結合して1つの住所とした状態で'番地'が指定されていません。
+        kaara104E: 送り先住所1と送り先住所2を結合して1つの住所とした状態で'番地'が指定されていません。
+        kaars001E: 項目数が相違しています。
+        kaars002E: 加盟店コードが桁数エラーです。
+        kaars003E: 加盟店コードは半角で入力してください。
+        kaars004E: 加盟店コードが未入力です。
+        kaars005E: 受注番号が桁数エラーです。
+        kaars006E: 受注番号は半角で入力してください。
+        kaars007E: 受注番号が未入力です。
+        kaars014E: 受注番号は半角英数字、'-''_'以外は入力出来ません。
+        kaars008E: 受注番号が登録されていません。
+        kaars009E: 依頼日が存在しない日付です。
+        kaars010E: 依頼日は半角で入力してください。
+        kaars011E: 依頼日が未入力です。
+        kaars012E: パスワードが不正です。
+        kaars013E: パスワードエラー
+        kaacl001E: 項目数が相違しています。(N行目)
+        kaacl002E: 加盟店コードが桁数エラーです。
+        kaacl003E: 加盟店コードは半角で入力してください。
+        kaacl004E: 加盟店コードが未入力です。
+        kaacl005E: 受注番号が桁数エラーです。
+        kaacl006E: 受注番号は半角で入力してください。
+        kaacl007E: 受注番号が未入力です。
+        kaacl016E: 受注番号は半角英数字、'-''_'以外は入力出来ません。
+        kaacl008E: 受注番号が登録されていません。
+        kaacl009E: 既に取り消されています。
+        kaacl010E: 依頼日が存在しない日付です。
+        kaacl011E: 依頼日は半角で入力してください。
+        kaacl012E: 依頼日が未入力です。
+        kaacl013E: パスワードが不正です。
+        kaacl014E: パスワードエラー
+        kaasl001E: 項目数が相違しています。
+        kaasl002E: 加盟店コードが桁数エラーです。
+        kaasl003E: 加盟店コードは半角で入力してください。
+        kaasl004E: 加盟店コードが未入力です。
+        kaasl005E: 受注番号が桁数エラーです。
+        kaasl006E: 受注番号は半角で入力してください。
+        kaasl007E: 受注番号が未入力です。
+        kaasl038E: 受注番号は半角英数字、'-''_'以外は入力出来ません。
+        kaasl008E: 指定の受注番号が存在しません。
+        kaasl009E: 送り状番号登録済です。
+        kaasl010E: 送り状番号が桁数エラーです。
+        kaasl011E: 送り状番号が未入力です。
+        kaasl012E: 送り状番号は半角で入力してください。
+        kaasl013E: 取消時に送り状番号の入力はできません。
+        kaasl014E: 送り状番号チェックエラー
+        kaasl015E: 送り状番号チェックエラー
+        kaasl016E: 送り状番号は、1件しか入力できません。
+        kaasl017E: 送り状番号は、10件までしか入力できません。
+        kaasl018E: 送り状番号が既に存在します。
+        kaasl019E: 処理区分エラー
+        kaasl020E: 登録はできません。
+        kaasl018E: 送り状番号は既に登録済です。
+        kaasl022E: 変更はできません。
+        kaasl023E: 出荷予定日エラー
+        kaasl024E: 出荷予定日は半角で入力してください。
+        kaasl025E: 出荷予定日が未入力です。
+        kaasl026E: 出荷予定日は指定できません。
+        kaasl027E: 出荷予定日が受注日より前の日付です。
+        kaasl028E: 変更前送り状番号桁数エラーです。
+        kaasl029E: 変更前送り状番号は半角で入力してください。
+        kaasl030E: 出荷予定日が未入力です。
+        kaasl031E: 変更前送り状番号は指定できません。
+        kaasl032E: 指定した変更前送り状番号は存在しません。
+        kaasl033E: 依頼日が存在しない日付です。
+        kaasl034E: 依頼日は半角で入力してください。
+        kaasl035E: 依頼日が未入力です。
+        kaasl036E: パスワードが不正です。
+        kaasl037E: パスワードエラー
+        kaast001E: 項目数が相違しています。
+        kaast002E: 加盟店コードが桁数エラーです。
+        kaast003E: 加盟店コードは半角で入力してください。
+        kaast004E: 加盟店コードが未入力です。
+        kaast005E: 受注番号が桁数エラーです。
+        kaast006E: 受注番号は半角で入力してください。
+        kaast007E: 受注番号が未入力です。
+        kaast008E: 受注番号が登録されていません。
+        kaast014E: 受注番号は半角英数字、'-''_'以外は入力出来ません。
+        kaast009E: 依頼日が存在しない日付です。
+        kaast010E: 依頼日は半角で入力してください。
+        kaast011E: 依頼日が未入力です。
+        kaast012E: パスワードが不正です。
+        kaast013E: パスワードエラー
+        kaakk001E: 加盟店コードが未入力です。
+        kaakk002E: 加盟店コードは半角数字で入力してください。
+        kaakk003E: 加盟店コードが桁数エラーです。
+        kaakk004E: 金額変更機能が利用できない加盟店コードです。
+        kaakk005E: 受注番号が未入力です。
+        kaakk006E: 受注番号は半角英数字、'-''_'以外は入力出来ません。
+        kaakk007E: 受注番号が桁数エラーです。
+        kaakk008E: 該当受注番号のデータが存在しません。
+        kaakk009E: 与信結果「ご利用可」の受注データのみ実行可能です。
+        kaakk010E: お取引情報が「取消済み」「入金済み」のため実行できません。
+        kaakk011E: お取引情報が「取消済み」「入金済み」のため実行できません。
+        kaakk013E: 出荷予定日は半角数字で入力してください。
+        kaakk014E: 出荷予定日が桁数エラーです。
+        kaakk015E: 出荷予定日は指定した形式をセットしてください。[西暦年月日、yyyyMMdd形式]
+        kaakk016E: 出荷予定日は本日以降の日付を設定してください。
+        kaakk017E: 出荷予定日が既定期間内ではありません。
+        kaakk018E: 郵便番号が未入力です。
+        kaakk019E: 郵便番号は半角数字、'-'以外は入力出来ません。
+        kaakk020E: 郵便番号が桁数エラーです。
+        kaakk021E: 郵便番号の'-'は1つのみ入力できます。
+        kaakk022E: 郵便番号が実在しません。
+        kaakk023E: 住所1が未入力です。
+        kaakk024E: 住所1が指定された文字コードの範囲文字ではありません。
+        kaakk025E: 住所1は全角文字で入力してください。
+        kaakk026E: 住所1が桁数エラーです。指定桁数(25桁)以内
+        kaakk027E: 住所1は都道府県から入力してください。
+        kaakk028E: 住所2が指定された文字コードの範囲文字ではありません。
+        kaakk029E: 住所2は全角文字で入力してください。
+        kaakk030E: 住所2が桁数エラーです。指定桁数(25桁)以内
+        kaakk031E: 住所2に番地が設定されていません。
+        kaakk031E: 購入商品名称(1～10)が指定されていません。
+        kaakk033E: 購入商品名称(1～10)が指定された文字コードの範囲文字ではありません。
+        kaakk034E: 購入商品名称(1～10)は全角文字で入力してください。
+        kaakk035E: 購入商品名称(1～10)が桁数エラーです。指定桁数(30桁)以内
+        kaakk036E: 購入商品数量(1～10)は半角数字で入力してください。
+        kaakk037E: 購入商品数量(1～10)が桁数エラーです。指定桁数(4桁)以内
+        kaakk038E: 購入商品単価(1～10)は半角数字または”-”[マイナス]の組み合わせで入力してください。
+        kaakk039E: 購入商品単価(1～10)が負数の場合は、”-”[マイナス]を先頭に設定してください。
+        kaakk040E: 購入商品単価(1～10)が正数の場合の桁数エラーです。指定桁数(6桁)以内
+        kaakk041E: 購入商品単価(1～10)が負数の場合の桁数エラーです。指定桁数(7桁)以内
+        kaakk042E: 購入商品小計(1～10)は半角数字または”-”[マイナス]の組み合わせで入力してください。
+        kaakk043E: 購入商品小計(1～10)が負数の場合は、”-”[マイナス]を先頭に設定してください。
+        kaakk044E: 購入商品小計(1～10)が正数の場合の桁数エラーです。指定桁数(6桁)以内
+        kaakk045E: 購入商品小計(1～10)が負数の場合の桁数エラーです。指定桁数(7桁)以内
+        kaakk046E: 決済金額総計が未入力です。
+        kaakk047E: 決済金額総計は半角数字で入力してください。
+        kaakk048E: 決済金額総計の桁数エラーです。指定桁数(6桁)以内
+        kaakk049E: 決済金額総計が変更されていません。
+        kaakk050E: 決済金額総計が初回の決済金額総計より減額されていません。
+        kaakk051E: 決済金額総計が購入商品小計の合計と一致していません。
+        kaakk053E: 送り先区分は半角数字で入力してください。
+        kaakk054E: 送り先区分は（0:別送　1:同梱）のいずれかを入力してください。
+        kaakk055E: 送り先区分は（0:別送）を入力してください。（1:同梱）は別途契約が必要です。
+        kaakk056E: フリー項目が指定された文字コードの範囲文字ではありません。
+        kaakk057E: フリー項目は全角漢字、平仮名、カタカナ、英数字、'‐'、'＿'又は半角英数字、ｶﾀｶﾅ、'‐'、'_'で入力してください。
+        kaakk058E: フリー項目の桁数エラーです。全角指定桁数（20桁）以内又は半角指定桁数（40桁）以内
+        kaakk059E: パスワードが入力されていません。
+        kaakk060E: パスワードの桁数エラーです。指定桁数(8桁)以内
+        kaakk061E: パスワードが一致しません。
+        kaakk062E: 依頼日時が入力されていません。
+        kaakk063E: 依頼日時は半角数字で入力してください。
+        kaakk064E: 依頼日時の桁数エラー。指定桁数(14桁)
+        kaakk065E: 依頼日時は[西暦年月日＋時分秒、yyyyMMddHHmmss形式]の形式で入力してください。
+        kaarr001E: 加盟店コードが未入力です。
+        kaarr002E: 加盟店コードは半角数字で入力してください。
+        kaarr003E: 加盟店コードが桁数エラーです。
+        kaarr004E: 存在しない加盟店コードです。
+        kaarr005E: 受注番号が未入力です。
+        kaarr006E: 受注番号は半角英数字、'-''_'以外は入力出来ません。
+        kaarr007E: 受注番号が桁数エラーです。
+        kaarr008E: 該当受注番号のデータが存在しません。
+        kaarr009E: 請求書再発行回数が上限の9回を超えています。
+        kaarr010E: パスワードが入力されていません。
+        kaarr011E: パスワードは半角英数字で入力してください。
+        kaarr012E: パスワードが一致しません。
+        kaarr013E: ご依頼内容が未入力です。
+        kaarr014E: ご依頼内容は（1:請求内容変更・請求書再発行　3:請求書再発行取下げ）のいずれかを入力してください。
+        kaarr015E: 請求内容変更・請求書再発行が実行ないお取引です。
+        kaarr016E: 請求内容変更・請求書再発行が実行ないお取引です。
+        kaarr017E: 請求書再発行取下げが実行できないお取引です。
+        kaarr018E: 不備事由が未入力です。
+        kaarr019E: 不備事由の値が不適切です。
+        kaarr020E: 不備事由その他が未入力です。
+        kaarr021E: 不備事由その他は指定された文字コードの範囲文字内を入力下さい。
+        kaarr022E: 不備事由その他は全角漢字を入力してください。
+        kaarr023E: 不備事由その他の桁数エラーです。全角指定桁数（25桁）以内
+        kaarr025E: 出荷予定日は半角数字で入力下さい。
+        kaarr026E: 出荷予定日の桁数エラーです。全角指定桁数（8桁）以内
+        kaarr027E: 出荷予定日が日付として妥当であること「西暦年月日、yyyymmdd形式」
+        kaarr028E: 出荷予定日が決済依頼日から定められた期間を超えた日付が入力されています。
+        kaarr029E: 出荷予定日が受注日より前の日付が指定されています。
+        kaarr031E: 送り先区分は半角数字であること。
+        kaarr032E: 送り先区分は（0:別送　1:同梱）のいずれかを入力してください。
+        kaarr033E: 送り先区分は（0:別送）を入力してください。（1:同梱）は別途契約が必要です。
+        kaarr034E: 郵便番号が未入力です。
+        kaarr035E: 郵便番号は半角数字またはハイフンの組み合わせであること。
+        kaarr036E: 郵便番号はハイフンを除く7桁であること。
+        kaarr037E: 郵便番号に2つ以上のハイフンが含まれています。
+        kaarr038E: 実在しない郵便番号が設定されています。
+        kaarr039E: 住所1が未入力です。
+        kaarr040E: 住所1は全角文字で入力してください。
+        kaarr041E: 住所1が指定された文字コードの範囲文字ではありません。
+        kaarr042E: 住所1の桁数エラーです。全角指定桁数（25桁）以内
+        kaarr043E: 住所1は都道府県から入力してください。
+        kaarr044E: 住所2が未入力です。
+        kaarr045E: 住所2は指定された文字コードの範囲文字ではありません。
+        kaarr046E: 住所2の桁数エラーです。全角指定桁数（25桁）以内
+        kaarr047E: 住所に番地が設定されていません。
+        kaarr048E: 購入商品名称(1～10)が未入力です。
+        kaarr049E: 購入商品名称(1～10)は全角文字で入力してください。
+        kaarr050E: 購入商品名称(1～10)が指定された文字コードの範囲文字ではありません。
+        kaarr051E: 購入商品名称(1～10)の桁数エラーです。全角指定桁数（30桁）以内
+        kaarr052E: 購入商品数量(1～10)は半角数字で入力してください。
+        kaarr053E: 購入商品数量(1～10)が桁数エラーです。指定桁数(4桁)以内
+        kaarr054E: 購入商品単価(1～10)は半角数字または”-”[マイナス]の組み合わせで入力してください。
+        kaarr055E: 購入商品単価(1～10)が負数の場合は、”-”[マイナス]を先頭に設定してください。
+        kaarr056E: 購入商品単価(1～10)が正数の場合の桁数エラーです。指定桁数(6桁)以内
+        kaarr057E: 購入商品単価(1～10)が負数の場合の桁数エラーです。指定桁数(7桁)以内
+        kaarr058E: フリー項目は同梱の契約をされていない場合は、空白にして下さい。
+        kaarr059E: フリー項目が指定された文字コードの範囲文字ではありません。
+        kaarr060E: フリー項目は全角漢字、平仮名、カタカナ、英数字、'‐'、'＿'又は半角英数字、ｶﾀｶﾅ、'‐'、'_'で入力してください。
+        kaarr061E: フリー項目の桁数エラーです。全角指定桁数（20桁）以内又は半角指定桁数（40桁）以内
+        kaarr063E: 購入商品小計(1～10)は半角数字または”-”[マイナス]の組み合わせで入力してください。
+        kaarr064E: 購入商品小計(1～10)が負数の場合は、”-”[マイナス]を先頭に設定してください。
+        kaarr065E: 購入商品小計(1～10)が正数の場合の桁数エラーです。指定桁数(6桁)以内
+        kaarr066E: 購入商品小計(1～10)が負数の場合の桁数エラーです。指定桁数(7桁)以内
+
+# コンテナ定義
+services:
+    YamatoPayment.log.formatter.line:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+            - "[%%datetime%%] %%level_name%% [%%extra.session_id%%] %%message%% [%%extra.ip%%, %%extra.referrer%%, %%extra.user_agent%%]\n"
+
+# logs('YamatoPayment')->info('メッセージ');
+# プラグイン用ログ
+monolog:
+    channels: ['YamatoPayment4']
+    handlers:
+        YamatoPayment4:
+            type: fingers_crossed
+            action_level: error
+            passthru_level: info
+            handler: YamatoPayment4_rotating_file
+            channels: ['YamatoPayment4']
+            channels: ['!event', '!doctrine']
+        YamatoPayment4_rotating_file:
+            type: rotating_file
+            max_files: 60
+            path: '%kernel.logs_dir%/%kernel.environment%/YamatoPayment4.log'
+            formatter: eccube.log.formatter.line
+            level: debug

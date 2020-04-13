@@ -1,0 +1,23 @@
+<script>
+$(function() {
+    $('div.ec-rectHeading h2').each(function() {
+        if($(this).html() == 'お支払方法') {
+            $(this).closest('.ec-orderPayment').after($('#yamato_payment4_deferred_sms'))
+       }
+    });
+})</script>
+
+<div class="ec-borderedDefs" id="yamato_payment4_deferred_sms">
+    <div class="ec-rectHeading">
+        <h2>SMS認証情報</h2>
+    </div>
+    <dl id="detail_box__card_number" class="dispTarget">
+        <dt><label class="ec-label">携帯電話番号</span></dt>
+        <dd>
+            <div>
+                {{ form.phone_number.vars.data }}
+                {{ form_widget(form.phone_number, { type: 'hidden' }) }}
+            </div>
+        </dd>
+    </dl>
+</div>

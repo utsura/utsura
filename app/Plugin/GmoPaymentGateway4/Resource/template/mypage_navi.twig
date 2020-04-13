@@ -1,0 +1,15 @@
+{#
+Copyright(c) 2018 GMO Payment Gateway, Inc. All rights reserved.
+http://www.gmo-pg.com/
+#}
+{% if isAvailableCardEdit %}
+<script>
+    $(function () {
+        // ナビ最下部に移動
+        $('#gmo_payment_gateway_card_edit_navi').appendTo($('div.ec-navlistRole > ul'));
+    });
+</script>
+<li id="gmo_payment_gateway_card_edit_navi" class="ec-navlistRole__item {% if mypageno|default('') == 'gmo_card_edit' %}active{% endif %}">
+  <a href="{{ url('gmo_mypage_card_edit') }}">{{ 'gmo_payment_gateway.mypage.card_edit.sub_title'|trans }}</a>
+</li>
+{% endif %}

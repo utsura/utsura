@@ -1,0 +1,49 @@
+{#
+    商品購入(Shopping/index.twig)に以下のスニペットを追記
+#}
+{% block yamato_payment_deferred_form %}
+<script>
+$(function() {
+    $('div.ec-rectHeading h2').each(function() {
+        if($(this).html() == 'お支払方法') {
+            $(this).closest('.ec-orderPayment').after($('#yamato_payment4_deferred_sms'))
+            $(this).closest('.ec-orderPayment').after($('#yamato_payment4_payment'))
+        }
+    });
+
+    $('button.ec-blockBtn--action').click(function(){
+        phone_number = $('#shopping_order_phone_number').val();
+        if(phone_number == '') {
+            alertError('携帯電話番号を入力してください。');
+            return false;
+        } else if(phone_number.isNumeric) {
+            alertError('携帯電話番号は数字で入力してください。');
+            return false;
+        } else if(phone_number.length != 11) {
+            alertError('携帯電話番号は11桁で入力してください。');
+            return false;
+        }
+    });
+})
+
+function alertError(message) {
+    $('#shopping_order_phone_number').css({'background-color': '#fdeef1'});
+    alert(message);
+}
+
+</script>
+<div class="ec-borderedDefs" id="yamato_payment4_deferred_sms">
+    <div class="ec-rectHeading">
+        <h2>クロネコ代金後払い情報入力</h2>
+    </div>
+    <div>SMSで認証用コードを送ります。携帯電話番号をご入力ください。</div>
+    <dl id="detail_box__card_number" class="dispTarget">
+        <dt><label class="ec-label">携帯電話番号</label><span class="ec-required">必須</span></dt>
+        <dd>
+            <div class="ec-halfInput{{ has_errors(form.phone_number) ? ' error'}}">
+                {{ form_widget(form.phone_number) }}
+            </div>
+        </dd>
+    </dl>
+</div>
+{% endblock %}

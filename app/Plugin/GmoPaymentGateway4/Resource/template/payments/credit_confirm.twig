@@ -1,0 +1,131 @@
+{#
+Copyright(c) 2018 GMO Payment Gateway, Inc. All rights reserved.
+http://www.gmo-pg.com/
+#}
+<script>
+  $(function () {
+    // クレジット入力フォームをお問い合わせ欄の直前に追加
+    $('#gmo_payment_gateway_credit_confirm_form').insertBefore($('#shopping-form > div > div.ec-orderRole__detail > div.ec-orderConfirm'));
+  });
+</script>
+<style type="text/css">
+  #gmo_payment_gateway_credit_confirm_form .dl_table {
+    width: 100%;
+    display: table;
+  }
+  #gmo_payment_gateway_credit_confirm_form .dl_table dl {
+    display: table-row;
+    height: 30px;
+  }
+  #gmo_payment_gateway_credit_confirm_form .dl_table dt {
+    width: 30%;
+    font-weight: normal;
+  }
+  #gmo_payment_gateway_credit_confirm_form .dl_table dt,
+  #gmo_payment_gateway_credit_confirm_form .dl_table dd {
+    display: table-cell;
+  }
+</style>
+<div id="gmo_payment_gateway_credit_confirm_form" class="ec-orderPayment">
+  {% if Order.getGmoPaymentInput.payment_type == "0" %}
+  <div class="ec-rectHeading">
+    <h2>{{ 'gmo_payment_gateway.com.payname.credit'|trans }}</h2>
+  </div>
+  <div class="dl_table">
+    <dl>
+      <dt>{{ 'gmo_payment_gateway.shopping.credit.col1'|trans }}</dt>
+      <dd>
+	<div>
+	  {{ Order.getGmoPaymentInput.mask_card_no }}
+	</div>
+      </dd>
+    </dl>
+    <dl>
+      <dt>{{ 'gmo_payment_gateway.shopping.credit.col2'|trans }}</dt>
+      <dd>
+	<div>
+	  {{ Order.getGmoPaymentInput.getDispMonthYear }}
+	</div>
+      </dd>
+    </dl>
+    <dl>
+      <dt>{{ 'gmo_payment_gateway.shopping.credit.col3'|trans }}</dt>
+      <dd>
+	<div>
+	  {{ Order.getGmoPaymentInput.card_name1 }}&nbsp;{{ Order.getGmoPaymentInput.card_name2 }}
+	</div>
+      </dd>
+    </dl>
+    {% if Order.getGmoMethodConfig.use_securitycd %}
+    <dl>
+      <dt>{{ 'gmo_payment_gateway.shopping.credit.col4'|trans }}</dt>
+      <dd>
+	<div>
+	  {{ Order.getGmoPaymentInput.security_code }}
+	</div>
+      </dd>
+    </dl>
+    {% endif %}
+    <dl>
+      <dt>{{ 'gmo_payment_gateway.shopping.credit.col5'|trans }}</dt>
+      <dd>
+	<div>
+	  {{ Order.getGmoPaymentInput.getCreditPayMethodName }}
+	</div>
+      </dd>
+    </dl>
+    {% if Order.getGmoConfig.getCardRegistFlg and Order.getCustomer is not null %}
+    <dl>
+      <dt>{{ 'gmo_payment_gateway.shopping.credit.col6'|trans }}</dt>
+      <dd>
+	<div>
+	  {% if Order.getGmoPaymentInput.register_card %}
+	    {{ 'gmo_payment_gateway.shopping.credit.col6.register'|trans }}
+	  {% else %}
+	    {{ 'gmo_payment_gateway.shopping.credit.col6.notregister'|trans }}
+	  {% endif %}
+	</div>
+      </dd>
+    </dl>
+    {% endif %}
+  </div>
+  {% else %}
+  <div class="ec-rectHeading">
+    <h2>{{ 'gmo_payment_gateway.shopping.credit.title.register_card'|trans }}</h2>
+  </div>
+  <div class="dl_table">
+    <dl>
+      <dt>{{ 'gmo_payment_gateway.shopping.credit.col1'|trans }}</dt>
+      <dd>
+	<div>
+	  {{ Order.getGmoPaymentInput.mask_card_no }}
+	</div>
+      </dd>
+    </dl>
+    <dl>
+      <dt>{{ 'gmo_payment_gateway.shopping.credit.col2'|trans }}</dt>
+      <dd>
+	<div>
+	  {{ Order.getGmoPaymentInput.getDispMonthYear }}
+	</div>
+      </dd>
+    </dl>
+    <dl>
+      <dt>{{ 'gmo_payment_gateway.shopping.credit.col3'|trans }}</dt>
+      <dd>
+	<div>
+	  {{ Order.getGmoPaymentInput.card_name1 }}
+	</div>
+      </dd>
+    </dl>
+    <dl>
+      <dt>{{ 'gmo_payment_gateway.shopping.credit.col5'|trans }}</dt>
+      <dd>
+	<div>
+	  {{ Order.getGmoPaymentInput.getCreditPayMethod2Name }}
+	</div>
+      </dd>
+    </dl>
+  </div>
+  {% endif %}
+</div>

@@ -1,0 +1,22 @@
+{#
+    商品購入/ご注文確認(Shopping/confirm.twig)に以下のスニペットを追記
+    {{ eccube_block_yamato_payment_credit_form_confirm({ Order: Order, form: form }) }}
+#}
+{% block yamato_payment_credit_form_confirm %}
+{% if Order.Payment.method_class == 'Plugin\\YamatoPayment4\\Service\\Method\\Credit' %}
+<script>
+$(function() {
+    $('div.ec-rectHeading h2').each(function() {
+        if($(this).html() == 'お支払方法') {
+            $(this).closest('.ec-orderPayment').after($('#yamato_payment4_payment'))
+        }
+    });
+})</script>
+<div id="yamato_payment4_payment">
+{{ form_widget(form.webcollectToken) }}
+{{ form_widget(form.pay_way, { type: 'hidden' }) }}
+{{ form_widget(form.register_card, { type: 'hidden' }) }}
+{{ form_widget(form.use_registed_card, { type: 'hidden' }) }}
+</div>
+{% endif %}
+{% endblock %}

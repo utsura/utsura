@@ -1,0 +1,19 @@
+{#
+    支払方法設定(admin/Setting/Shop/payment_edit.twig)に以下のスニペットを追記
+    {{ eccube_block_yamato_payment_register({}) }}
+#}
+{% block yamato_payment_register %}
+
+{% if Payment.getMethodClass == 'Plugin\\YamatoPayment4\\Service\\Method\\Credit' %}
+<script>
+$(function() { $('#yamato_payment4_pay_way').appendTo($('#form1 > div.c-contentsArea__cols div.card-body')); })
+</script>
+                            <div class="row" id="yamato_payment4_pay_way">
+                                <div class="col-3"><span>支払回数</span></div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.pay_way, {'label_attr': {'class': 'checkbox-inline'}}) }}
+                                    {{ form_errors(form.pay_way) }}
+                                </div>
+                            </div>
+{% endif %}
+{% endblock %}
