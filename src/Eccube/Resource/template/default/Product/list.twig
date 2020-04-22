@@ -38,7 +38,7 @@ file that was distributed with this source code.
                 $("#form1").submit();
             });
 
-            $('.add-cart').on('click', function(e) {
+            /*# $('.add-cart').on('click', function(e) {
                 var $form = $(this).parents('li').find('form');
 
                 // 個数フォームのチェック
@@ -84,7 +84,7 @@ file that was distributed with this source code.
                     // Buttonを有効にする
                     $('.add-cart').prop('disabled', false);
                 });
-            });
+            }); */
         });
     </script>
 {% endblock %}
@@ -167,7 +167,7 @@ file that was distributed with this source code.
 
                             {% if Product.stock_find %}
                                 {% set form = forms[Product.id] %}
-                                <form name="form{{ Product.id }}" id="productForm{{ Product.id }}" action="{{ url('product_add_cart', {id:Product.id}) }}" method="post">
+                                {# <form name="form{{ Product.id }}" id="productForm{{ Product.id }}" action="{{ url('product_add_cart', {id:Product.id}) }}" method="post">
                                     <div class="ec-productRole__actions">
                                         {% if form.classcategory_id1 is defined %}
                                             <div class="ec-select">
@@ -187,12 +187,12 @@ file that was distributed with this source code.
                                         </div>
                                     </div>
                                     {{ form_rest(form) }}
-                                </form>
-                                <div class="ec-productRole__btn">
+                                </form> #}
+                                {# <div class="ec-productRole__btn">
                                     <button type="submit" class="ec-blockBtn--action add-cart" data-cartid="{{ Product.id }}" form="productForm{{ Product.id }}">
                                         {{ 'カートに入れる'|trans }}
                                     </button>
-                                </div>
+                                </div> #}
                             {% else %}
                                 <div class="ec-productRole__btn">
                                     <button type="button" class="ec-blockBtn--action" disabled="disabled">
