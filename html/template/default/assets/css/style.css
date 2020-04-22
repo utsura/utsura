@@ -6183,7 +6183,6 @@ Styleguide 11.2
   -webkit-text-size-adjust: 100%;
   width: 100%;
   max-width: 1130px;
-  padding-top: 15px;
   position: relative;
   display: -ms-flexbox;
   display: flex;
@@ -6410,7 +6409,7 @@ Styleguide 11.2.1
 }
 
 .ec-headerTitle img {
-  width: 100%;
+  width: 200px;
 }
 
 .ec-headerTitle .ec-headerTitle__title {
@@ -6424,7 +6423,7 @@ Styleguide 11.2.1
 
 .ec-headerTitle .ec-headerTitle__title a {
   display: inline-block;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   text-decoration: none;
   font-size: 20px;
   font-weight: bold;
@@ -10885,7 +10884,7 @@ Styleguide 22.1
   }
 
   .ec-headerNaviRole {
-    padding-bottom: 40px;
+    padding-bottom: 15px;
   }
 
   .ec-headerNaviRole .ec-headerNaviRole__search {
