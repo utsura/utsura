@@ -7150,10 +7150,6 @@ Styleguide 12.1
   box-sizing: inherit;
 }
 
-.ec-sliderRole img {
-  width: 100%;
-}
-
 .ec-sliderRole ul {
   padding: 0;
   list-style: none;
