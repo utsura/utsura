@@ -89,6 +89,7 @@ file that was distributed with this source code.
                 <p>
                     {{ '商品の合計金額は「<strong>%price%</strong>」です。'|trans({ '%price%': totalPrice|price })|raw }}
                 </p>
+                <b class="ec-cartRole__totaiTextBottom">１万円以上の場合は送料が無料になります。</b>
             </div>
             {% if Carts|length > 1 %}
                 <div class="ec-cartRole__error">
