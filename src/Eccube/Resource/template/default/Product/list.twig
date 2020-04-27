@@ -167,6 +167,7 @@ file that was distributed with this source code.
 
                             {% if Product.stock_find %}
                                 {% set form = forms[Product.id] %}
+                                {# 商品カート #}
                                 {# <form name="form{{ Product.id }}" id="productForm{{ Product.id }}" action="{{ url('product_add_cart', {id:Product.id}) }}" method="post">
                                     <div class="ec-productRole__actions">
                                         {% if form.classcategory_id1 is defined %}

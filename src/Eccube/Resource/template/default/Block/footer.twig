@@ -9,26 +9,47 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 #}
 <div class="ec-footerRole">
-    <div class="ec-footerRole__inner">
-        <ul class="ec-footerNavi">
-            <li class="ec-footerNavi__link">
-                <a href="{{ url('help_about') }}">{{ '当サイトについて'|trans }}</a>
-            </li>
-            <li class="ec-footerNavi__link">
-                <a href="{{ url('help_privacy') }}">{{ 'プライバシーポリシー'|trans }}</a>
-            </li>
-            <li class="ec-footerNavi__link">
-                <a href="{{ url('help_tradelaw') }}">{{ '特定商取引法に基づく表記'|trans }}</a>
-            </li>
-            <li class="ec-footerNavi__link">
-                <a href="{{ url('contact') }}">{{ 'お問い合わせ'|trans }}</a>
-            </li>
-        </ul>
-        <div class="ec-footerTitle">
-            <div class="ec-footerTitle__logo">
-                <a href="{{ url('homepage') }}">{{ BaseInfo.shop_name }}</a>
-            </div>
-            <div class="ec-footerTitle__copyright">copyright (c) {{ BaseInfo.shop_name }} all rights reserved.</div>
-        </div>
-    </div>
+	<div class="ec-footerRole__inner">
+		<div class="ec-footerTitle">
+			<div class="ec-footerTitle__logo">
+				<a href="{{ url('homepage') }}">{{ BaseInfo.shop_name }}</a>
+			</div>
+			<a class="ec-footerTitle__sns" href="https://www.instagram.com/yuheioono/?hl=ja" target="_blank">
+				<i class="fab fa-instagram fa-lg"></i>
+			</a>
+			<a class="ec-footerTitle__sns" href="https://www.facebook.com/UTSURAofficial/" target="_blank">
+				<i class="fab fa-facebook-square fa-lg"></i>
+			</a>
+		</div>
+		<ul class="ec-footerNavi">
+			<li class="ec-footerNavi__title">
+				<span>お買い物ガイド</span>
+			</li>
+			<li class="ec-footerNavi__link">
+				<a href="{{ url('help_about') }}">{{ '当サイトについて'|trans }}</a>
+			</li>
+			<li class="ec-footerNavi__link">
+				<a href="{{ url('entry') }}">{{ '新規会員登録'|trans }}</a>
+			</li>
+			<li class="ec-footerNavi__link">
+				<a href="{{ url('help_guide') }}">{{ 'ご利用ガイド'|trans }}</a>
+			</li>
+			<li class="ec-footerNavi__link">
+				<a href="{{ url('contact') }}">{{ 'お問い合わせ'|trans }}</a>
+			</li>
+		</ul>
+		<ul class="ec-footerNotice">
+			<li class="ec-footerNotice__link">
+				<a href="{{ url('help_privacy') }}">{{ 'プライバシーポリシー'|trans }}</a>
+			</li>
+			<li class="ec-footerNotice__link">
+				<a href="{{ url('help_tradelaw') }}">{{ '特定商取引法に基づく表記'|trans }}</a>
+			</li>
+			<li class="ec-footerNotice__copyright">
+				copyright (c)
+				{{ BaseInfo.shop_name }}
+				all rights reserved.
+			</li>
+		</ul>
+	</div>
 </div>
