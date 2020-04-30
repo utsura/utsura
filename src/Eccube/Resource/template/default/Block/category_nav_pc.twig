@@ -12,13 +12,13 @@ file that was distributed with this source code.
 
 {% macro tree(Category) %}
     {% from _self import tree %}
-    <a href="{{ url('product_list') }}?category_id={{ Category.id }}" class="ec-itemNav__navWrapper">
+    <a href="{{ url('product_list') }}?category_id={{ Category.id }}">
         {{ Category.name }}
     </a>
     {% if Category.children|length > 0 %}
-        <ul class="ec-itemNav__navchildren">
+        <ul>
             {% for ChildCategory in Category.children %}
-                <li class="ec-itemNav__navchildrenItem">
+                <li>
                     {{ tree(ChildCategory) }}
                 </li>
             {% endfor %}
@@ -33,7 +33,7 @@ file that was distributed with this source code.
     <div class="ec-itemNav">
         <ul class="ec-itemNav__nav">
             {% for Category in Categories %}
-                <li class="ec-itemNav__navTitle">
+                <li>
                     {{ tree(Category) }}
                 </li>
             {% endfor %}
