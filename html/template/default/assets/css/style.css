@@ -6711,7 +6711,7 @@ Styleguide 11.2.5
   position: relative;
 }
 
-.ec-itemNav__navItemAnchor {
+.ec-itemNav__nav li a {
   display: block;
   border-bottom: 1px solid #E8E8E8;
   margin: 0;
@@ -10983,7 +10983,7 @@ Styleguide 22.1
     width: auto;
   }
 
-  .ec-itemNav__navItemAnchor {
+  .ec-itemNav__nav li a {
     text-align: center;
     border-bottom: none;
   }

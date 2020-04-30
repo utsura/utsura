@@ -12,7 +12,7 @@ file that was distributed with this source code.
 
 {% macro tree(Category) %}
     {% from _self import tree %}
-    <a class="ec-itemNav__navItemAnchor" href="{{ url('product_list') }}?category_id={{ Category.id }}">
+    <a href="{{ url('product_list') }}?category_id={{ Category.id }}">
         {{ Category.name }}
     </a>
     {% if Category.children|length > 0 %}
