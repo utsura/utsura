@@ -33,7 +33,7 @@ file that was distributed with this source code.
     <div class="ec-itemNav">
         <ul class="ec-itemNav__nav">
             {% for Category in Categories %}
-                <li class="ec-itemNav__navItem">
+                <li>
                     {{ tree(Category) }}
                 </li>
             {% endfor %}
