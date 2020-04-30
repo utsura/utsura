@@ -6702,7 +6702,7 @@ Styleguide 11.2.5
   vertical-align: bottom;
 }
 
-.ec-itemNav__nav li {
+.ec-itemNav__navTitle {
   float: none;
   margin: 0;
   padding: 0;
@@ -6711,7 +6711,7 @@ Styleguide 11.2.5
   position: relative;
 }
 
-.ec-itemNav__nav li a {
+.ec-itemNav__navWrapper {
   display: block;
   border-bottom: 1px solid #E8E8E8;
   margin: 0;
@@ -6727,7 +6727,7 @@ Styleguide 11.2.5
   border-bottom: 1px solid #E8E8E8;
 }
 
-.ec-itemNav__nav li ul {
+.ec-itemNav__navchildren {
   display: none;
   z-index: 0;
   margin: 0;
@@ -6739,7 +6739,7 @@ Styleguide 11.2.5
   left: 0;
 }
 
-.ec-itemNav__nav li ul li {
+.ec-itemNav__navchildrenItem {
   overflow: hidden;
   width: 100%;
   height: auto;
@@ -10978,23 +10978,23 @@ Styleguide 22.1
     display: inline-block;
   }
 
-  .ec-itemNav__nav li {
+  .ec-itemNav__navTitle {
     float: left;
     width: auto;
   }
 
-  .ec-itemNav__nav li a {
+  .ec-itemNav__navWrapper {
     text-align: center;
     border-bottom: none;
   }
 
-  .ec-itemNav__nav li ul {
+  .ec-itemNav__navchildren {
     display: block;
     z-index: 100;
     position: absolute;
   }
 
-  .ec-itemNav__nav li ul li {
+  .ec-itemNav__navchildrenItem {
     overflow: hidden;
     height: 0;
   }
@@ -11016,7 +11016,7 @@ Styleguide 22.1
     left: -20px;
   }
 
-  .ec-itemNav__nav li ul li:hover>ul>li {
+  .ec-itemNav__navchildrenItem:hover>ul>li {
     overflow: visible;
     height: auto;
     width: auto;
