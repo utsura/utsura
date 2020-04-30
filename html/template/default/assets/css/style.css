@@ -6702,7 +6702,7 @@ Styleguide 11.2.5
   vertical-align: bottom;
 }
 
-.ec-itemNav__nav li {
+.ec-itemNav__navItem {
   float: none;
   margin: 0;
   padding: 0;
@@ -10978,7 +10978,7 @@ Styleguide 22.1
     display: inline-block;
   }
 
-  .ec-itemNav__nav li {
+  .ec-itemNav__navItem {
     float: left;
     width: auto;
   }
