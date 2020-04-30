@@ -6727,7 +6727,7 @@ Styleguide 11.2.5
   border-bottom: 1px solid #E8E8E8;
 }
 
-.ec-itemNav__navItemChildren {
+.ec-itemNav__children {
   display: none;
   z-index: 0;
   margin: 0;
@@ -10988,7 +10988,7 @@ Styleguide 22.1
     border-bottom: none;
   }
 
-  .ec-itemNav__navItemChildren {
+  .ec-itemNav__children {
     display: block;
     z-index: 100;
     position: absolute;
