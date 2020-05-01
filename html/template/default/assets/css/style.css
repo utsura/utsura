@@ -10999,7 +10999,7 @@ Styleguide 22.1
     height: 0;
   }
 
-  .ec-itemNav__navItem:hover>ul>li {
+  .ec-itemNav__navItem:hover>.ec-itemNav__children>.ec-itemNav__childrenItem {
     overflow: visible;
     height: auto;
   }
@@ -11016,7 +11016,7 @@ Styleguide 22.1
     left: -20px;
   }
 
-  .ec-itemNav__childrenItem:hover>ul>li {
+  .ec-itemNav__childrenItem:hover>.ec-itemNav__children>.ec-itemNav__childrenItem {
     overflow: visible;
     height: auto;
     width: auto;
