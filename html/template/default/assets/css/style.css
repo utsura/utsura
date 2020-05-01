@@ -6702,7 +6702,8 @@ Styleguide 11.2.5
   vertical-align: bottom;
 }
 
-.ec-itemNav__navItem {
+.ec-itemNav__navItem,
+.ec-itemNavBrand {
   float: none;
   margin: 0;
   padding: 0;
@@ -10979,7 +10980,7 @@ Styleguide 22.1
   }
 
   .ec-itemNav__navItem,
-  .ec-itemNav__navNewItem {
+  .ec-itemNavBrand {
     float: left;
     width: auto;
   }

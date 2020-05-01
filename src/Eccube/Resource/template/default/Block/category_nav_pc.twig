@@ -10,16 +10,21 @@ file that was distributed with this source code.
 #}
 {% set Categories = repository('Eccube\\Entity\\Category').getList() %}
 
-{% macro tree(Category) %}
+{% macro tree(Category, ClassHref, ClassChildren, ClassChildrenItem) %}
     {% from _self import tree %}
-    <a class="ec-itemNav__navItemAnchor" href="{{ url('product_list') }}?category_id={{ Category.id }}">
+    <a class="{{ ClassHref }}" href="{{ url('product_list') }}?category_id={{ Category.id }}">
         {{ Category.name }}
     </a>
     {% if Category.children|length > 0 %}
-        <ul class="ec-itemNav__children">
+        <ul class="{{ ClassChildren }}">
             {% for ChildCategory in Category.children %}
-                <li class="ec-itemNav__childrenItem">
-                    {{ tree(ChildCategory) }}
+                <li class="{{ ClassChildrenItem }}">
+                    {{ tree(ChildCategory,
+                            ClassHref,
+                            ClassChildren,
+                            ClassChildrenItem
+                            )
+                    }}
                 </li>
             {% endfor %}
         </ul>
@@ -33,15 +38,28 @@ file that was distributed with this source code.
     <div class="ec-itemNav">
         <ul class="ec-itemNav__nav">
             {% for Category in Categories %}
-                {# カテゴリ@: ブランド #}
                 {% if Category.name is same as("ブランド") %}
-                    <li class="ec-itemNav__navNewItem">
-                        {# {{ tree(Category) }} #}
+                    {# カテゴリ@: ブランド #}
+                    <li class="ec-itemNavBrand">
+                        {{ tree(Category,
+                                "ec-itemNavBrand__Anchor",
+                                "ec-itemNavBrand__children",
+                                "ec-itemNavBrand__childrenItem"
+                                )
+                        }}
                     </li>
+                    {# ここまで #}
                 {% else %}
+                    {# デフォルト #}
                     <li class="ec-itemNav__navItem">
-                        {{ tree(Category) }}
+                        {{ tree(Category,
+                                "ec-itemNav__navItemAnchor",
+                                "ec-itemNav__children",
+                                "ec-itemNav__childrenItem"
+                                )
+                        }}
                     </li>
+                    {# ここまで #}
                 {% endif %}
             {% endfor %}
         </ul>
