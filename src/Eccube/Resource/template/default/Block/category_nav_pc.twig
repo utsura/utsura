@@ -33,9 +33,10 @@ file that was distributed with this source code.
     <div class="ec-itemNav">
         <ul class="ec-itemNav__nav">
             {% for Category in Categories %}
+                {# カテゴリ@: ブランド #}
                 {% if Category.name is same as("ブランド") %}
-                    <li class="ec-itemNav__navItem">
-                        {{ tree(Category) }}
+                    <li class="ec-itemNav__navNewItem">
+                        {# {{ tree(Category) }} #}
                     </li>
                 {% else %}
                     <li class="ec-itemNav__navItem">

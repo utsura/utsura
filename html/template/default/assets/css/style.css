@@ -10978,7 +10978,8 @@ Styleguide 22.1
     display: inline-block;
   }
 
-  .ec-itemNav__navItem {
+  .ec-itemNav__navItem,
+  .ec-itemNav__navNewItem {
     float: left;
     width: auto;
   }
