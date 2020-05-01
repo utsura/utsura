@@ -6702,8 +6702,7 @@ Styleguide 11.2.5
   vertical-align: bottom;
 }
 
-.ec-itemNav__navItem,
-.ec-itemNavBrand {
+.ec-itemNav__navItem {
   float: none;
   margin: 0;
   padding: 0;
@@ -6712,7 +6711,8 @@ Styleguide 11.2.5
   position: relative;
 }
 
-.ec-itemNav__navItemAnchor {
+.ec-itemNav__navItemAnchor,
+.ec-itemNavBrand__anchor {
   display: block;
   border-bottom: 1px solid #E8E8E8;
   margin: 0;
@@ -10985,7 +10985,8 @@ Styleguide 22.1
     width: auto;
   }
 
-  .ec-itemNav__navItemAnchor {
+  .ec-itemNav__navItemAnchor,
+  .ec-itemNavBrand__anchor {
     text-align: center;
     border-bottom: none;
   }
