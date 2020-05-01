@@ -6739,14 +6739,14 @@ Styleguide 11.2.5
   left: 0;
 }
 
-.ec-itemNav__nav li ul li {
+.ec-itemNav__childrenItem {
   overflow: hidden;
   width: 100%;
   height: auto;
   transition: .3s;
 }
 
-.ec-itemNav__nav li ul li a {
+.ec-itemNav__childrenItem > .ec-itemNav__navItemAnchor {
   border-bottom: 1px solid #E8E8E8;
   padding: 16px 22px 16px 16px;
   font-size: 16px;
@@ -6756,25 +6756,25 @@ Styleguide 11.2.5
   background: black;
 }
 
-.ec-itemNav__nav>li:hover>a {
+.ec-itemNav__navItem:hover>.ec-itemNav__navItemAnchor {
   background: #fafafa;
 }
 
-.ec-itemNav__nav>li:hover li:hover>a {
+.ec-itemNav__navItem>:hover .ec-itemNav__childrenItem:hover>a {
   background: #333;
 }
 
-.ec-itemNav__nav li ul li ul {
+.ec-itemNav__childrenItem .ec-itemNav__children {
   top: 0;
   left: 100%;
   width: auto;
 }
 
-.ec-itemNav__nav li ul li ul li a {
+.ec-itemNav__childrenItem .ec-itemNav__children li a {
   background: #7D7D7D;
 }
 
-.ec-itemNav__nav li:hover ul li ul li a:hover {
+.ec-itemNav__navItem:hover ul li ul li a:hover {
   background: #333;
 }
 
@@ -10994,17 +10994,17 @@ Styleguide 22.1
     position: absolute;
   }
 
-  .ec-itemNav__nav li ul li {
+  .ec-itemNav__childrenItem {
     overflow: hidden;
     height: 0;
   }
 
-  .ec-itemNav__nav>li:hover>ul>li {
+  .ec-itemNav__navItem:hover>ul>li {
     overflow: visible;
     height: auto;
   }
 
-  .ec-itemNav__nav li ul li ul:before {
+  .ec-itemNav__childrenItem .ec-itemNav__children:before {
     content: "\f054";
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
@@ -11016,7 +11016,7 @@ Styleguide 22.1
     left: -20px;
   }
 
-  .ec-itemNav__nav li ul li:hover>ul>li {
+  .ec-itemNav__childrenItem:hover>ul>li {
     overflow: visible;
     height: auto;
     width: auto;

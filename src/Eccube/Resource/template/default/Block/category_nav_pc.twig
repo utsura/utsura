@@ -18,7 +18,7 @@ file that was distributed with this source code.
     {% if Category.children|length > 0 %}
         <ul class="ec-itemNav__children">
             {% for ChildCategory in Category.children %}
-                <li>
+                <li class="ec-itemNav__childrenItem">
                     {{ tree(ChildCategory) }}
                 </li>
             {% endfor %}
