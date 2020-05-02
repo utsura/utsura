@@ -6711,8 +6711,7 @@ Styleguide 11.2.5
   position: relative;
 }
 
-.ec-itemNav__navItemAnchor,
-.ec-itemNavBrand__anchor {
+.ec-itemNav__navItemAnchor {
   display: block;
   border-bottom: 1px solid #E8E8E8;
   margin: 0;
@@ -6739,6 +6738,57 @@ Styleguide 11.2.5
   top: 100%;
   left: 0;
 }
+
+.ec-itemNavBrand > .ec-itemNavBrand__anchor {
+  display: block;
+  border-bottom: 1px solid #E8E8E8;
+  margin: 0;
+  padding: 16px;
+  height: auto;
+  color: #2e3233;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  background: #fff;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.ec-itemNavBrand__childrenItem > .ec-itemNavBrand__anchor {
+  text-align: center;
+  font-size: 14px;
+}
+
+.ec-itemNavBrand__children {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  margin: 0;
+  padding: 32px 124px;
+  width: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  list-style: none;
+  background-color: #fff;
+  opacity: .97;
+  border-top: 1px solid #E8E8E8;
+}
+
+.ec-itemNavBrand__childrenItem {
+  margin: 16px 0;
+  padding: 8px;
+  width: 25%;
+  border-left: 1px solid #c0c0c0;
+}
+
+.ec-itemNavBrand__childrenItem:hover {
+  background-color: #c0c0c0;
+  cursor: pointer;
+}
+
 
 .ec-itemNav__childrenItem {
   overflow: hidden;
@@ -10985,8 +11035,7 @@ Styleguide 22.1
     width: auto;
   }
 
-  .ec-itemNav__navItemAnchor,
-  .ec-itemNavBrand__anchor {
+  .ec-itemNav__navItemAnchor {
     text-align: center;
     border-bottom: none;
   }
