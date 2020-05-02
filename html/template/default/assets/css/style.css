@@ -6845,7 +6845,6 @@ Styleguide 11.2.5
 
 .ec-itemNavBrand > .ec-itemNavBrand__anchor {
   display: block;
-  border-bottom: 1px solid #E8E8E8;
   margin: 0;
   padding: 16px;
   height: auto;
@@ -6854,7 +6853,6 @@ Styleguide 11.2.5
   font-weight: bold;
   text-decoration: none;
   background: #fff;
-  border-bottom: 1px solid #E8E8E8;
 }
 
 .ec-itemNavBrand__childrenItem > .ec-itemNavBrand__anchor {
