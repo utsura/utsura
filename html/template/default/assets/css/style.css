@@ -502,7 +502,9 @@ template {
 }
 
 body {
-  font-family: Roboto, "游ゴシック", YuGothic, "Yu Gothic", "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", Arial, "メイリオ", Meiryo, sans-serif;
+  font-family: Roboto, "游ゴシック", YuGothic, "Yu Gothic",
+    "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", Arial, "メイリオ",
+    Meiryo, sans-serif;
   color: #525263;
   transition: z-index 0ms 5.28455ms;
   background: #f6f6f6;
@@ -637,7 +639,7 @@ Styleguide 1.1.5
 .ec-rectHeading h4,
 .ec-rectHeading h5,
 .ec-rectHeading h6 {
-  background: #F3F3F3;
+  background: #f3f3f3;
   padding: 8px 12px;
   font-size: 20px;
   font-weight: bold;
@@ -705,13 +707,13 @@ a(href="#").ec-link さくらのクラウド
 Styleguide 1.2.1
 */
 .ec-link {
-  color: #0092C4;
+  color: #0092c4;
   text-decoration: none;
   cursor: pointer;
 }
 
 .ec-link:hover {
-  color: #33A8D0;
+  color: #33a8d0;
   text-decoration: none;
 }
 
@@ -755,11 +757,11 @@ p.ec-color-accent ¥ 2,728 税込
 Styleguide 1.2.4
 */
 .ec-color-red {
-  color: #DE5D50;
+  color: #de5d50;
 }
 
 .ec-color-accent {
-  color: #DE5D50;
+  color: #de5d50;
 }
 
 /*
@@ -841,7 +843,7 @@ Styleguide 1.2.7
 
 .ec-price .ec-price__price {
   display: inline-block;
-  padding: 0 .3em;
+  padding: 0 0.3em;
   font-size: 18px;
   font-weight: bold;
 }
@@ -1166,7 +1168,7 @@ Styleguide 2.1.1
   padding: 10px 16px;
   text-decoration: none;
   color: #525263;
-  background-color: #F5F7F8;
+  background-color: #f5f7f8;
   border-color: #ccc;
 }
 
@@ -1254,12 +1256,12 @@ fieldset[disabled] .ec-inlineBtn {
 fieldset[disabled] .ec-inlineBtn:hover,
 fieldset[disabled] .ec-inlineBtn:focus,
 fieldset[disabled] .ec-inlineBtn.focus {
-  background-color: #F5F7F8;
+  background-color: #f5f7f8;
   border-color: #ccc;
 }
 
 .ec-inlineBtn .badge {
-  color: #F5F7F8;
+  color: #f5f7f8;
   background-color: #525263;
 }
 
@@ -1291,8 +1293,8 @@ fieldset[disabled] .ec-inlineBtn.focus {
   padding: 10px 16px;
   text-decoration: none;
   color: #fff;
-  background-color: #5CB1B1;
-  border-color: #5CB1B1;
+  background-color: #5cb1b1;
+  border-color: #5cb1b1;
 }
 
 .ec-inlineBtn--primary:focus,
@@ -1379,12 +1381,12 @@ fieldset[disabled] .ec-inlineBtn--primary {
 fieldset[disabled] .ec-inlineBtn--primary:hover,
 fieldset[disabled] .ec-inlineBtn--primary:focus,
 fieldset[disabled] .ec-inlineBtn--primary.focus {
-  background-color: #5CB1B1;
-  border-color: #5CB1B1;
+  background-color: #5cb1b1;
+  border-color: #5cb1b1;
 }
 
 .ec-inlineBtn--primary .badge {
-  color: #5CB1B1;
+  color: #5cb1b1;
   background-color: #fff;
 }
 
@@ -1416,8 +1418,8 @@ fieldset[disabled] .ec-inlineBtn--primary.focus {
   padding: 10px 16px;
   text-decoration: none;
   color: #fff;
-  background-color: #DE5D50;
-  border-color: #DE5D50;
+  background-color: #de5d50;
+  border-color: #de5d50;
 }
 
 .ec-inlineBtn--action:focus,
@@ -1504,12 +1506,12 @@ fieldset[disabled] .ec-inlineBtn--action {
 fieldset[disabled] .ec-inlineBtn--action:hover,
 fieldset[disabled] .ec-inlineBtn--action:focus,
 fieldset[disabled] .ec-inlineBtn--action.focus {
-  background-color: #DE5D50;
-  border-color: #DE5D50;
+  background-color: #de5d50;
+  border-color: #de5d50;
 }
 
 .ec-inlineBtn--action .badge {
-  color: #DE5D50;
+  color: #de5d50;
   background-color: #fff;
 }
 
@@ -1681,7 +1683,7 @@ Styleguide 2.1.2
   padding: 10px 16px;
   text-decoration: none;
   color: #525263;
-  background-color: #F5F7F8;
+  background-color: #f5f7f8;
   border-color: #ccc;
   display: block;
   width: 100%;
@@ -1775,12 +1777,12 @@ fieldset[disabled] .ec-blockBtn {
 fieldset[disabled] .ec-blockBtn:hover,
 fieldset[disabled] .ec-blockBtn:focus,
 fieldset[disabled] .ec-blockBtn.focus {
-  background-color: #F5F7F8;
+  background-color: #f5f7f8;
   border-color: #ccc;
 }
 
 .ec-blockBtn .badge {
-  color: #F5F7F8;
+  color: #f5f7f8;
   background-color: #525263;
 }
 
@@ -1812,8 +1814,8 @@ fieldset[disabled] .ec-blockBtn.focus {
   padding: 10px 16px;
   text-decoration: none;
   color: #fff;
-  background-color: #5CB1B1;
-  border-color: #5CB1B1;
+  background-color: #5cb1b1;
+  border-color: #5cb1b1;
   display: block;
   width: 100%;
   height: 56px;
@@ -1906,12 +1908,12 @@ fieldset[disabled] .ec-blockBtn--primary {
 fieldset[disabled] .ec-blockBtn--primary:hover,
 fieldset[disabled] .ec-blockBtn--primary:focus,
 fieldset[disabled] .ec-blockBtn--primary.focus {
-  background-color: #5CB1B1;
-  border-color: #5CB1B1;
+  background-color: #5cb1b1;
+  border-color: #5cb1b1;
 }
 
 .ec-blockBtn--primary .badge {
-  color: #5CB1B1;
+  color: #5cb1b1;
   background-color: #fff;
 }
 
@@ -1943,8 +1945,8 @@ fieldset[disabled] .ec-blockBtn--primary.focus {
   padding: 10px 16px;
   text-decoration: none;
   color: #fff;
-  background-color: #DE5D50;
-  border-color: #DE5D50;
+  background-color: #de5d50;
+  border-color: #de5d50;
   display: block;
   width: 100%;
   height: 56px;
@@ -2037,12 +2039,12 @@ fieldset[disabled] .ec-blockBtn--action {
 fieldset[disabled] .ec-blockBtn--action:hover,
 fieldset[disabled] .ec-blockBtn--action:focus,
 fieldset[disabled] .ec-blockBtn--action.focus {
-  background-color: #DE5D50;
-  border-color: #DE5D50;
+  background-color: #de5d50;
+  border-color: #de5d50;
 }
 
 .ec-blockBtn--action .badge {
-  color: #DE5D50;
+  color: #de5d50;
   background-color: #fff;
 }
 
@@ -2247,7 +2249,7 @@ Styleguide 2.2.2
   text-shadow: none;
   box-shadow: none;
   border-radius: 50%;
-  background: #B8BEC4;
+  background: #b8bec4;
   cursor: pointer;
   width: 40px;
   min-width: 40px;
@@ -2261,8 +2263,8 @@ Styleguide 2.2.2
 
 .ec-closeBtn--circle .ec-icon img {
   display: block;
-  margin-top: -.5em;
-  margin-left: -.5em;
+  margin-top: -0.5em;
+  margin-left: -0.5em;
   width: 1em;
   height: 1em;
   position: absolute;
@@ -2307,7 +2309,7 @@ Styleguide 2.3.1
   right: 0;
   bottom: 10px;
   cursor: pointer;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   line-height: 40px;
   opacity: 0.8;
@@ -2473,7 +2475,8 @@ Styleguide 3.1.1
 .ec-birth input:focus {
   border-color: #66afe9;
   outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 .ec-input input::-moz-placeholder,
@@ -2595,7 +2598,8 @@ fieldset[disabled] .ec-birth input {
 .ec-birth select:focus {
   border-color: #66afe9;
   outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 .ec-input select::-moz-placeholder,
@@ -2717,7 +2721,8 @@ fieldset[disabled] .ec-birth select {
 .ec-birth textarea:focus {
   border-color: #66afe9;
   outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 .ec-input textarea::-moz-placeholder,
@@ -2866,7 +2871,7 @@ fieldset[disabled] .ec-birth textarea {
   margin-bottom: 25px;
   font-size: 12px;
   font-weight: bold;
-  color: #DE5D50;
+  color: #de5d50;
 }
 
 .error.ec-input input,
@@ -2884,21 +2889,21 @@ fieldset[disabled] .ec-birth textarea {
 .error.ec-select select,
 .error.ec-birth select {
   margin-bottom: 5px;
-  border-color: #CF3F34;
-  background: #FDF1F0;
+  border-color: #cf3f34;
+  background: #fdf1f0;
 }
 
 .ec-checkbox .ec-errorMessage {
   margin-bottom: 25px;
   font-size: 12px;
   font-weight: bold;
-  color: #DE5D50;
+  color: #de5d50;
 }
 
 .error.ec-checkbox input,
 .error.ec-checkbox label {
-  border-color: #CF3F34;
-  background: #FDF1F0;
+  border-color: #cf3f34;
+  background: #fdf1f0;
 }
 
 /*
@@ -2919,13 +2924,13 @@ p.ec-halfInput
 
 Styleguide 3.1.2
 */
-.ec-halfInput input[type='text'] {
+.ec-halfInput input[type="text"] {
   display: inline-block;
   width: 47%;
   margin-left: 2%;
 }
 
-.ec-halfInput input[type='text']:first-child {
+.ec-halfInput input[type="text"]:first-child {
   margin-left: 0;
 }
 
@@ -2945,7 +2950,7 @@ Markup:
 
 Styleguide 3.1.3
 */
-.ec-numberInput input[type='number'] {
+.ec-numberInput input[type="number"] {
   display: inline-block;
   width: auto;
   max-width: 100px;
@@ -3025,7 +3030,7 @@ Styleguide 3.1.4
 .ec-zipInputHelp span {
   margin-left: 8px;
   display: inline-block;
-  color: #0092C4;
+  color: #0092c4;
   vertical-align: 3px;
 }
 
@@ -3218,7 +3223,8 @@ Styleguide 3.1.1
 .ec-birth input:focus {
   border-color: #66afe9;
   outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 .ec-input input::-moz-placeholder,
@@ -3340,7 +3346,8 @@ fieldset[disabled] .ec-birth input {
 .ec-birth select:focus {
   border-color: #66afe9;
   outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 .ec-input select::-moz-placeholder,
@@ -3462,7 +3469,8 @@ fieldset[disabled] .ec-birth select {
 .ec-birth textarea:focus {
   border-color: #66afe9;
   outline: 0;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
 }
 
 .ec-input textarea::-moz-placeholder,
@@ -3611,7 +3619,7 @@ fieldset[disabled] .ec-birth textarea {
   margin-bottom: 25px;
   font-size: 12px;
   font-weight: bold;
-  color: #DE5D50;
+  color: #de5d50;
 }
 
 .error.ec-input input,
@@ -3629,21 +3637,21 @@ fieldset[disabled] .ec-birth textarea {
 .error.ec-select select,
 .error.ec-birth select {
   margin-bottom: 5px;
-  border-color: #CF3F34;
-  background: #FDF1F0;
+  border-color: #cf3f34;
+  background: #fdf1f0;
 }
 
 .ec-checkbox .ec-errorMessage {
   margin-bottom: 25px;
   font-size: 12px;
   font-weight: bold;
-  color: #DE5D50;
+  color: #de5d50;
 }
 
 .error.ec-checkbox input,
 .error.ec-checkbox label {
-  border-color: #CF3F34;
-  background: #FDF1F0;
+  border-color: #cf3f34;
+  background: #fdf1f0;
 }
 
 /*
@@ -3664,13 +3672,13 @@ p.ec-halfInput
 
 Styleguide 3.1.2
 */
-.ec-halfInput input[type='text'] {
+.ec-halfInput input[type="text"] {
   display: inline-block;
   width: 47%;
   margin-left: 2%;
 }
 
-.ec-halfInput input[type='text']:first-child {
+.ec-halfInput input[type="text"]:first-child {
   margin-left: 0;
 }
 
@@ -3690,7 +3698,7 @@ Markup:
 
 Styleguide 3.1.3
 */
-.ec-numberInput input[type='number'] {
+.ec-numberInput input[type="number"] {
   display: inline-block;
   width: auto;
   max-width: 100px;
@@ -3770,7 +3778,7 @@ Styleguide 3.1.4
 .ec-zipInputHelp span {
   margin-left: 8px;
   display: inline-block;
-  color: #0092C4;
+  color: #0092c4;
   vertical-align: 3px;
 }
 
@@ -4121,9 +4129,9 @@ Styleguide 3.3.2
 */
 .ec-required {
   display: inline-block;
-  margin-left: .8em;
+  margin-left: 0.8em;
   vertical-align: 2px;
-  color: #DE5D50;
+  color: #de5d50;
   font-size: 12px;
   font-weight: normal;
 }
@@ -4557,7 +4565,7 @@ Styleguide 6.1.1
   margin: 0 0 20px;
   padding: 30px 13% 20px;
   height: auto;
-  background: #F3F4F4;
+  background: #f3f4f4;
   box-sizing: border-box;
 }
 
@@ -4603,7 +4611,7 @@ Styleguide 6.1.1
 }
 
 .ec-login .ec-errorMessage {
-  color: #DE5D50;
+  color: #de5d50;
   margin-bottom: 20px;
 }
 
@@ -4627,7 +4635,7 @@ Styleguide 6.1.2
   padding: 13%;
   height: auto;
   box-sizing: border-box;
-  background: #F3F4F4;
+  background: #f3f4f4;
 }
 
 .ec-guest .ec-guest__inner {
@@ -4724,7 +4732,7 @@ Styleguide 7.1.1
 }
 
 .ec-displayB .ec-displayB__cell:hover img {
-  opacity: .8;
+  opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 
@@ -4798,7 +4806,7 @@ Styleguide 7.1.2
 }
 
 .ec-displayC .ec-displayC__cell:hover img {
-  opacity: .8;
+  opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 
@@ -4832,7 +4840,7 @@ Styleguide 7.1.2
   display: block;
   width: 100%;
   font-weight: bold;
-  color: #DE5D50;
+  color: #de5d50;
 }
 
 /*
@@ -4876,7 +4884,7 @@ Styleguide 7.1.3
 }
 
 .ec-displayD .ec-displayD__cell:hover img {
-  opacity: .8;
+  opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 
@@ -4919,7 +4927,7 @@ include /assets/tmpl/elements/7.2.search.pug
 Styleguide 7.2.1
 */
 .ec-topicpath {
-  letter-spacing: -.4em;
+  letter-spacing: -0.4em;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   -webkit-margin-start: 0;
@@ -4931,7 +4939,7 @@ Styleguide 7.2.1
   list-style: none;
   overflow: hidden;
   font-size: 12px;
-  color: #0092C4;
+  color: #0092c4;
 }
 
 .ec-topicpath .ec-topicpath__item a {
@@ -5026,11 +5034,11 @@ Styleguide 7.2.2
 }
 
 .ec-pager .ec-pager__item--active {
-  background: #F3F3F3;
+  background: #f3f3f3;
 }
 
 .ec-pager .ec-pager__item:hover {
-  background: #F3F3F3;
+  background: #f3f3f3;
 }
 
 /**
@@ -5142,7 +5150,7 @@ Styleguide 7.3.1
 }
 
 .ec-progress .ec-progress__item:after {
-  content: '';
+  content: "";
   position: absolute;
   display: block;
   background: #525263;
@@ -5179,11 +5187,11 @@ Styleguide 7.3.1
 }
 
 .ec-progress .is-complete .ec-progress__number {
-  background: #5CB1B1;
+  background: #5cb1b1;
 }
 
 .ec-progress .is-complete .ec-progress__label {
-  color: #5CB1B1;
+  color: #5cb1b1;
 }
 
 /*
@@ -5237,7 +5245,7 @@ Styleguide 7.3.5
   color: #fff;
   text-align: left;
   white-space: nowrap;
-  background-color: #DE5D50;
+  background-color: #de5d50;
   position: absolute;
   left: 60%;
   top: -10px;
@@ -5305,7 +5313,7 @@ Styleguide 7.3.6
 }
 
 .ec-cartNaviIsset .ec-cartNaviIsset__cart {
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid #e8e8e8;
   margin-bottom: 16px;
   padding-bottom: 32px;
 }
@@ -5423,12 +5431,12 @@ Styleguide 7.3.7
 }
 
 .ec-cartNaviNull .ec-cartNaviNull__message {
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   padding: 16px 0;
   font-size: 16px;
   font-weight: bold;
   color: #fff;
-  background-color: #F99;
+  background-color: #f99;
 }
 
 .ec-cartNaviNull .ec-cartNaviNull__message p {
@@ -5453,7 +5461,7 @@ include /assets/tmpl/elements/7.3.cart.pug
 Styleguide 7.3.8
 */
 .ec-totalBox {
-  background: #F3F3F3;
+  background: #f3f3f3;
   padding: 16px;
   margin-bottom: 16px;
 }
@@ -5476,7 +5484,7 @@ Styleguide 7.3.8
 }
 
 .ec-totalBox .ec-totalBox__spec .ec-totalBox .ec-totalBox__spec__specTotal {
-  color: #DE5D50;
+  color: #de5d50;
 }
 
 .ec-totalBox .ec-totalBox__total {
@@ -5496,7 +5504,7 @@ Styleguide 7.3.8
 
 .ec-totalBox .ec-totalBox__paymentTotal .ec-totalBox__price,
 .ec-totalBox .ec-totalBox__paymentTotal .ec-totalBox__taxLabel {
-  color: #DE5D50;
+  color: #de5d50;
 }
 
 .ec-totalBox .ec-totalBox__price {
@@ -5597,7 +5605,7 @@ Styleguide 8.1.1
 */
 .ec-news {
   margin-bottom: 16px;
-  background: #F8F8F8;
+  background: #f8f8f8;
 }
 
 .ec-news .ec-news__title {
@@ -5690,12 +5698,12 @@ Styleguide 8.1.2
 .ec-newsline .ec-newsline__description {
   width: 100%;
   height: 0;
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .ec-newsline.is_active .ec-newsline__description {
   height: auto;
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
   padding-bottom: 16px;
 }
 
@@ -5743,7 +5751,7 @@ Styleguide 9.1.1
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  border-color: #D0D0D0;
+  border-color: #d0d0d0;
   border-style: solid;
   border-width: 1px 0 0 1px;
   margin-bottom: 32px;
@@ -5762,7 +5770,7 @@ Styleguide 9.1.1
 
 .ec-navlistRole .ec-navlistRole__item {
   width: 50%;
-  border-color: #D0D0D0;
+  border-color: #d0d0d0;
   border-style: solid;
   border-width: 0 1px 1px 0;
   text-align: center;
@@ -5780,7 +5788,7 @@ Styleguide 9.1.1
 }
 
 .ec-navlistRole .active a {
-  color: #DE5D50;
+  color: #de5d50;
 }
 
 /*
@@ -6431,7 +6439,7 @@ Styleguide 11.2.1
 }
 
 .ec-headerTitle .ec-headerTitle__title a:hover {
-  opacity: .8;
+  opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 }
 
@@ -6442,7 +6450,7 @@ Styleguide 11.2.1
 
 .ec-headerTitle .ec-headerTitle__subtitle a {
   display: inline-block;
-  color: #0092C4;
+  color: #0092c4;
   text-decoration: none;
   cursor: pointer;
 }
@@ -6574,7 +6582,7 @@ Styleguide 11.2.4
   width: 0;
   height: 0;
   padding: 0;
-  content: '';
+  content: "";
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-top: 6px solid #fff;
@@ -6713,7 +6721,7 @@ Styleguide 11.2.5
 
 .ec-itemNav__navItemAnchor {
   display: block;
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid #e8e8e8;
   margin: 0;
   padding: 16px;
   height: auto;
@@ -6724,7 +6732,7 @@ Styleguide 11.2.5
   text-decoration: none;
   text-align: left;
   background: #fff;
-  border-bottom: 1px solid #E8E8E8;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .ec-itemNav__children {
@@ -6792,7 +6800,7 @@ Styleguide 11.2.5
   overflow: hidden;
   width: 100%;
   height: auto;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .ec-itemNav__childrenItem > .ec-itemNav__navItemAnchor {
@@ -6855,12 +6863,12 @@ Styleguide 11.2.6
 .ec-drawerRole .ec-headerSearchArea {
   padding: 20px 10px;
   width: 100%;
-  background: #F8F8F8;
+  background: #f8f8f8;
 }
 
 .ec-drawerRole .ec-headerSearch {
   padding: 16px 8px 26px;
-  background: #EBEBEB;
+  background: #ebebeb;
   color: #636378;
 }
 
@@ -6869,13 +6877,13 @@ Styleguide 11.2.6
 }
 
 .ec-drawerRole .ec-headerCategoryArea .ec-headerCategoryArea__heading {
-  border-top: 1px solid #CCCCCC;
-  border-bottom: 1px solid #CCCCCC;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
   padding: 1em 10px;
   font-size: 16px;
   font-weight: bold;
   color: black;
-  background: #F8F8F8;
+  background: #f8f8f8;
 }
 
 .ec-drawerRole .ec-headerCategoryArea .ec-itemNav__nav li a {
@@ -6963,13 +6971,13 @@ Styleguide 11.2.6
 .ec-drawerRole.is_active {
   display: block;
   transform: translateX(0);
-  transition: all .3s;
+  transition: all 0.3s;
   z-index: 100000;
 }
 
 .ec-drawerRoleClose.is_active {
   display: inline-block;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .ec-overlayRole {
@@ -6982,7 +6990,7 @@ Styleguide 11.2.6
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   background: transparent;
   transform: translateX(0);
-  transition: all .3s;
+  transition: all 0.3s;
   visibility: hidden;
 }
 
@@ -7063,10 +7071,17 @@ sg-wrapper:
 Styleguide 11.3.1
 */
 .ec-footerNavi {
-  padding: 0;
+  padding: 0 0 64px;
   color: white;
   list-style: none;
   text-align: center;
+  display: block;
+}
+
+.ec-footerNavi .ec-footerNavi__title {
+  font-size: 16px;
+  padding: 0 0 32px;
+  font-weight: bold;
 }
 
 .ec-footerNavi .ec-footerNavi__link {
@@ -7083,9 +7098,40 @@ Styleguide 11.3.1
 }
 
 .ec-footerNavi .ec-footerNavi__link:hover a {
-  opacity: .8;
+  opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   text-decoration: none;
+}
+
+.ec-footerNotice {
+  padding: 16px 0 24px;
+  color: white;
+  list-style: none;
+  text-align: center;
+  display: flex;
+}
+
+.ec-footerNotice .ec-footerNotice__link {
+  display: block;
+}
+
+.ec-footerNotice .ec-footerNotice__link a {
+  display: block;
+  padding: 0 16px;
+  font-size: 14px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ec-footerNotice .ec-footerNotice__link:hover a {
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  text-decoration: none;
+}
+
+.ec-footerNotice .ec-footerNotice__copyright {
+  color: white;
+  margin-left: auto;
 }
 
 /*
@@ -7108,19 +7154,20 @@ Styleguide 11.3.2
 */
 .ec-footerTitle {
   padding: 40px 0 60px;
-  text-align: center;
+  text-align: left;
   color: white;
 }
 
 .ec-footerTitle .ec-footerTitle__logo {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   font-weight: bold;
 }
 
 .ec-footerTitle .ec-footerTitle__logo a {
   color: inherit;
   text-decoration: none;
+  padding-bottom: 16px;
 }
 
 .ec-footerTitle .ec-footerTitle__logo a:hover {
@@ -7132,14 +7179,23 @@ Styleguide 11.3.2
   color: inherit;
 }
 
-.ec-footerTitle .ec-footerTitle__logo:hover a {
-  opacity: .8;
+.ec-footerTitle .ec-footerTitle__logo a:hover {
+  opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   text-decoration: none;
 }
 
-.ec-footerTitle .ec-footerTitle__copyright {
-  font-size: 10px;
+.ec-footerTitle .ec-footerTitle__sns {
+  color: white;
+  margin: 16px 8px 0;
+  padding-right: 8px;
+  display: inline-block;
+}
+
+.ec-footerTitle .ec-footerTitle__sns:hover {
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  text-decoration: none;
 }
 
 /**
@@ -7261,7 +7317,7 @@ Styleguide 12.1
 .ec-sliderItemRole .slideThumb {
   margin-bottom: 25px;
   width: 33%;
-  opacity: .8;
+  opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   cursor: pointer;
 }
@@ -7321,13 +7377,13 @@ Styleguide 12.2
 }
 
 .ec-eyecatchRole .ec-eyecatchRole__introEnTitle {
-  margin-bottom: .8em;
+  margin-bottom: 0.8em;
   font-size: 16px;
   font-weight: normal;
 }
 
 .ec-eyecatchRole .ec-eyecatchRole__introTitle {
-  margin-bottom: .8em;
+  margin-bottom: 0.8em;
   font-size: 24px;
   font-weight: bold;
 }
@@ -7669,7 +7725,7 @@ Styleguide 12.4.1
 .ec-secHeading .ec-secHeading__en {
   font-size: 18px;
   font-weight: bold;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
 }
 
 .ec-secHeading .ec-secHeading__line {
@@ -7683,7 +7739,7 @@ Styleguide 12.4.1
 .ec-secHeading .ec-secHeading__ja {
   font-size: 12px;
   font-weight: normal;
-  letter-spacing: .15em;
+  letter-spacing: 0.15em;
   vertical-align: 2px;
 }
 
@@ -7710,7 +7766,7 @@ Styleguide 12.4.2
   display: block;
   font-size: 18px;
   font-weight: bold;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
 }
 
 .ec-secHeading--tandem .ec-secHeading__line {
@@ -7726,7 +7782,7 @@ Styleguide 12.4.2
   margin-bottom: 30px;
   font-size: 12px;
   font-weight: normal;
-  letter-spacing: .15em;
+  letter-spacing: 0.15em;
   vertical-align: 2px;
 }
 
@@ -7752,7 +7808,7 @@ Styleguide 12.5.1
 */
 .ec-topicRole {
   padding: 40px 0;
-  background: #F8F8F8;
+  background: #f8f8f8;
 }
 
 .ec-topicRole .ec-topicRole__list {
@@ -7769,7 +7825,7 @@ Styleguide 12.5.1
 }
 
 .ec-topicRole .ec-topicRole__listItemTitle {
-  margin-top: .5em;
+  margin-top: 0.5em;
   font-size: 14px;
   color: black;
 }
@@ -7854,7 +7910,7 @@ Styleguide 12.7.1
 .ec-categoryRole {
   padding: 40px 0;
   color: black;
-  background: #F8F8F8;
+  background: #f8f8f8;
 }
 
 .ec-categoryRole .ec-categoryRole__list {
@@ -7932,7 +7988,7 @@ Styleguide 12.8.1
   width: 90%;
   font-size: 14px;
   font-weight: bold;
-  color: #7D7D7D;
+  color: #7d7d7d;
   line-height: 1.6;
 }
 
@@ -7965,7 +8021,7 @@ Styleguide 12.8.1
 }
 
 .ec-newsRole .ec-newsRole__newsDescription a {
-  color: #0092C4;
+  color: #0092c4;
 }
 
 .ec-newsRole__newsItem.is_active .ec-newsRole__newsDescription {
@@ -8494,9 +8550,9 @@ Styleguide 14.1
   list-style: none;
   font-size: 80%;
   color: #525263;
-  border: solid 1px #D7DADD;
+  border: solid 1px #d7dadd;
   border-radius: 3px;
-  background-color: #F5F7F8;
+  background-color: #f5f7f8;
 }
 
 .ec-productRole .ec-productRole__priceRegular {
@@ -8509,7 +8565,7 @@ Styleguide 14.1
 }
 
 .ec-productRole .ec-productRole__price {
-  color: #DE5D50;
+  color: #de5d50;
   font-size: 28px;
   padding: 0;
   border-bottom: 0;
@@ -8526,7 +8582,7 @@ Styleguide 14.1
 }
 
 .ec-productRole .ec-productRole__category a {
-  color: #33A8D0;
+  color: #33a8d0;
 }
 
 .ec-productRole .ec-productRole__category ul {
@@ -8731,14 +8787,14 @@ Styleguide 15.1.3
 .ec-cartHeader {
   display: none;
   width: 100%;
-  background: #F4F3F0;
+  background: #f4f3f0;
 }
 
 .ec-cartHeader .ec-cartHeader__label {
   display: table-cell;
   padding: 16px;
   text-align: center;
-  background: #F4F3F0;
+  background: #f4f3f0;
   overflow-x: hidden;
   font-weight: bold;
 }
@@ -8903,8 +8959,8 @@ Styleguide 15.1.4
 .ec-cartRow .ec-cartRow__amountColumn .ec-cartRow__amountUpButton .ec-cartRow__amountUpButton__icon img {
   display: block;
   margin-left: -0.4em;
-  width: .8em;
-  height: .8em;
+  width: 0.8em;
+  height: 0.8em;
   position: absolute;
   top: 28%;
   left: 50%;
@@ -8932,8 +8988,8 @@ Styleguide 15.1.4
 .ec-cartRow .ec-cartRow__amountColumn .ec-cartRow__amountDownButtonDisabled .ec-cartRow__amountDownButton__icon img {
   display: block;
   margin-left: -0.4em;
-  width: .8em;
-  height: .8em;
+  width: 0.8em;
+  height: 0.8em;
   position: absolute;
   top: 28%;
   left: 50%;
@@ -8997,7 +9053,7 @@ Styleguide 15.1.6
   width: 100%;
   padding: 10px;
   text-align: center;
-  background: #F99;
+  background: #f99;
   margin-bottom: 20px;
 }
 
@@ -9461,7 +9517,7 @@ Styleguide 16.1.1
   display: inline-block;
   margin-bottom: 8px;
   margin-right: 8px;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   font-size: 25.6px;
   font-size: 1.6rem;
 }
@@ -9469,7 +9525,7 @@ Styleguide 16.1.1
 .ec-historyRole .ec-historyRole__detail .ec-historyRole__detailOption:after {
   display: inline-block;
   padding-left: 8px;
-  padding-left: .5rem;
+  padding-left: 0.5rem;
   content: "/";
   font-weight: bold;
 }
@@ -9589,23 +9645,23 @@ Styleguide 16.2.6
 }
 
 .ec-orderMail .ec-orderMail__link a {
-  color: #0092C4;
+  color: #0092c4;
   text-decoration: none;
   cursor: pointer;
 }
 
 .ec-orderMail .ec-orderMail__link a:hover {
-  color: #33A8D0;
+  color: #33a8d0;
 }
 
 .ec-orderMail .ec-orderMail__close a {
-  color: #0092C4;
+  color: #0092c4;
   text-decoration: none;
   cursor: pointer;
 }
 
 .ec-orderMail .ec-orderMail__close a:hover {
-  color: #33A8D0;
+  color: #33a8d0;
 }
 
 /*
@@ -10516,7 +10572,6 @@ Styleguide 22.1
 }
 
 @media only screen and (min-width: 768px) {
-
   .ec-pageHeader h1 {
     border-top: none;
     border-bottom: 1px solid #ccc;
@@ -10601,7 +10656,7 @@ Styleguide 22.1
     margin-bottom: 16px;
   }
 
-  .ec-halfInput input[type='text'] {
+  .ec-halfInput input[type="text"] {
     margin-left: 15px;
     width: 45%;
   }
@@ -10616,7 +10671,7 @@ Styleguide 22.1
     margin-bottom: 16px;
   }
 
-  .ec-halfInput input[type='text'] {
+  .ec-halfInput input[type="text"] {
     margin-left: 15px;
     width: 45%;
   }
@@ -10780,7 +10835,7 @@ Styleguide 22.1
     height: 44px;
     white-space: nowrap;
     cursor: pointer;
-    background: #F8F8F8;
+    background: #f8f8f8;
   }
 
   .ec-cartNavi .ec-cartNavi__badge {
@@ -11159,14 +11214,14 @@ Styleguide 22.1
   }
 
   .ec-footerTitle {
-    padding: 50px 0 80px;
+    padding: 16px 50px 0 0;
   }
 
   .ec-footerTitle .ec-footerTitle__logo a {
-    font-size: 24px;
+    font-size: 32px;
   }
 
-  .ec-footerTitle .ec-footerTitle__copyright {
+  .ec-footerTitle .ec-footerRole .ec-footerTitle__copyright {
     font-size: 12px;
   }
 
@@ -11282,7 +11337,7 @@ Styleguide 22.1
   }
 
   .ec-newsRole .ec-newsRole__news {
-    border: 16px solid #F8F8F8;
+    border: 16px solid #f8f8f8;
     padding: 20px 30px;
   }
 
@@ -11617,7 +11672,6 @@ Styleguide 22.1
 }
 
 @media (min-width: 768px) {
-
   .ec-grid2 .ec-grid2__cell {
     width: 50%;
   }
@@ -11656,7 +11710,6 @@ Styleguide 22.1
 }
 
 @media only screen and (min-width: 768px) and (min-width: 768px) {
-
   .ec-off1Grid {
     display: -ms-flexbox;
     display: flex;
