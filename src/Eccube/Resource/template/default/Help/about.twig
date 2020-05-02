@@ -12,80 +12,95 @@ file that was distributed with this source code.
 
 {% block main %}
 
-<div class="ec-role">
-    <div class="ec-pageHeader">
-        <h1>{{ '当サイトについて'|trans }}</h1>
-    </div>
-    <div class="ec-off1Grid">
-        <div class="ec-off1Grid__cell">
-            <div class="ec-borderedDefs">
-                {% if BaseInfo.shop_name|default is not empty %}
-                    <dl id="help_about_box__shop_name">
-                        <dt>
-                            <label class="ec-label">{{ '店名'|trans }}</label>
-                        </dt>
-                        <dd>{{ BaseInfo.shop_name }}</dd>
-                    </dl>
-                {% endif %}
-                {% if BaseInfo.company_name|default is not empty %}
-                    <dl id="help_about_box__company_name">
-                        <dt>
-                            <label class="ec-label">{{ '会社名'|trans }}</label>
-                        </dt>
-                        <dd>{{ BaseInfo.company_name }}</dd>
-                    </dl>
-                {% endif %}
+	<div class="ec-role">
+		<div class="ec-pageHeader">
+			<h1>{{ '当サイトについて'|trans }}</h1>
+			{# <img src="{{ asset('assets/img/common/logo.png', 'user_data') }}"> #}
+		</div>
+		<div class="ec-off1Grid">
+			<div class="ec-off1Grid__cell">
+				<p class="aboutLead">
+				東京 八王子にあるセレクトショップ。</br>
+				大野裕平がオーナー兼バイヤーとして、「おもちゃ箱をヒックリ返したような店」を</br>目指している。
+				</p>
+				<div class="ec-pageImg__sub">
+					<img src="{{ asset('assets/img/common/about__sub1.jpg', 'user_data') }}">
+					<img src="{{ asset('assets/img/common/about__sub2.jpg', 'user_data') }}">
+				</div>
+				<div class="ec-about__profile">
+					<div class="profile__img">
+						<img src="{{ asset('assets/img/common/about__man.jpg', 'user_data') }}">
+					</div>
+					<div class="profile__text">
+						<h2>大野裕平</h2>
+						<span>
+							1987年生まれ
+							<br>
+							UTSURAのオーナー兼バイヤー</br>
+							都内のセレクトショップを経て、UTSURAに入社。その後、同店の営業権を買い取りオーナーとなった。
+						</span>
+					</div>
+				</div>
+				<div class="about__text">
+					<p>
+						そんな今までにない不思議な空間には、甲斐 一彦が一つ一つ選び抜いたアイテムが並べられる。
+						アウトドアを知り尽くしたデザイナーが、最新技術を駆使して作り上げたもの、
+						職人の拘りの詰まったハンドメイドアイテム等。
 
-                {% if BaseInfo.postal_code|default is not empty %}
-                    <dl id="help_about_box__address">
-                        <dt>
-                            <label class="ec-label">{{ '住所'|trans }}</label>
-                        </dt>
-                        <dd>{{ '〒'|trans }}{{ BaseInfo.postal_code }}<br />
-                            {{ BaseInfo.pref }}{{ BaseInfo.addr01 }}{{ BaseInfo.addr02 }}
-                        </dd>
-                    </dl>
-                {% endif %}
+						実体験に基づき、ブランドの背景や文化も合わせて紹介する。
+						素材やデザインからなる“ホンモノの機能”を提案することが私たちの使命です。
+					</p>
+				</div>
+				<div class="ec-pageImg__main">
+					<img src="{{ asset('assets/img/common/about__main.jpg', 'user_data') }}">
+				</div>
+				<div class="aboutInfo">
+					<div class="aboutInfo__logo">
+						<a href="{{ url('homepage') }}">{{ BaseInfo.shop_name }}</a>
+						<p>ウツラ</p>
+					</div>
+					<dl class="aboutInfo__text">
+						<dt>
+							<label class="ec-label">店名</label>
+						</dt>
+						<dd>UTSURA</dd>
 
-                {% if BaseInfo.phone_number|default is not empty %}
-                    <dl id="help_about_box__phone_number">
-                        <dt>
-                            <label class="ec-label">{{ '電話番号'|trans }}</label>
-                        </dt>
-                        <dd>{{ BaseInfo.phone_number }}</dd>
-                    </dl>
-                {% endif %}
+						<dt>
+							<label class="ec-label">住所</label>
+						</dt>
+						<dd>〒192-0075<br/>
+							東京都八王子市中町１２−８</br>
+							<a href="https://goo.gl/maps/5etw3aXBr5BoZMZh8" target="blank">
+								Google Mapで確認する
+							</a>
+						</dd>
 
-                {% if BaseInfo.business_hour|default is not empty %}
-                    <dl id="help_about_box__business_hour">
-                        <dt>
-                            <label class="ec-label">{{ '店舗営業時間'|trans }}</label>
-                        </dt>
-                        <dd>{{ BaseInfo.business_hour }}</dd>
-                    </dl>
-                {% endif %}
+						<dt>
+							<label class="ec-label">電話番号</label>
+						</dt>
+						<dd>042-626-7008</dd>
 
-                {% if BaseInfo.good_traded|default is not empty %}
-                    <dl id="help_about_box__good_traded">
-                        <dt>
-                            <label class="ec-label">{{ '取り扱い商品'|trans }}</label>
-                        </dt>
-                        <dd>{{ BaseInfo.good_traded|nl2br }}</dd>
-                    </dl>
-                {% endif %}
+						<dt>
+							<label class="ec-label">営業時間</label>
+						</dt>
+						<dd>１３時〜２３時</dd>
 
-                {% if BaseInfo.message|default is not empty %}
-                    <dl id="help_about_box__message">
-                        <dt>
-                            <label class="ec-label">{{ 'メッセージ'|trans }}</label>
-                        </dt>
-                        <dd>{{ BaseInfo.message|nl2br }}</dd>
-                    </dl>
-                {% endif %}
-            </div>
+						<dt>
+							<label class="ec-label">メッセージ</label>
+							</dt>
+						<dd>
+							年中無休でやっておりますが、こちらの都合上、開店時間が遅れる場合がございます。
+						</dd>
+					</dl>
+				</div>
+				<span class="aboutOther">
+					お店に対してのお問い合わせは
+					<a href="{{ url('contact') }}">{{ 'こちら'|trans }}</a>
+					にお願い致します。
+				</span>
 
-        </div>
-    </div>
-</div>
+			</div>
+		</div>
+	</div>
 
 {% endblock %}

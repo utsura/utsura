@@ -575,15 +575,65 @@ Markup:
 
 Styleguide 1.1.2
 */
-.ec-pageHeader h1 {
-  margin: 0 0 8px;
-  border-bottom: 1px dotted #ccc;
-  border-top: 1px solid #ccc;
-  padding: 8px 0 12px;
-  font-size: 16px;
-  font-weight: bold;
+
+
+.aboutLead{
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: center;
+  line-height: 2.18;
 }
 
+.ec-pageImg__main{
+  width: 80%;
+  margin: 0 auto;
+}
+
+.aboutInfo{
+  max-width: 800px;
+  margin: 32px auto 16px auto;
+  display: flex;
+}
+
+.aboutInfo__logo{
+  width: 30%;
+}
+
+.aboutInfo__logo a{
+  color: black;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.aboutInfo__logo p{
+  font-weight: 700;
+}
+
+.aboutInfo__text{
+  width: 70%;
+}
+
+.aboutInfo__text{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.aboutInfo__text dt{
+  width: 20%;
+  padding: 0 8px 8px 0;
+  line-height: 1.6;
+}
+.aboutInfo__text dd{
+  width: 80%;
+  line-height: 1.6;
+  padding: 0 8px 8px 0;
+}
+
+.aboutOther{
+  text-align: right;
+  display: block;
+}
 /*
 サブ見出し
 
@@ -4331,6 +4381,52 @@ Styleguide 5.1.5
   margin: 0;
 }
 
+.ec-pageImg__sub{
+  display: flex;
+}
+
+.ec-pageImg__sub img{
+  padding: 18px 8px;
+}
+
+.ec-about__profile{
+  padding-top: 20px;
+  display: flex;
+}
+
+.profile__img{
+  width: 30%;
+  margin-right: 16px;
+}
+
+.profile__text{
+  width: 70%;
+}
+
+.profile__text h2{
+  font-size: 24px;
+  font-weight: 700;
+  padding: 8px;
+  letter-spacing: 0.04em;
+}
+
+.profile__text span{
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+.about__text{
+  margin: 32px 0 32px 0;
+}
+
+.about__text p{
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+
 /*
 中央寄せグリッド 8/12
 
@@ -5967,13 +6063,13 @@ include /assets/tmpl/elements/11.1.role.pug
 Styleguide 11.1
 */
 .ec-role {
-  margin: 0 auto;
+  margin: 24px auto;
   padding-left: 20px;
   padding-right: 20px;
   box-sizing: border-box;
   font-size: 16px;
   line-height: 1.4;
-  color: #525263;
+  color: #000;
   -webkit-text-size-adjust: 100%;
   width: 100%;
   max-width: 1130px;
@@ -7104,7 +7200,7 @@ sg-wrapper:
 Styleguide 11.3.2
 */
 .ec-footerTitle {
-  padding: 40px 0 60px;
+  padding: 20px 60px;
   text-align: left;
   color: white;
 }
@@ -10525,11 +10621,32 @@ Styleguide 22.1
 @media only screen and (min-width: 768px) {
   .ec-pageHeader h1 {
     border-top: none;
-    border-bottom: 1px solid #ccc;
     margin: 10px 16px 48px;
     padding: 8px;
     font-size: 32px;
     font-weight: bold;
+    text-align: center;
+  }
+
+  .ec-pageItem h2 {
+    font-size: 24px;
+  }
+
+  .ec-pageItem h3{
+    font-size: 16px;
+    font-weight: 700;
+    padding-left: 16px;
+  }
+
+  .pageItem__Fram{
+    display: block;
+    padding: 16px 20px;
+    background: #F8F8F8;
+    margin: 24px 0;
+  }
+
+  .pageItem__block{
+    display: block;
   }
 
   .ec-heading-bold {
