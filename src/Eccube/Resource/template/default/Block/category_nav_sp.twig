@@ -12,13 +12,13 @@ file that was distributed with this source code.
 
 {% macro tree(Category) %}
     {% from _self import tree %}
-    <a href="{{ url('product_list') }}?category_id={{ Category.id }}">
+    <a class="ec-itemNav__navItemAnchor" href="{{ url('product_list') }}?category_id={{ Category.id }}">
         {{ Category.name }}
     </a>
     {% if Category.children|length > 0 %}
-        <ul>
+        <ul class="ec-itemNav__children">
             {% for ChildCategory in Category.children %}
-                <li>
+                <li class="ec-itemNav__childrenItem">
                     {{ tree(ChildCategory) }}
                 </li>
             {% endfor %}
