@@ -6766,7 +6766,7 @@ Styleguide 11.2.5
   margin: 0;
   padding: 32px 124px;
   width: 100%;
-  display: flex;
+  display: none;
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
   justify-content: flex-start;
