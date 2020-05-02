@@ -1,6 +1,6 @@
 /* カスタマイズ用Javascript */
 $(function(){
-    $(".ec-itemNavBrand").hover(function(){
+    $("[id=js-nav-open]").hover(function(){
         $(this).children('.ec-itemNavBrand__children').slideDown(300);
         $(this).children('.ec-itemNavBrand__anchor').css("background-color", "#f5f5f5");
         $(this).children('.ec-itemNavBrand__children').css("display", "flex");
