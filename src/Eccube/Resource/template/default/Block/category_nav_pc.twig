@@ -40,7 +40,7 @@ file that was distributed with this source code.
             {% for Category in Categories %}
                 {% if Category.name is same as("ブランド") %}
                     {# カテゴリ@: ブランド #}
-                    <li class="ec-itemNavBrand">
+                    <li class="ec-itemNavBrand" id="js-nav">
                         {{ tree(Category,
                                 "ec-itemNavBrand__anchor",
                                 "ec-itemNavBrand__children",
