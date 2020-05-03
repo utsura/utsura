@@ -2,3 +2,16 @@
 .ec-cartRole__totaiTextBottom {
     font-size: 13px;
 }
+
+/* SP Design */
+@media screen and (max-width: 480px) {
+    /* ロゴ */
+    .ec-headerTitle img {
+        width: 120px;
+        margin-top: 8px;
+    }
+
+    .ec-sliderRole-Img {
+        width: 335px;
+    }
+}
