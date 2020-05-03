@@ -6461,10 +6461,6 @@ Styleguide 11.2
   text-align: center;
   color: black;
   background: white;
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  z-index: 1000;
 }
 
 .ec-headerNavSP .fas {
