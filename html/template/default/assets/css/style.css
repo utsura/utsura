@@ -10569,7 +10569,7 @@ Styleguide 22.1
   font-size: 16px;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) {
   .ec-pageHeader h1 {
     border-top: none;
     border-bottom: 1px solid #ccc;
