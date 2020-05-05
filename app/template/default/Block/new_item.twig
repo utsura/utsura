@@ -9,16 +9,13 @@
 {% if Products|length > 0 %}
 <div class="ec-role">
     <div class="ec-newItemRole">
-        <div class="ec-newItemRole__list">
-            <div class="ec-newItemRole__listItem">
-                <div class="ec-newItemRole__listItemHeading ec-secHeading--tandem">
-                    <span class="ec-secHeading__en">{{ 'front.block.new_item.title__en'|trans }}</span>
-                    <span class="ec-secHeading__line"></span>
-                    <span class="ec-secHeading__ja">{{ 'front.block.new_item.title__ja'|trans }}</span>
-                    <a class="ec-inlineBtn--top" href="{{ url('product_list') }}?orderby={{eccube_config.eccube_product_order_newer}}">{{ 'front.block.new_item.more'|trans }}</a>
-                </div>
+        <div class="ec-newItemRole__wrapper">
+            <div class="ec-newItemRole__listItemHeading ec-secHeading--tandem">
+                <span class="ec-secHeading__en">{{ 'front.block.new_item.title__en'|trans }}</span>
+                <span class="ec-secHeading__ja">{{ 'front.block.new_item.title__ja'|trans }}</span>
             </div>
-            
+        </div>
+        <div class="ec-newItemRole__list">
             {% for Product in Products %}
             <div class="ec-newItemRole__listItem">
                 <a href="{{ url('product_detail', {'id': Product.id}) }}">
@@ -38,8 +35,8 @@
                 </a>
             </div>
             {% endfor %}
-
         </div>
+        <a class="ec-inlineBtn--top" href="{{ url('product_list') }}?orderby={{eccube_config.eccube_product_order_newer}}">{{ 'front.block.new_item.more'|trans }}</a>
     </div>
 </div>
 {% endif %}

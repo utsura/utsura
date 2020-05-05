@@ -3,6 +3,10 @@
     font-size: 13px;
 }
 
+.ec-newItemRole__wrapper {
+    margin: auto;
+}
+
 /* SP Design */
 @media screen and (max-width: 480px) {
     /* ロゴ */
