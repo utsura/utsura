@@ -7952,9 +7952,9 @@ Styleguide 12.6.1
 }
 
 .ec-newItemRole .ec-newItemRole__listItem {
-  margin-bottom: 4%;
-  width: 48%;
+  width: 50%;
   height: auto;
+  padding: 8px;
 }
 
 .ec-newItemRole .ec-newItemRole__listItemHeading {
