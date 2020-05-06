@@ -7551,89 +7551,15 @@ Styleguide 12.3.1
 .ec-inlineBtn--top:hover,
 .ec-inlineBtn--top:focus,
 .ec-inlineBtn--top.focus {
-  color: #525263;
   text-decoration: none;
-}
-
-.ec-inlineBtn--top:active,
-.ec-inlineBtn--top.active {
-  outline: 0;
-  background-image: none;
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-
-.ec-inlineBtn--top.disabled,
-.ec-inlineBtn--top[disabled],
-fieldset[disabled] .ec-inlineBtn--top {
-  cursor: not-allowed;
-  opacity: 0.65;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
-  filter: alpha(opacity=65);
-  box-shadow: none;
-}
-
-.ec-inlineBtn--top:focus,
-.ec-inlineBtn--top.focus {
-  color: white;
-  background-color: black;
-  border-color: black;
+  color: #033FFF;
 }
 
 .ec-inlineBtn--top:hover {
   color: white;
   background-color: #033FFF;
   border-color: #033FFF;
-}
-
-.ec-inlineBtn--top:active,
-.ec-inlineBtn--top.active,
-.open>.ec-inlineBtn--top.dropdown-toggle {
-  color: white;
-  background-color: black;
-  border-color: black;
-}
-
-.ec-inlineBtn--top:active:hover,
-.ec-inlineBtn--top:active:focus,
-.ec-inlineBtn--top:active.focus,
-.ec-inlineBtn--top.active:hover,
-.ec-inlineBtn--top.active:focus,
-.ec-inlineBtn--top.active.focus,
-.open>.ec-inlineBtn--top.dropdown-toggle:hover,
-.open>.ec-inlineBtn--top.dropdown-toggle:focus,
-.open>.ec-inlineBtn--top.dropdown-toggle.focus {
-  color: white;
-  background-color: black;
-  border-color: black;
-}
-
-.ec-inlineBtn--top:active,
-.ec-inlineBtn--top.active,
-.open>.ec-inlineBtn--top.dropdown-toggle {
-  background-image: none;
-}
-
-.ec-inlineBtn--top.disabled:hover,
-.ec-inlineBtn--top.disabled:focus,
-.ec-inlineBtn--top.disabled.focus,
-.ec-inlineBtn--top[disabled]:hover,
-.ec-inlineBtn--top[disabled]:focus,
-.ec-inlineBtn--top[disabled].focus,
-fieldset[disabled] .ec-inlineBtn--top:hover,
-fieldset[disabled] .ec-inlineBtn--top:focus,
-fieldset[disabled] .ec-inlineBtn--top.focus {
-  background-color: black;
-  border-color: black;
-}
-
-.ec-inlineBtn--top .badge {
-  color: black;
-  background-color: white;
-}
-
-.ec-inlineBtn--top .ec-icon img {
-  width: 1em;
-  vertical-align: text-bottom;
+  text-decoration: none;
 }
 
 /*
