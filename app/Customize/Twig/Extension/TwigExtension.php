@@ -88,7 +88,7 @@ class TwigExtension extends \Twig_Extension
 
             // 新着順の商品情報3件取得
             $qb = $this->productRepository->getQueryBuilderBySearchData($searchData);
-            $query = $qb->setMaxResults(3)->getQuery();
+            $query = $qb->setMaxResults(8)->getQuery();
             $products = $query->getResult();
             return $products;
 

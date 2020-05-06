@@ -7523,22 +7523,19 @@ Styleguide 12.3.1
   -ms-touch-action: manipulation;
   touch-action: manipulation;
   cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
+  border: 1px solid #033FFF;
   white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.42857;
-  border-radius: 0px;
+  border-radius: 30px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   padding: 10px 16px;
   text-decoration: none;
-  color: white;
-  background-color: black;
-  border-color: black;
+  color: #033FFF;
+  background-color: #ffffff;
 }
 
 .ec-inlineBtn--top:focus,
@@ -7584,8 +7581,8 @@ fieldset[disabled] .ec-inlineBtn--top {
 
 .ec-inlineBtn--top:hover {
   color: white;
-  background-color: black;
-  border-color: black;
+  background-color: #033FFF;
+  border-color: #033FFF;
 }
 
 .ec-inlineBtn--top:active,
@@ -7854,9 +7851,10 @@ Styleguide 12.4.2
 
 .ec-secHeading--tandem .ec-secHeading__en {
   display: block;
-  font-size: 18px;
+  font-size: 28px;
   font-weight: bold;
   letter-spacing: 0.2em;
+  margin-bottom: 8px;
 }
 
 .ec-secHeading--tandem .ec-secHeading__line {
@@ -7870,8 +7868,8 @@ Styleguide 12.4.2
 .ec-secHeading--tandem .ec-secHeading__ja {
   display: block;
   margin-bottom: 30px;
-  font-size: 12px;
-  font-weight: normal;
+  font-size: 14px;
+  font-weight: bold;
   letter-spacing: 0.15em;
   vertical-align: 2px;
 }
@@ -7942,6 +7940,7 @@ Styleguide 12.6.1
 */
 .ec-newItemRole {
   padding: 40px 0;
+  text-align: center;
 }
 
 .ec-newItemRole .ec-newItemRole__list {
@@ -7949,6 +7948,7 @@ Styleguide 12.6.1
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  margin-bottom: 16px;
 }
 
 .ec-newItemRole .ec-newItemRole__listItem {
@@ -7957,12 +7957,8 @@ Styleguide 12.6.1
   height: auto;
 }
 
-.ec-newItemRole .ec-newItemRole__listItem:nth-child(odd) {
-  margin-right: 4%;
-}
-
 .ec-newItemRole .ec-newItemRole__listItemHeading {
-  margin-top: calc(45% - 20px);
+  margin-top: 16px;
 }
 
 .ec-newItemRole .ec-newItemRole__listItemTitle {
@@ -11392,10 +11388,6 @@ Styleguide 22.1
     width: calc(100% / 2);
   }
 
-  .ec-topicRole .ec-topicRole__listItem:not(:last-of-type) {
-    margin-right: 30px;
-  }
-
   .ec-topicRole .ec-topicRole__listItemTitle {
     margin-top: 1em;
   }
@@ -11405,21 +11397,14 @@ Styleguide 22.1
   }
 
   .ec-newItemRole .ec-newItemRole__list {
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
   }
 
   .ec-newItemRole .ec-newItemRole__listItem {
     margin-bottom: 15px;
-    width: calc(100% / 4);
-  }
-
-  .ec-newItemRole .ec-newItemRole__listItem:not(:last-of-type) {
-    margin-right: 30px;
-  }
-
-  .ec-newItemRole .ec-newItemRole__listItem:nth-child(odd) {
-    margin-right: 30px;
+    width: 25%;
+    padding: 16px;
   }
 
   .ec-newItemRole .ec-newItemRole__listItemTitle {
@@ -11437,10 +11422,6 @@ Styleguide 22.1
 
   .ec-categoryRole .ec-categoryRole__listItem {
     width: calc(100% / 3);
-  }
-
-  .ec-categoryRole .ec-categoryRole__listItem:not(:last-of-type) {
-    margin-right: 30px;
   }
 
   .ec-newsRole {
