@@ -8,4 +8,5 @@ $(function(){
         $(this).children('.ec-itemNavBrand__children').stop().slideUp('fast');
         $(this).children('.ec-itemNavBrand__anchor').css("background-color", "#ffffff");
     });
+    $("img.lazyload").lazyload();
 });

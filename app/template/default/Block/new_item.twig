@@ -19,7 +19,7 @@
             {% for Product in Products %}
             <div class="ec-newItemRole__listItem">
                 <a href="{{ url('product_detail', {'id': Product.id}) }}">
-                    <img src="{{ asset(Product.main_list_image|no_image_product, 'save_image') }}">
+                    <img class="lazyload" data-src="{{ asset(Product.main_list_image|no_image_product, 'save_image') }}">
                     <p class="ec-newItemRole__listItemTitle">{{ Product.name }}</p>
                     <p class="ec-newItemRole__listItemPrice">
                     {% if Product.hasProductClass %}
