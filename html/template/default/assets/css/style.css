@@ -576,6 +576,12 @@ Markup:
 Styleguide 1.1.2
 */
 
+.ec-pageHeader h1{
+  font-size: 24px;
+  font-weight: 700;
+  padding: 0 0 8px 0;
+  text-align: center;
+}
 
 .aboutLead{
   font-size: 18px;
@@ -1090,9 +1096,14 @@ Styleguide 1.3.2
 }
 
 .ec-borderedDefs dd {
-  padding: 0;
+  padding: 0 0 0 8px;
   width: 100%;
   line-height: 2.5;
+}
+
+.ec-borderedDefs ul{
+  margin: 0;
+  padding-left: 16px;
 }
 
 .ec-borderedDefs p {
@@ -10659,6 +10670,15 @@ Styleguide 22.1
   .ec-borderedDefs dd {
     width: 70%;
     line-height: 3;
+  }
+
+  .ec-borderedDefs ul{
+    padding-left: 16px;
+  }
+
+  .ec-borderedDefs ul li{
+    margin: 0;
+    padding: 0;
   }
 
   .ec-list-chilled dt,
