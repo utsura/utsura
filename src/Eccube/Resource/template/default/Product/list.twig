@@ -146,7 +146,7 @@ file that was distributed with this source code.
                         <li class="ec-shelfGrid__item">
                             <a href="{{ url('product_detail', {'id': Product.id}) }}">
                                 <p class="ec-shelfGrid__item-image">
-                                    <img src="{{ asset(Product.main_list_image|no_image_product, 'save_image') }}">
+                                    <img class="lazyload" data-src="{{ asset(Product.main_list_image|no_image_product, 'save_image') }}">
                                 </p>
                                 <p>{{ Product.name }}</p>
                                 {% if Product.description_list %}
@@ -210,7 +210,7 @@ file that was distributed with this source code.
                 <div class="ec-modal-overlay">
                     <label for="ec-modal-checkbox" class="ec-modal-overlay-close"></label>
                     <div class="ec-modal-wrap">
-                        <label for="ec-modal-checkbox" class="ec-modal-close"><span class="ec-icon"><img src="{{ asset('assets/icon/cross-dark.svg') }}" alt=""/></span></label>
+                        <label for="ec-modal-checkbox" class="ec-modal-close"><span class="ec-icon"><img class="lazyload" data-src="{{ asset('assets/icon/cross-dark.svg') }}" alt=""/></span></label>
                         <div id="ec-modal-header" class="text-center">{{ 'カートに追加しました。'|trans }}</div>
                         <div class="ec-modal-box">
                             <div class="ec-role">
