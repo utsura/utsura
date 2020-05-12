@@ -223,7 +223,7 @@ file that was distributed with this source code.
                     </div>
                     <div class="item_nav">
                         {% for ProductImage in Product.ProductImage %}
-                            <div class="slideThumb" data-index="{{ loop.index0 }}"><img src="{{ asset(ProductImage, 'save_image') }}"></div>
+                            <div class="slideThumb" data-index="{{ loop.index0 }}"><img class="lazyload" data-src="{{ asset(ProductImage, 'save_image') }}"></div>
                         {% endfor %}
                     </div>
                 </div>
