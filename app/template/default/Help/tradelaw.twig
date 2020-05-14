@@ -10,6 +10,101 @@ file that was distributed with this source code.
 #}
 {% extends 'default_frame.twig' %}
 
+{% block stylesheet %}
+
+    <style>
+        .tradelaw-bordered{
+            width: 96%;
+            margin: 0 auto 16px auto;
+            font-size: 16px
+        }
+
+        .tradelaw-bordered dl{
+            display: -ms-flexbox;
+            display: flex;
+            margin: 32px 0 0 16px;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+        }
+
+        .tradelaw-bordered dt,
+        .tradelaw-bordered dd{
+            padding: 0;
+        }
+
+        .tradelaw-bordered dt{
+            font-weight: normal;
+            width: 100%;
+            padding-top: 0;
+            padding-bottom: 8px
+        }
+
+        .tradelaw-bordered dd{
+            padding: 0 0 0 8px;
+            width: 100%;
+            line-height: 1.8;
+        }
+
+        .tradelaw-bordered ul{
+            margin: 0;
+            padding-left: 8px;
+        }
+
+        .tradelaw-bordered p{
+            line-height: 1.6;
+        }
+
+        .tradelaw-bordered ul li{
+            list-style-type: none;
+            padding-top: 8px;
+        }
+
+        .tradelaw-bordered ul li::before{
+            content: '';
+            width: 5px;
+            height: 5px;
+            display: inline-block;
+            background-color: #333;
+            border-radius: 100%;
+            position: relative;
+            left: -12px;
+            top: -3px;
+        }
+
+        @media only screen and (min-width: 769px){
+            .tradelaw-bordered{
+
+            }
+
+            .tradelaw-bordered dl{
+                -ms-flex-wrap: nowrap;
+                flex-wrap: nowrap;
+                margin: 24px 0 0 8px
+            }
+
+            .tradelaw-bordered dt{
+                padding: 10px 0 0 40px;
+                width: 40%;
+            }
+
+            .tradelaw-bordered dd{
+                width: 60%;
+                line-height: 2.4;
+            }
+
+            .tradelaw-bordered ul{
+                padding-left: 16px;
+            }
+
+            .tradelaw-bordered ul li{
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+
+{% endblock %}
+
 {% block main %}
     <div class="ec-role">
         <div class="ec-pageHeader">
@@ -17,7 +112,7 @@ file that was distributed with this source code.
         </div>
         <div class="ec-off1Grid">
             <div class="ec-off1Grid__cell">
-                <div class="ec-borderedDefs">
+                <div class="tradelaw-bordered">
                     <dl>
                         <dt>
                             <label class="ec-label">販売業者</label>
@@ -73,15 +168,21 @@ file that was distributed with this source code.
                         <dt>
                             <label class="ec-label">商品代金以外の必要料金</label>
                         </dt>
-                        <dd>消費税、送料、代金引換手数料、銀行振込手数料、コンビニ払い手数料</dd>
+                        <dd>
+                            <ul>
+                                <li>消費税：１０％</li>
+                                <li>送料：全国一律８８０円（税込）</li>
+                                <li>代金引換手数料：４４０円（税込）</li>
+                                <li>コンビニ払い：３３０円（税込）</li>
+                            </ul>
+                        </dd>
                     </dl>
 
                     <dl>
                         <dt>
                             <label class="ec-label">商品の引き渡し時期</label>
                         </dt>
-                        <dd>
-                            ご注文日当日〜７日間後<wbr>（銀行振込の場合、入金確認日から７日間）</br>
+                        <dd>ご注文日当日〜７日間後（銀行振込の場合、入金確認日から７日間）</br>
                             ＊ＡＭ１２時までの注文は当日発送
                         </dd>
                     </dl>
@@ -112,7 +213,7 @@ file that was distributed with this source code.
                         </dt>
                         <dd>
                             商品到着後、７日間以内での返品・交換はお受けいたします。</br>
-                            詳細は返品・交換についてご確認ください。</br>
+                            詳細は返品・交換についてご確認ください。商品到着後、７日間以内での返品・交換はお受けいたします。</br>
                             <a href="//utsura.shop/guide#guideReturns">返品・交換について</a>
                         </dd>
                     </dl>
