@@ -47,12 +47,12 @@ file that was distributed with this source code.
 		<script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.min.js"></script>
 		<script>
 			$(function () {
-$.ajaxSetup({
-'headers': {
-'ECCUBE-CSRF-TOKEN': $('meta[name="eccube-csrf-token"]').attr('content')
-}
-});
-});
+				$.ajaxSetup({
+					'headers': {
+					'ECCUBE-CSRF-TOKEN': $('meta[name="eccube-csrf-token"]').attr('content')
+					}
+				});
+			});
 		</script>
 		{# Layout: HEAD #}
 		{% if Layout.Head %}
@@ -63,6 +63,7 @@ $.ajaxSetup({
 			{{ include('@admin/snippet.twig', { snippets: plugin_assets }) }}
 		{% endif %}
 		<link rel="stylesheet" href="{{ asset('assets/css/customize.css', 'user_data') }}">
+		<meta name="google-site-verification" content="2oRLd1T7Yr-iU0yG2gkJxYgf7KA6bVJm0D_Z8mNIvRo"/>
 	</head>
 	<body
 		id="page_{{ app.request.get('_route') }}" class="{{ body_class|default('other_page') }}">
