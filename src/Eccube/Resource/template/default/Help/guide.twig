@@ -10,19 +10,36 @@ file that was distributed with this source code.
 #}
 {% extends 'default_frame.twig' %}
 
+{% block stylesheet %}
+
+    <style>
+        .guide-pageItem img{
+            height: auto;
+            width: 40%;
+            margin: 0 auto 0 auto;
+            display: block
+        }
+
+        .otherText{
+            color: #C60909;
+        }
+    </style>
+
+{% endblock %}
+
 {% block main %}
 	<div class="ec-role">
 		<div class="ec-pageHeader">
 			<h1>{{ 'ご利用ガイド'|trans }}</h1>
 		</div>
-		<div class="ec-pageItem">
+		<div class="guide-pageItem">
 			<h2>会員登録について</h2>
 			<span>
 				年会費、登録料、更新料、維持費などの会員料金は一切発生いたしません。</br>会員登録をしていただきますと下記のサービスがご利用可能となります。</br>
             </br>・メールにて『新着情報』や『再入荷情報』<br></br>尚、パソコンもしくは携帯電話のどちらかで会員登録をおこなっていただければ、両方のサービスをご利用いただくことが出来ます。</br>是非お得で便利な会員プログラムをご利用ください。
             </span>
         </div>
-        <div class="ec-pageItem">
+        <div class="guide-pageItem">
             <h2>商品について</h2>
             <span></span>
             <h3>サイズについて</h3>
@@ -39,7 +56,7 @@ file that was distributed with this source code.
                 また、商品のカラーは、コンピュータディスプレイの性質上、実際の色と異なって見える場合がございますので予めご了承ください。</br>
             </span>
         </div>
-        <div class="ec-pageItem">
+        <div class="guide-pageItem">
             <h2>メール連絡について</h2>
             <span>
                 UTSURAより『新入荷情報』や『再入荷情報』など、お客様によりお得な情報をEメールにてお届けする場合があります。
@@ -47,53 +64,61 @@ file that was distributed with this source code.
                 尚、会員登録をしていただけるとメールをお届けします。
             </span>
         </div>
-        <div class="ec-pageItem">
+        <div class="guide-pageItem">
             <h2>お支払いについて</h2>
-            <h3>カラーについて</h3>
-            <span>
-                掲載商品は出来るだけ現物と同じになるよう撮影しておりますが、若干色味が違う場合もございます。</br>
-                また、商品のカラーは、コンピュータディスプレイの性質上、実際の色と異なって見える場合がございますので予めご了承ください。</br>
-            </span>
-            <h3>代金引換について</h3>
 
-            <span></span>
+            <h3>クレジットカードについて</h3>
+            <span>
+            取り扱いクレジットカード</br>
+            下記のマークのあるカードブランドがご利用いただけます。</br>
+                <img src="{{ asset('assets/img/common/credit_card.jpg', 'user_data') }}">
+            </span>
+            <span class="otherText">
+                *高額のご注文について、本人確認のご連絡をさせていただく場合があります。
+            </span>
+
+            <h3>代金引換について</h3>
+            <span>
+                商品到着時に、配達業者（クロネコヤマト宅急便）の配達員にお支払いください。代金引換の場合、決済手数料として４４０円（税込）をお支払いください。
+            </span>
+
             <h3>銀行振込について</h3>
 
             <span></span>
-            <h3>キャリア払いについて</h3>
+            {# <h3>キャリア払いについて</h3>
 
-            <span></span>
+            <span></span> #}
         </div>
-        <div class="ec-pageItem">
+        <div class="guide-pageItem">
         </div>
-        <div class="ec-pageItem">
+        <div class="guide-pageItem">
             <h2>ご注文方法</h2>
         </div>
-        <div class="ec-pageItem">
+        {# <div class="ec-pageItem">
             <h2>予約商品について</h2>
-        </div>
-        <div class="ec-pageItem">
+        </div> #}
+        <div class="guide-pageItem">
             <h2>商品のお届けについて</h2>
         </div>
-        <div id="guideReturns" class="ec-pageItem">
+        <div id="guideReturns" class="guide-pageItem">
             <h2>ご注文キャンセル・返品について</h2>
             <span>
-                <span class="pageItem__block">
+                <span class="guideItem">
                     商品お届け後、未使用の状態での7日間以内の返品・交換はお受けいたします。
                     ご返品・交換をご希望のお客様は下記を必ずご確認お願いいたします。
                 </span>
-                <span class="pageItem__block">
+                <span class="guideItem">
                     ※「商品の汚れ」・「ご注文商品と異なる」など弊社によるミスの場合、お客様のお名前・お電話番号・E-Mailアドレス・ご購入商品をご記入の上、こちらまでご連絡ください。返送料は弊社の負担にてお受けいたします。</br></br>※お客様のお名前・お電話番号・E-Mailアドレス・ご購入商品をご記入の上、こちらまでご連絡ください。</br></br>返送料はお客様の負担（元払）とさせていただきます。
                     また、交換商品を弊社から再度送らせていただく際の送料も、お客様のご負担とさせていただきますことをご了承ください。
                     交換希望商品の在庫がある場合は、お届けに返品商品到着後より1週間前後で交換商品をお送りいたします。※ご注文いただきました商品と交換する商品がない場合のみ、返金に応じます。
                     尚、代金引換・クレジット払いにてご購入された場合、処理手続きの都合上、返金まで3ヶ月前後かかる場合があることを予めご了承ください。
                 </span>
-                <span class="pageItem__block">
+                <span class="guideItem">
 	                受付時間　PM3:00～PM11:00</br></br>下記の場合、返品・交換はお受け出来ません。</br></br>・1度着用や使用になられた商品、お客様で修理やクリーニングをされた商品、</br>
                     ・お客様のもとでキズ・汚れが発生した商品。・商品到着後、7日以上経過した商品。</br>・お客様のご希望によりお取り寄せした商品。・ご返品の旨をご連絡頂いていない場合。
                 <span>
 
-                <span class="pageItem__Fram">
+                <span class="guideItem__Fram">
                     返送先：UTSURA 宛</br>
                     〒192-0085 東京都八王子市中町12-8</br>
                     電話番号：042-626-7008</br>
