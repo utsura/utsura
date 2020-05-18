@@ -122,6 +122,8 @@ class AddCartType extends AbstractType
                         'mapped' => false,
                     ]);
                 }
+                var_dump($Product->getClassName1());
+                exit();
             }
 
             $builder->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) use ($Product) {
