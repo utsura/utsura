@@ -5060,6 +5060,7 @@ Styleguide 7.2.1
 
 .ec-topicpath .ec-topicpath__divider {
   color: #000;
+  margin: 0 2px;
 }
 
 .ec-topicpath .ec-topicpath__item,

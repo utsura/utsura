@@ -109,14 +109,14 @@ file that was distributed with this source code.
                     </li>
                     {% if Category is not null %}
                         {% for Path in Category.path %}
-                            <li class="ec-topicpath__divider">|</li>
+                            <li class="ec-topicpath__divider">></li>
                             <li class="ec-topicpath__item{% if loop.last %}--active{% endif %}"><a
                                         href="{{ url('product_list') }}?category_id={{ Path.id }}">{{ Path.name }}</a>
                             </li>
                         {% endfor %}
                     {% endif %}
                     {% if search_form.vars.value and search_form.vars.value.name %}
-                        <li class="ec-topicpath__divider">|</li>
+                        <li class="ec-topicpath__divider">></li>
                         <li class="ec-topicpath__item">{{ '「%name%」の検索結果'|trans({ '%name%': search_form.vars.value.name }) }}</li>
                     {% endif %}
                 </ol>
