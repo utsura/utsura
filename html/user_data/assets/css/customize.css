@@ -7,6 +7,34 @@
     margin: auto;
 }
 
+
+/* guide.twig */
+.guide-pageItem{
+
+}
+
+.guide-pageItem h2{
+    font-size: 24px;
+}
+
+.guide-pageItem h3{
+    font-size: 16px;
+    font-weight: 700;
+    padding-left: 8px;
+}
+
+.guideItem{
+    display: block;
+}
+
+.guideItem__Fram {
+    display: block;
+    padding: 16px 20px;
+    background: #F8F8F8;
+    margin: 24px 0;
+}
+
+
 /* SP Design */
 @media screen and (max-width: 480px) {
     /* ロゴ */
@@ -22,3 +50,4 @@
 
 /* IPad Design */
 @media only screen and (min-width: 769px) {
+}
