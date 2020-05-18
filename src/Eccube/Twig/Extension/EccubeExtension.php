@@ -247,7 +247,7 @@ class EccubeExtension extends AbstractExtension
         $class_categories = [
             '__unselected' => [
                 '__unselected' => [
-                    'name' => trans('common.select'),
+                    'name' => trans('common.select.color'),
                     'product_class_id' => '',
                 ],
             ],
@@ -269,7 +269,7 @@ class EccubeExtension extends AbstractExtension
 
             $class_categories[$class_category_id1]['#'] = [
                 'classcategory_id2' => '',
-                'name' => trans('common.select'),
+                'name' => trans('common.select.color'),
                 'product_class_id' => '',
             ];
             $class_categories[$class_category_id1]['#'.$class_category_id2] = [

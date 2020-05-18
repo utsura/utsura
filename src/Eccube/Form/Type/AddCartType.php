@@ -118,7 +118,7 @@ class AddCartType extends AbstractType
                 if (!is_null($Product->getClassName2())) {
                     $builder->add('classcategory_id2', ChoiceType::class, [
                         'label' => $Product->getClassName2(),
-                        'choices' => ['common.select' => '__unselected'],
+                        'choices' => ['common.select.color' => '__unselected'],
                         'mapped' => false,
                     ]);
                 }
@@ -131,7 +131,7 @@ class AddCartType extends AbstractType
                     if ($data['classcategory_id1']) {
                         $form->add('classcategory_id2', ChoiceType::class, [
                             'label' => $Product->getClassName2(),
-                            'choices' => ['common.select' => '__unselected'] + $Product->getClassCategories2AsFlip($data['classcategory_id1']),
+                            'choices' => ['common.select.color' => '__unselected'] + $Product->getClassCategories2AsFlip($data['classcategory_id1']),
                             'mapped' => false,
                         ]);
                     }
