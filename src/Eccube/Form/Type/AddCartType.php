@@ -109,11 +109,25 @@ class AddCartType extends AbstractType
                 ]);
             if ($Product && $Product->getProductClasses()) {
                 if (!is_null($Product->getClassName1())) {
-                    $builder->add('classcategory_id1', ChoiceType::class, [
-                        'label' => $Product->getClassName1(),
-                        'choices' => ['common.select' => '__unselected'] + $Product->getClassCategories1AsFlip(),
-                        'mapped' => false,
-                    ]);
+                    if ($Product->getClassName1() === '靴用サイズ' || $Product->getClassName1() === '服用サイズ') {
+                        $builder->add('classcategory_id1', ChoiceType::class, [
+                            'label' => $Product->getClassName1(),
+                            'choices' => ['common.select' => '__unselected'] + $Product->getClassCategories1AsFlip(),
+                            'mapped' => false,
+                        ]);
+                    } else if ($Product->getClassName1() == '服用カラー') {
+                        $builder->add('classcategory_id1', ChoiceType::class, [
+                            'label' => $Product->getClassName1(),
+                            'choices' => ['common.select.color' => '__unselected'] + $Product->getClassCategories1AsFlip(),
+                            'mapped' => false,
+                        ]);
+                    } else {
+                        $builder->add('classcategory_id1', ChoiceType::class, [
+                            'label' => $Product->getClassName1(),
+                            'choices' => ['選択してください' => '__unselected'] + $Product->getClassCategories1AsFlip(),
+                            'mapped' => false,
+                        ]);
+                    }
                 }
                 if (!is_null($Product->getClassName2())) {
                     $builder->add('classcategory_id2', ChoiceType::class, [
