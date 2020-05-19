@@ -13,14 +13,48 @@
 
 }
 
+.guideSideNave{
+    display: block;
+    position: fixed;
+    top: 220px;
+    left: 40px;
+}
+
+.guideMain{
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000;
+    -webkit-text-size-adjust: 100%;
+    width: 100%;
+    max-width: 740px;
+}
+
+.guide-pageItem{
+    padding-top: 16px;
+}
+
 .guide-pageItem h2{
+    padding-bottom: 8px;
     font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border-bottom: 1px  solid #ccc;
 }
 
 .guide-pageItem h3{
     font-size: 16px;
     font-weight: 700;
     padding-left: 8px;
+}
+
+.guide-pageItem span{
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
 }
 
 .guideItem{
@@ -32,6 +66,10 @@
     padding: 16px 20px;
     background: #F8F8F8;
     margin: 24px 0;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    line-height: 2.4;
 }
 
 
@@ -46,8 +84,21 @@
     .ec-sliderRole-Img {
         width: 335px;
     }
+
+    .guideSideNave{
+        display: none;
+    }
+
+    .guideMain{
+        width: 100%;
+        padding-left: 16px;
+    }
 }
 
 /* IPad Design */
-@media only screen and (min-width: 769px) {
+@media only screen and (max-width: 1024px) {
+    /* guide.twig */
+    .guideSideNave{
+        display: none;
+    }
 }
