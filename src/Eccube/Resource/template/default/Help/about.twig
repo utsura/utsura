@@ -10,6 +10,114 @@ file that was distributed with this source code.
 #}
 {% extends 'default_frame.twig' %}
 
+{% block stylesheet %}
+
+	<style>
+		.aboutLead{
+			font-size: 18px;
+			font-weight: 700;
+			letter-spacing: 0.04em;
+			text-align: center;
+			line-height: 2.18;
+		}
+
+		.ec-pageImg__main{
+		width: 80%;
+		margin: 0 auto;
+		}
+
+		.ec-pageImg__sub{
+			display: flex;
+		}
+
+		.ec-pageImg__sub img{
+			padding: 18px 8px;
+		}
+
+		.ec-about__profile{
+			padding-top: 20px;
+			display: flex;
+		}
+
+		.profile__img {
+			width: 30%;
+			margin-right: 16px;
+		}
+
+		.profile__text {
+			width: 70%;
+		}
+
+		.profile__text h2 {
+			font-size: 24px;
+			font-weight: 700;
+			padding: 8px;
+			letter-spacing: 0.04em;
+		}
+
+		.profile__text span {
+			font-size: 16px;
+			font-weight: 600;
+			letter-spacing: 0.04em;
+			line-height: 1.5;
+		}
+
+		.about__text {
+			margin: 32px 0 32px 0;
+		}
+
+		.about__text p {
+			font-size: 16px;
+			line-height: 1.6;
+			letter-spacing: 0.04em;
+		}
+		.aboutInfo {
+			max-width: 800px;
+			margin: 32px auto 16px auto;
+			display: flex;
+		}
+
+		.aboutInfo__logo {
+			width: 30%;
+		}
+
+		.aboutInfo__logo a {
+			color: black;
+			font-size: 24px;
+			font-weight: 700;
+		}
+
+		.aboutInfo__logo p {
+			font-weight: 700;
+		}
+
+		.aboutInfo__text {
+			width: 70%;
+			display: flex;
+			flex-wrap: wrap;
+		}
+
+		.aboutInfo__text dt {
+			width: 20%;
+			padding: 0 8px 8px 0;
+			line-height: 1.6;
+		}
+
+		.aboutInfo__text dd {
+			width: 80%;
+			line-height: 1.6;
+			padding: 0 8px 8px 0;
+		}
+
+		.aboutOther {
+			text-align: right;
+			display: block;
+		}
+
+	</style>
+
+{% endblock %}
+
 {% block main %}
 
 	<div class="ec-role">
@@ -21,7 +129,7 @@ file that was distributed with this source code.
 			<div class="ec-off1Grid__cell">
 				<p class="aboutLead">
 				東京 八王子にあるセレクトショップ。</br>
-				大野裕平がオーナー兼バイヤーとして、「おもちゃ箱をヒックリ返したような店」を</br>目指している。
+				大野裕平がオーナー兼バイヤーとして、「おもちゃ箱をヒックリ返したような店」を</wbr>目指している。
 				</p>
 				<div class="ec-pageImg__sub">
 					<img src="{{ asset('assets/img/common/about__sub1.jpg', 'user_data') }}">
@@ -43,12 +151,11 @@ file that was distributed with this source code.
 				</div>
 				<div class="about__text">
 					<p>
-						そんな今までにない不思議な空間には、甲斐 一彦が一つ一つ選び抜いたアイテムが並べられる。
-						アウトドアを知り尽くしたデザイナーが、最新技術を駆使して作り上げたもの、
-						職人の拘りの詰まったハンドメイドアイテム等。
-
-						実体験に基づき、ブランドの背景や文化も合わせて紹介する。
-						素材やデザインからなる“ホンモノの機能”を提案することが私たちの使命です。
+						UTSURAには、大野裕平が一つ一つ選び抜いたアイテムが並べられる。<br>
+						ファッションを知り尽くしたメーカーが、最新技術を駆使して作り上げたもの、
+						職人の拘りの詰まったバングルやネックネス等。<br><br>
+						オーナーの体験に基づき、ブランドの背景や文化も合わせて紹介する。
+						素材やデザインからなる“ホンモノの服”を提案することが私たちの使命です。
 					</p>
 				</div>
 				<div class="ec-pageImg__main">
@@ -89,7 +196,7 @@ file that was distributed with this source code.
 							<label class="ec-label">メッセージ</label>
 							</dt>
 						<dd>
-							年中無休でやっておりますが、こちらの都合上、開店時間が遅れる場合がございます。
+							年中無休でやっておりますが、展示会等により、開店時間が遅れる場合がございます。
 						</dd>
 					</dl>
 				</div>

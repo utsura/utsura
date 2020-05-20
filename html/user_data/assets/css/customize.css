@@ -8,6 +8,8 @@
 }
 
 
+/* about.twig */
+
 /* guide.twig */
 .guide-pageItem{
 
@@ -73,6 +75,8 @@
 }
 
 
+
+
 /* SP Design */
 @media screen and (max-width: 480px) {
     /* ロゴ */
@@ -85,6 +89,32 @@
         width: 335px;
     }
 
+    /* about.twig */
+    .aboutLead{
+        font-size: 16px;
+    }
+
+    .ec-pageImg__sub{
+        display: block;
+    }
+
+    .ec-pageImg__main{
+        width: 95%;
+    }
+
+    .ec-about__profile{
+        display: block;
+    }
+
+    .profile__text{
+        width: 100%;
+    }
+
+    .profile__text h2{
+        padding: 0;
+    }
+
+    /* guide.twig */
     .guideSideNave{
         display: none;
     }
@@ -92,6 +122,28 @@
     .guideMain{
         width: 100%;
         padding-left: 16px;
+    }
+
+    .aboutInfo{
+        display: block;
+    }
+
+    .aboutInfo__text{
+        display: block;
+        width: 100%;
+    }
+
+    .aboutInfo__text dt{
+        width: 100%;
+        padding: 0;
+    }
+
+    .aboutInfo__text dd{
+        width: 100%;
+    }
+
+    .aboutOther{
+        text-align: left;
     }
 }
 
