@@ -117,7 +117,7 @@ class MailService
             ->setSubject('['.$this->BaseInfo->getShopName().'] '.$MailTemplate->getMailSubject())
             ->setFrom([$this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()])
             ->setTo([$Customer->getEmail()])
-            ->setBcc($this->BaseInfo->getEmail01())
+            ->setBcc(array($this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()))
             ->setReplyTo($this->BaseInfo->getEmail03())
             ->setReturnPath($this->BaseInfo->getEmail04());
 
@@ -176,7 +176,7 @@ class MailService
             ->setSubject('['.$this->BaseInfo->getShopName().'] '.$MailTemplate->getMailSubject())
             ->setFrom([$this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()])
             ->setTo([$Customer->getEmail()])
-            ->setBcc($this->BaseInfo->getEmail01())
+            ->setBcc(array($this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()))
             ->setReplyTo($this->BaseInfo->getEmail03())
             ->setReturnPath($this->BaseInfo->getEmail04());
 
@@ -234,7 +234,7 @@ class MailService
             ->setSubject('['.$this->BaseInfo->getShopName().'] '.$MailTemplate->getMailSubject())
             ->setFrom([$this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()])
             ->setTo([$email])
-            ->setBcc($this->BaseInfo->getEmail01())
+            ->setBcc(array($this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()))
             ->setReplyTo($this->BaseInfo->getEmail03())
             ->setReturnPath($this->BaseInfo->getEmail04());
 
@@ -351,7 +351,7 @@ class MailService
             ->setSubject('['.$this->BaseInfo->getShopName().'] '.$MailTemplate->getMailSubject())
             ->setFrom([$this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()])
             ->setTo([$Order->getEmail()])
-            ->setBcc($this->BaseInfo->getEmail01())
+            ->setBcc(array($this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()))
             ->setReplyTo($this->BaseInfo->getEmail03())
             ->setReturnPath($this->BaseInfo->getEmail04());
 
@@ -425,7 +425,7 @@ class MailService
             ->setSubject('['.$this->BaseInfo->getShopName().'] '.$MailTemplate->getMailSubject())
             ->setFrom([$this->BaseInfo->getEmail03() => $this->BaseInfo->getShopName()])
             ->setTo([$Customer->getEmail()])
-            ->setBcc($this->BaseInfo->getEmail01())
+            ->setBcc(array($this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()))
             ->setReplyTo($this->BaseInfo->getEmail03())
             ->setReturnPath($this->BaseInfo->getEmail04());
 
@@ -484,7 +484,7 @@ class MailService
             ->setSubject('['.$this->BaseInfo->getShopName().'] '.$formData['mail_subject'])
             ->setFrom([$this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()])
             ->setTo([$Order->getEmail()])
-            ->setBcc($this->BaseInfo->getEmail01())
+            ->setBcc(array($this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()))
             ->setReplyTo($this->BaseInfo->getEmail03())
             ->setReturnPath($this->BaseInfo->getEmail04())
             ->setBody($formData['tpl_data']);
@@ -590,7 +590,7 @@ class MailService
             ->setSubject('['.$this->BaseInfo->getShopName().'] '.$MailTemplate->getMailSubject())
             ->setFrom([$this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()])
             ->setTo([$Customer->getEmail()])
-            ->setBcc($this->BaseInfo->getEmail01())
+            ->setBcc(array($this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()))
             ->setReplyTo($this->BaseInfo->getEmail03())
             ->setReturnPath($this->BaseInfo->getEmail04());
 
@@ -651,7 +651,7 @@ class MailService
             ->setSubject('['.$this->BaseInfo->getShopName().'] '.$MailTemplate->getMailSubject())
             ->setFrom([$this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()])
             ->setTo($Order->getEmail())
-            ->setBcc($this->BaseInfo->getEmail01())
+            ->setBcc(array($this->BaseInfo->getEmail01() => $this->BaseInfo->getShopName()))
             ->setReplyTo($this->BaseInfo->getEmail03())
             ->setReturnPath($this->BaseInfo->getEmail04());
 
