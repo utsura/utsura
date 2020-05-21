@@ -112,7 +112,7 @@ class AddCartType extends AbstractType
                     if ($Product->getClassName1() === '靴用サイズ' || $Product->getClassName1() === '服用サイズ') {
                         $builder->add('classcategory_id1', ChoiceType::class, [
                             'label' => $Product->getClassName1(),
-                            'choices' => ['common.select' => '__unselected'] + $Product->getClassCategories1AsFlip(),
+                            'choices' => ['common.select.size' => '__unselected'] + $Product->getClassCategories1AsFlip(),
                             'mapped' => false,
                         ]);
                     } else if ($Product->getClassName1() == '服用カラー') {
@@ -124,7 +124,7 @@ class AddCartType extends AbstractType
                     } else {
                         $builder->add('classcategory_id1', ChoiceType::class, [
                             'label' => $Product->getClassName1(),
-                            'choices' => ['選択してください' => '__unselected'] + $Product->getClassCategories1AsFlip(),
+                            'choices' => ['common.select' => '__unselected'] + $Product->getClassCategories1AsFlip(),
                             'mapped' => false,
                         ]);
                     }
