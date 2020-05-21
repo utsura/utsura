@@ -9,7 +9,7 @@ const changed = require("gulp-changed");
 // srcImgフォルダのjpg,png画像を圧縮して、distImgフォルダに保存する
 gulp.task("default", function() {
   return gulp
-    .src(".top/*.{png,jpg, jpeg}") // srcImgフォルダ以下のpng,jpg画像を取得する
+    .src("/path") // srcImgフォルダ以下のpng,jpg画像を取得する
     .pipe(changed("distImg")) // srcImg と distImg を比較して異なるものだけ圧縮する
     .pipe(
       imagemin([
@@ -18,10 +18,10 @@ gulp.task("default", function() {
             speed: 1 // スピード
         }),
         mozjpeg({
-            quality: 85, // 画質
+            quality: 75, // 画質
             progressive: true
         })
       ])
     )
-    .pipe(gulp.dest("./top/")); //保存
+    .pipe(gulp.dest("/hogehoge")); //保存
 });
