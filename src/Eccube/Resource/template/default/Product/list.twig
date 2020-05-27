@@ -105,7 +105,8 @@ file that was distributed with this source code.
             </form>
             <div class="ec-searchnavRole__topicpath">
                 <ol class="ec-topicpath">
-                    <li class="ec-topicpath__item"><a href="{{ url('product_list') }}">{{ '全て'|trans }}</a>
+                    <li class="ec-topicpath__item">
+                        <a href="{{ url('product_list') }}">{{ '全て'|trans }}</a>
                     </li>
                     {% if Category is not null %}
                         {% for Path in Category.path %}
