@@ -1,4 +1,19 @@
 /* カスタマイズ用CSS */
+/* header.twig */
+.header-banner{
+    width: auto;
+}
+
+.header-banner a:hover{
+    opacity: 0.6;
+}
+
+.header-banner a img{
+    width: 100%;
+}
+
+
+
 .ec-cartRole__totaiTextBottom {
     font-size: 13px;
 }

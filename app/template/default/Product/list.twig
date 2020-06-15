@@ -12,6 +12,32 @@ file that was distributed with this source code.
 
 {% set body_class = 'product_page' %}
 
+{% block stylesheet %}
+	<style>
+
+		.description__text {
+			font-size: 14px;
+			font-weight: 700;
+		}
+        
+        .description__price{
+            font-size: 14px;
+            font-weight: 700;
+            text-align: left;
+            padding-left: 8px;
+        }
+
+        @media screen and (max-width: 480px) {
+            .description__price{
+                padding: 0 4px;
+            }
+        }
+
+
+	</style>
+{% endblock %}
+
+
 {% block javascript %}
     <script>
         eccube.productsClassCategories = {
@@ -148,11 +174,11 @@ file that was distributed with this source code.
                                 <p class="ec-shelfGrid__item-image">
                                     <img class="lazyload" data-src="{{ asset(Product.main_list_image|no_image_product, 'save_image') }}">
                                 </p>
-                                <p>{{ Product.name }}</p>
+                                <p class="description__text">{{ Product.name }}</p>
                                 {% if Product.description_list %}
                                     <p>{{ Product.description_list|raw|nl2br }}</p>
                                 {% endif %}
-                                <p class="price02-default">
+                                <p class="description__price price02-default">
                                     {% if Product.hasProductClass %}
                                         {% if Product.getPrice02Min == Product.getPrice02Max %}
                                             {{ Product.getPrice02IncTaxMin|price }}
