@@ -109,6 +109,10 @@
         width: auto;
     }
 
+    .sp__banner a img{
+        width: 100%;
+    }
+
 
     /* ロゴ */
     .ec-headerTitle img {
