@@ -7777,7 +7777,7 @@ sg-wrapper:
 Styleguide 12.6.1
 */
 .ec-newItemRole {
-  padding: 40px 0;
+  padding: 0 0 40px 0;
   text-align: center;
 }
 

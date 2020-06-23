@@ -12,6 +12,10 @@
     width: 100%;
 }
 
+/* sp__banner.twig */
+.sp__banner{
+    display: none;
+}
 
 
 .ec-cartRole__totaiTextBottom {
@@ -94,6 +98,18 @@
 
 /* SP Design */
 @media screen and (max-width: 480px) {
+    /* header-navi.twig */
+    .header-banner{
+        display: none;
+    }
+
+    /* sp__banner.twig */
+    .sp__banner{
+        display: block;
+        width: auto;
+    }
+
+
     /* ロゴ */
     .ec-headerTitle img {
         width: 120px;
