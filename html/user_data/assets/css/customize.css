@@ -184,6 +184,11 @@
 
 /* IPad Design */
 @media only screen and (max-width: 1024px) {
+    /* header-navi.twig */
+    .header-banner{
+        display: none;
+    }
+
     /* guide.twig */
     .guideSideNave{
         display: none;
