@@ -34,6 +34,7 @@
         "doctrine/orm": "^2.6",
         "ec-cube/GmoPaymentGateway4": "^1.0",
         "ec-cube/Securitychecker4": "^4.0",
+        "ec-cube/StockShow4": "^1.0",
         "ec-cube/YamatoPayment4": "^1.1",
         "ec-cube/plugin-installer": "~0.0.6",
         "egulias/email-validator": "^2.1",

@@ -2138,6 +2138,32 @@
         }
     },
     {
+        "name": "ec-cube/StockShow4",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "dist": {
+            "type": "tar",
+            "url": "https://package-api.ec-cube.net/ec-cube/StockShow4/1.0.0/StockShow4-1.0.0.tgz"
+        },
+        "require": {
+            "ec-cube/plugin-installer": "~0.0.7"
+        },
+        "type": "eccube-plugin",
+        "extra": {
+            "code": "StockShow4",
+            "id": 1936
+        },
+        "installation-source": "dist",
+        "description": "残り在庫数表示プラグイン（4系）",
+        "transport-options": {
+            "http": {
+                "header": [
+                    "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                ]
+            }
+        }
+    },
+    {
         "name": "ec-cube/YamatoPayment4",
         "version": "1.1.2",
         "version_normalized": "1.1.2.0",

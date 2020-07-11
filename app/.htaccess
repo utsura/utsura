@@ -1,2 +1,7 @@
 order allow,deny
 deny from all
+<ifModule mod_siteguard.c>
+SiteGuard_User_ExcludeSig 09906006
+SiteGuard_User_ExcludeSig ip(211.127.67.248)
+SiteGuard_User_ExcludeSig ip(61.114.212.133)
+</ifModule>

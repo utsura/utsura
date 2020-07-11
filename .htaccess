@@ -31,7 +31,6 @@ DirectoryIndex index.php index.html .ht
     #ページアクセスできない時シンボリックリンクが有効になっていない可能性あります、
     #オプションを追加してください
     #Options +FollowSymLinks +SymLinksIfOwnerMatch
-
     RewriteEngine On
 
     # Authorization ヘッダが取得できない環境への対応
@@ -86,6 +85,11 @@ SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|ico)$ no-gzip dont-vary
 # プロキシサーバが間違ったコンテンツを配布しないようにする
 Header append Vary Accept-Encoding env=!dont-vary
 
+# WAF無効化
+<IfModule mod_siteguard.c>
+ SiteGuard_User_ExcludeSig sqlinj-13
+</IfModule>
+
 # 各コンテンツを圧縮する設定を記述
 AddOutputFilterByType DEFLATE text/plain
 AddOutputFilterByType DEFLATE text/html
@@ -105,3 +109,9 @@ AddOutputFilterByType DEFLATE application/x-font-woff
 AddOutputFilterByType DEFLATE application/x-font-opentype
 AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
 </IfModule>
+
+<ifModule mod_siteguard.c>
+SiteGuard_User_ExcludeSig 09906006
+SiteGuard_User_ExcludeSig ip(211.127.67.248)
+SiteGuard_User_ExcludeSig ip(61.114.212.133)
+</ifModule>
