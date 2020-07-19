@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d2f2abc2cda0129b5e9f42fc08cf5ab9",
+    "content-hash": "66dc3ae04debe7bee526ff78e4787bfb",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1675,6 +1675,30 @@
                 "id": 1797
             },
             "description": "PGマルチペイメントサービス決済プラグイン",
+            "transport-options": {
+                "http": {
+                    "header": [
+                        "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "ec-cube/PayPalCheckout",
+            "version": "1.0.5",
+            "dist": {
+                "type": "tar",
+                "url": "https://package-api.ec-cube.net/ec-cube/PayPalCheckout/1.0.5/PayPalCheckout-1.0.5.tgz"
+            },
+            "require": {
+                "ec-cube/plugin-installer": "~0.0.7"
+            },
+            "type": "eccube-plugin",
+            "extra": {
+                "code": "PayPalCheckout",
+                "id": 1930
+            },
+            "description": "ペイパルチェックアウト決済プラグイン(4.0系)",
             "transport-options": {
                 "http": {
                     "header": [

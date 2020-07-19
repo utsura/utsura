@@ -27,9 +27,7 @@ use Doctrine\ORM\Mapping as ORM;
      */
     class Payment extends \Eccube\Entity\AbstractEntity
     {
-    use \Plugin\GmoPaymentGateway4\Entity\PaymentTrait;
-
-        /**
+    /**
          * @return string
          */
         public function __toString()
