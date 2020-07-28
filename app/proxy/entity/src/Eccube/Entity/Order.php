@@ -43,7 +43,7 @@ use Eccube\Service\PurchaseFlow\ItemCollection;
     {
     use NameTrait, PointTrait, \Plugin\YamatoPayment4\Entity\OrderTrait;
 
-        /**
+    /**
          * 課税対象の明細を返す.
          *
          * @return array
