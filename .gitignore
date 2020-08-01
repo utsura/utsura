@@ -2,4 +2,5 @@
 var/*
 var/log
 node_modules
+app/Plugin/*
 html/upload/*
