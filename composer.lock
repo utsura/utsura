@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66dc3ae04debe7bee526ff78e4787bfb",
+    "content-hash": "fad6f4588ee430c4e30c41d32c16f80e",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1685,10 +1685,10 @@
         },
         {
             "name": "ec-cube/PayPalCheckout",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "dist": {
                 "type": "tar",
-                "url": "https://package-api.ec-cube.net/ec-cube/PayPalCheckout/1.0.5/PayPalCheckout-1.0.5.tgz"
+                "url": "https://package-api.ec-cube.net/ec-cube/PayPalCheckout/1.0.6/PayPalCheckout-1.0.6.tgz"
             },
             "require": {
                 "ec-cube/plugin-installer": "~0.0.7"

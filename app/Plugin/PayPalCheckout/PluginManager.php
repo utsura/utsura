@@ -84,7 +84,9 @@ class PluginManager extends AbstractPluginManager
      */
     public function enable(array $meta, ContainerInterface $container)
     {
-        $this->registerPluginConfig($container);
+        if ($this->isFirstEnable($container)) {
+            $this->registerPluginConfig($container);
+        }
         $this->registerPaymentMethod($container);
         $this->registerBrandLogo($container);
 
@@ -103,33 +105,6 @@ class PluginManager extends AbstractPluginManager
         // ショートカット決済のページレイアウトを削除
         $this->deleteConfirmPage($container);
 
-        /** @var EntityManager $entityManager */
-        $entityManager = $container->get('doctrine')->getManager();
-
-        /** @var BlockRepository $blockRepository */
-        $blockRepository = $container->get(BlockRepository::class);
-
-        /** @var Block $Block */
-        $Block = $blockRepository->findOneBy([
-            'file_name' => 'paypal_logo',
-        ]);
-
-        /** @var string $removePath */
-        $removePath = $this->getBlockFilePathInTheme($container, $Block);
-
-        /** @var Filesystem $fs */
-        $fs = new Filesystem();
-        if ($fs->exists($removePath)) {
-            $fs->remove($removePath);
-        }
-
-        /** @var BlockPosition $BlockPosition */
-        foreach ($Block->getBlockPositions() as $BlockPosition) {
-            $Block->removeBlockPosition($BlockPosition);
-            $entityManager->remove($BlockPosition);
-        }
-        $entityManager->remove($Block);
-
         $this->disablePaymentMethod($container);
 
         /** @var CacheUtil $cache */
@@ -144,7 +119,23 @@ class PluginManager extends AbstractPluginManager
      */
     public function uninstall(array $meta, ContainerInterface $container)
     {
-        // quiet.
+        $this->deleteBrandLogo($container);
+    }
+
+    /**
+     * 初めてプラグインが有効化される場合か否か
+     *
+     * @param ContainerInterface $container
+     * @return bool
+     */
+    private function isFirstEnable(ContainerInterface $container): bool
+    {
+        /** @var ConfigRepository $configRepository */
+        $configRepository = $container->get(ConfigRepository::class);
+        /** @var Config $Config */
+        $Config = $configRepository->get();
+
+        return empty($Config);
     }
 
     /**
@@ -157,18 +148,10 @@ class PluginManager extends AbstractPluginManager
         /** @var EntityManager $entityManager */
         $entityManager = $container->get('doctrine')->getManager();
 
-        /** @var ConfigRepository $configRepository */
-        $configRepository = $container->get(ConfigRepository::class);
-
         /** @var Config $Config */
-        $Config = $configRepository->get();
-
-        if (empty($Config)) {
-            /** @var Config $Config */
-            $Config = Config::createInitialConfig();
-            $entityManager->persist($Config);
-            $entityManager->flush($Config);
-        }
+        $Config = Config::createInitialConfig();
+        $entityManager->persist($Config);
+        $entityManager->flush($Config);
     }
 
     /**
@@ -290,6 +273,17 @@ class PluginManager extends AbstractPluginManager
      */
     private function registerBrandLogo(ContainerInterface $container): void
     {
+        /** @var BlockRepository $blockRepository */
+        $blockRepository = $container->get(BlockRepository::class);
+        /** @var Block $Block */
+        $logoBlock = $blockRepository->findOneBy([
+            'file_name' => 'paypal_logo',
+        ]);
+        // 既に存在する場合はスキップ
+        if (!is_null($logoBlock)) {
+            return;
+        }
+
         /** @var EntityManager $entityManager */
         $entityManager = $container->get('doctrine')->getManager();
 
@@ -322,11 +316,18 @@ class PluginManager extends AbstractPluginManager
             Layout::DEFAULT_LAYOUT_UNDERLAYER_PAGE,
         ];
         foreach ($insertPages as $insertPage) {
-            /** @var BlockPosition $InsertedBlockPosition */
-            $InsertedBlockPosition = $blockPositionRepository->findOneBy([
+            /** @var BlockPosition $footer */
+            $footer = $blockPositionRepository->findOneBy([
                 'section' => Layout::TARGET_ID_FOOTER,
                 'layout_id' => $insertPage
             ], ['block_row' => 'DESC']);
+            if (is_null($footer)) {
+                // フッターに何もなければ最初に追加
+                $InsertedBlockPosition = 0;
+            } else {
+                // フッター要素の一番最後に挿入
+                $InsertedBlockPosition = $footer->getBlockRow() + 1;
+            }
 
             /** @var Layout $Layout */
             $Layout = $entityManager->find(Layout::class, $insertPage);
@@ -338,7 +339,7 @@ class PluginManager extends AbstractPluginManager
             $BlockPosition->setBlockId($Block->getId());
             $BlockPosition->setLayout($Layout);
             $BlockPosition->setLayoutId($insertPage);
-            $BlockPosition->setBlockRow($InsertedBlockPosition->getBlockRow() + 1);
+            $BlockPosition->setBlockRow($InsertedBlockPosition);
             $entityManager->persist($BlockPosition);
         }
         $entityManager->flush($BlockPosition);
@@ -409,5 +410,36 @@ class PluginManager extends AbstractPluginManager
 
         // コミット
         $em->commit();
+    }
+
+    /**
+     * @param ContainerInterface $container
+     * @throws ORMException
+     */
+    private function deleteBrandLogo(ContainerInterface $container): void
+    {
+        /** @var BlockRepository $blockRepository */
+        $blockRepository = $container->get(BlockRepository::class);
+        /** @var Block $Block */
+        $Block = $blockRepository->findOneBy([
+            'file_name' => 'paypal_logo',
+        ]);
+
+        /** @var string $removePath */
+        $removePath = $this->getBlockFilePathInTheme($container, $Block);
+        /** @var Filesystem $fs */
+        $fs = new Filesystem();
+        if ($fs->exists($removePath)) {
+            $fs->remove($removePath);
+        }
+
+        /** @var EntityManager $entityManager */
+        $entityManager = $container->get('doctrine')->getManager();
+        /** @var BlockPosition $BlockPosition */
+        foreach ($Block->getBlockPositions() as $BlockPosition) {
+            $Block->removeBlockPosition($BlockPosition);
+            $entityManager->remove($BlockPosition);
+        }
+        $entityManager->remove($Block);
     }
 }

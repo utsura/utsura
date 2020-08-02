@@ -9,7 +9,44 @@
 
 {% block stylesheet %}{% endblock stylesheet %}
 
-{% block javascript %}{% endblock javascript %}
+{% block javascript %}
+<script>
+//              if (document.getElementById("config_use_sandbox").checked) {
+//                  document.getElementById("pcplink").classList.add("disabled")
+//              } else {
+//                  // チェックボックスがOFFのときの処理
+//              }
+var done = false
+$(function() {
+    if($('#config_use_sandbox').prop('checked')){
+        $('#pcplink').css('pointer-events', 'none')
+    } else {
+        $('#pcplink').css('pointer-events', '')
+    }
+    if('{{ actionUrl }}' == '') {
+        $('#pcplink').css('pointer-events', 'none')
+    }
+    if(done) {
+        $('#pcplink').css('pointer-events', 'none')
+    }
+
+    $('#config_use_sandbox').on('change', function() {
+        if($('#config_use_sandbox').prop('checked')){
+            $('#pcplink').css('pointer-events', 'none')
+        } else {
+            $('#pcplink').css('pointer-events', '')
+        }
+        if('{{ actionUrl }}' == '') {
+            $('#pcplink').css('pointer-events', 'none')
+        }
+        if(done) {
+            $('#pcplink').css('pointer-events', 'none')
+        }
+
+    });
+});
+</script>
+{% endblock javascript %}
 
 {% block main %}
   <form name="pay_pal_checkout_admin_config_form" method="POST" action="{{ url('pay_pal_checkout_admin_config_submit') }}">
@@ -56,8 +93,71 @@
                   {{ form_errors(form.client_secret) }}
                 </div>
               </div>
+              <script>
+                  function onboardedCallback(authCode, sharedId) {
+                      if(done) {
+                          console.log('alrady done')
+                          return
+                      }
+                      $('#pcplink').css('pointer-events', 'none')
+                      done = true
+                      fetch('{{ url("pay_pal_checkout_admin_login") }}', {
+                          method: 'POST',
+                          headers: {
+                              'content-type': 'application/json'
+                          },
+                          body: JSON.stringify({
+                              authCode: authCode,
+                              sharedId: sharedId
+                          })
+                      }).then(function(res) {
+                          return res.json();
+                      }).then(function(details) {
+//                          console.log(details)
+                          document.getElementById( "config_client_id" ).value = details.result.ClientId
+                          document.getElementById( "config_client_secret" ).value = details.result.ClientSecret
+                      }).catch(function(err) {
+                          alert('Client ID/Secretの取得に失敗しました。')
+                      })
+                  }
+              </script>
+              <div class="row">
+                <span>{{ 'paypal.admin.config.form.label_production'|trans }}</span>
+              </div>
+              <div class="row" style="margin-bottom:15px; padding-left: 15px;">
+                <span>
+                  <a id="pcplink" class="btn btn-ec-conversion px-5 ladda-button" target="_blank" data-paypal-onboard-complete="onboardedCallback" href="{{ actionUrl }}&displayMode=minibrowser" data-paypal-button="true">{{ 'paypal.admin.config.form.label_ISU_button'|trans }}</a>
+                  {%- if actionUrl != '' -%}
+                     {{ 'paypal.admin.config.form.description_note'|trans }}
+                  {%- else -%}
+                      {{ 'paypal.admin.config.form.description_error'|trans }}
+                  {%- endif -%}
+                </span>
+                <script id="paypal-js" src="https://www.paypal.com/webapps/merchantboarding/js/lib/lightbox/partner.js"></script>
+              </div>
               <div class="row" style="margin-bottom:25px; padding-left: 15px;">
+                <span>{{ 'paypal.admin.config.form.description_prod1'|trans }}</span><br/>
+                <span>{{ 'paypal.admin.config.form.description_prod2'|trans }}</span><br/>
+                <span>{{ 'paypal.admin.config.form.description_prod3'|trans }}</span><br/>
+                <span>{{ 'paypal.admin.config.form.description_prod4'|trans }}</span><br/>
+                <span>{{ 'paypal.admin.config.form.description_prod5_1'|trans }}<a target=_blank href="https://www.paypal.com/jp/webapps/mpp/merchant/setup-business-account">https://www.paypal.com/jp/webapps/mpp/merchant/setup-business-account</a>{{ 'paypal.admin.config.form.description_prod5_2'|trans }}</span><br/>
+                <span>{{ 'paypal.admin.config.form.description_prod6'|trans }}</span>
+                <br/>
+              </div>
+              <div class="row">
+                  <span>{{ 'paypal.admin.config.form.label_sandbox'|trans }}</span>
+              </div>
+              <div class="row" style="margin-bottom:15px; padding-left: 15px;">
                 <span>{{ 'paypal.admin.config.form.description'|trans }}</span>
+              </div>
+              <div class="row" style="margin-bottom:25px;">
+                <div class="col-3">
+                  <span>{{ 'paypal.admin.config.form.use_sandbox'|trans }}</span>
+                </div>
+                <div class="col mb-2">
+                    {{ form_widget(form.use_sandbox) }}
+                    {{ form_errors(form.use_sandbox) }}
+                </div>
               </div>
               <div class="row">
                 <div class="col-3">
@@ -69,15 +169,6 @@
                 <div class="col mb-2">
                   {{ form_widget(form.use_express_btn) }}
                   {{ form_errors(form.use_express_btn) }}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-3">
-                  <span>{{ 'paypal.admin.config.form.use_sandbox'|trans }}</span>
-                </div>
-                <div class="col mb-2">
-                  {{ form_widget(form.use_sandbox) }}
-                  {{ form_errors(form.use_sandbox) }}
                 </div>
               </div>
               <div class="row">

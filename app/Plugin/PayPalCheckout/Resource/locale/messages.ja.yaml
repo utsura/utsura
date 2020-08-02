@@ -18,7 +18,19 @@ paypal:
       header4: ロゴ設定
       back: 戻る
       form:
-        description: Client ID、Secretの取得方法については、本プラグインのマニュアルをご参照ください。
+        label_production: ［PayPal 本番アカウント］
+        label_sandbox: ［PayPal Sandboxアカウント］
+        label_ISU_button: PayPal本番アカウントのClient ID/Secret取得
+        description_prod1: ・PayPal本番アカウントのClient ID/Secretは、上の「PayPal本番アカウントのClient ID/Secret取得」をクリックしてください。
+        description_prod2: ・PayPal本番アカウントを持っていない場合は、表示される画面からPayPalアカウントを作成できます（Client ID/Secretは自動的に反映されます）。
+        description_prod3: ・既にPayPal本番アカウントをお持ちの場合は、表示される画面でお持ちのPayPalアカウントでログインすることでClient ID/Secretが自動的に反映されます。
+        description_prod4: ・表示されるPayPal画面での設定が完了したら、PayPal画面は閉じてください。
+        description_note: （[Sandbox(開発用テストツール)の使用]のチェックを外した状態でクリックできます）
+        description_error: （PayPalサーバと正常に通信できないため、このボタンは利用できません）
+        description_prod5_1: （※本稼働前には、
+        description_prod5_2: を必ずご確認ください）
+        description_prod6: （※詳細は本プラグインのマニュアルをご参照ください）
+        description: Sandboxでのテストの場合のClient ID/Secretの取得、設定方法については、本プラグインのマニュアルをご参照ください。
         client_id: Client ID
         client_secret: Secret
         use_express_btn: カート画面での「PayPal」ボタンの使用

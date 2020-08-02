@@ -33,7 +33,7 @@
         "doctrine/migrations": "^1.8",
         "doctrine/orm": "^2.6",
         "ec-cube/GmoPaymentGateway4": "^1.0",
-        "ec-cube/PayPalCheckout": "^1.0",
+        "ec-cube/PayPalCheckout": "1.0.6",
         "ec-cube/Securitychecker4": "^4.0",
         "ec-cube/StockShow4": "^1.0",
         "ec-cube/YamatoPayment4": "^1.1",

@@ -2108,11 +2108,11 @@
     },
     {
         "name": "ec-cube/PayPalCheckout",
-        "version": "1.0.5",
-        "version_normalized": "1.0.5.0",
+        "version": "1.0.6",
+        "version_normalized": "1.0.6.0",
         "dist": {
             "type": "tar",
-            "url": "https://package-api.ec-cube.net/ec-cube/PayPalCheckout/1.0.5/PayPalCheckout-1.0.5.tgz"
+            "url": "https://package-api.ec-cube.net/ec-cube/PayPalCheckout/1.0.6/PayPalCheckout-1.0.6.tgz"
         },
         "require": {
             "ec-cube/plugin-installer": "~0.0.7"
