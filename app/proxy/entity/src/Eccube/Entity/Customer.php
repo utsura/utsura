@@ -30,9 +30,9 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
      */
     class Customer extends \Eccube\Entity\AbstractEntity implements UserInterface
     {
-    use \Plugin\GmoPaymentGateway4\Entity\CustomerTrait;
+    use \Plugin\PayPalCheckout\Entity\CustomerTrait;
 
-        /**
+    /**
          * @var int
          *
          * @ORM\Column(name="id", type="integer", options={"unsigned":true})

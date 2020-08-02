@@ -1,4 +1,23 @@
 /* カスタマイズ用CSS */
+/* header.twig */
+.header-banner{
+    width: auto;
+}
+
+.header-banner a:hover{
+    opacity: 0.6;
+}
+
+.header-banner a img{
+    width: 100%;
+}
+
+/* sp__banner.twig */
+.sp__banner{
+    display: none;
+}
+
+
 .ec-cartRole__totaiTextBottom {
     font-size: 13px;
 }
@@ -79,6 +98,22 @@
 
 /* SP Design */
 @media screen and (max-width: 480px) {
+    /* header-navi.twig */
+    .header-banner{
+        display: none;
+    }
+
+    /* sp__banner.twig */
+    .sp__banner{
+        display: block;
+        width: auto;
+    }
+
+    .sp__banner a img{
+        width: 100%;
+    }
+
+
     /* ロゴ */
     .ec-headerTitle img {
         width: 120px;
@@ -149,6 +184,11 @@
 
 /* IPad Design */
 @media only screen and (max-width: 1024px) {
+    /* header-navi.twig */
+    .header-banner{
+        display: none;
+    }
+
     /* guide.twig */
     .guideSideNave{
         display: none;

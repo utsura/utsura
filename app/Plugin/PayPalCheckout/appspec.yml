@@ -1,0 +1,18 @@
+version: 0.0
+
+os: linux
+
+files:
+  - source: .
+    destination: /home/ec2-user/paypal-checkout
+    overwrite: yes
+
+hooks:
+  ApplicationStop:
+    - location: deploy-stop.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: deploy-start.sh
+      timeout: 300
+      runas: root

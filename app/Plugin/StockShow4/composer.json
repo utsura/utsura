@@ -1,0 +1,1 @@
+{"name":"ec-cube\/StockShow4","version":"1.0.0","description":"\u6b8b\u308a\u5728\u5eab\u6570\u8868\u793a\u30d7\u30e9\u30b0\u30a4\u30f3\uff084\u7cfb\uff09","type":"eccube-plugin","require":{"ec-cube\/plugin-installer":"~0.0.7"},"extra":{"code":"StockShow4","id":1936}}

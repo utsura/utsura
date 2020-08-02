@@ -2107,6 +2107,32 @@
         }
     },
     {
+        "name": "ec-cube/PayPalCheckout",
+        "version": "1.0.6",
+        "version_normalized": "1.0.6.0",
+        "dist": {
+            "type": "tar",
+            "url": "https://package-api.ec-cube.net/ec-cube/PayPalCheckout/1.0.6/PayPalCheckout-1.0.6.tgz"
+        },
+        "require": {
+            "ec-cube/plugin-installer": "~0.0.7"
+        },
+        "type": "eccube-plugin",
+        "extra": {
+            "code": "PayPalCheckout",
+            "id": 1930
+        },
+        "installation-source": "dist",
+        "description": "ペイパルチェックアウト決済プラグイン(4.0系)",
+        "transport-options": {
+            "http": {
+                "header": [
+                    "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                ]
+            }
+        }
+    },
+    {
         "name": "ec-cube/Securitychecker4",
         "version": "4.0.0",
         "version_normalized": "4.0.0.0",
@@ -2129,6 +2155,32 @@
                 "email": "support@ec-cube.net"
             }
         ],
+        "transport-options": {
+            "http": {
+                "header": [
+                    "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                ]
+            }
+        }
+    },
+    {
+        "name": "ec-cube/StockShow4",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "dist": {
+            "type": "tar",
+            "url": "https://package-api.ec-cube.net/ec-cube/StockShow4/1.0.0/StockShow4-1.0.0.tgz"
+        },
+        "require": {
+            "ec-cube/plugin-installer": "~0.0.7"
+        },
+        "type": "eccube-plugin",
+        "extra": {
+            "code": "StockShow4",
+            "id": 1936
+        },
+        "installation-source": "dist",
+        "description": "残り在庫数表示プラグイン（4系）",
         "transport-options": {
             "http": {
                 "header": [

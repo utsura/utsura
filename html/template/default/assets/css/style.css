@@ -7777,7 +7777,7 @@ sg-wrapper:
 Styleguide 12.6.1
 */
 .ec-newItemRole {
-  padding: 40px 0;
+  padding: 0 0 40px 0;
   text-align: center;
 }
 
@@ -8157,7 +8157,7 @@ Styleguide 13.2.1
 }
 
 .ec-shelfGrid .ec-shelfGrid__item-image {
-  height: 150px;
+  width: 160px;
   margin-bottom: 10px;
   text-align: center;
 }
@@ -11382,7 +11382,7 @@ Styleguide 22.1
   }
 
   .ec-shelfGrid .ec-shelfGrid__item-image {
-    height: 320px;
+    width: 230px;
   }
 
   .ec-shelfGrid .ec-shelfGrid__item {
