@@ -1,0 +1,78 @@
+{#
+/*
+ * This file is part of the CheckProduct plugin
+ *
+ * Copyright(c) 2019 SYSTEM FRIEND INC.
+ *
+ */
+#}
+{% if CheckProducts|length > 0 %}
+    <div class="ec-role">
+        <div class="ec-checkProductRole">
+            <div class="ec-secHeading">
+                <span class="ec-secHeading__en">{{'CheckProduct4.front.block.check_products.title.en'|trans}}</span>
+                <span class="ec-secHeading__line"></span>
+                <span class="ec-secHeading__ja">{{'CheckProduct4.front.block.check_products.title.ja'|trans}}</span>
+            </div>
+            <div>
+                <div class="ec-checkProductItemRole__list">
+                    {% for Product in CheckProducts %}
+                        <div class="ec-checkProductRole__listItem">
+                            <a href="{{ url('product_detail', {'id' : Product.id}) }}" class="item_photo">
+                                <img src="{{ asset(Product.main_list_image|no_image_product, 'save_image') }}">
+                                <p class="ec-checkProductRole__listItemTitle">{{ Product.name }}</p>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% block stylesheet %}
+    <style type="text/css">
+
+        .ec-checkProductRole{
+            padding: 60px 0 0;}
+
+        .ec-checkProductItemRole__list {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap; }
+        .ec-checkProductRole__listItem{
+            margin-bottom: 4%;
+            width: 48%;
+            height: auto; }
+        .ec-checkProductRole__listItem:nth-child(odd) {
+            margin-right: 4%; }
+        .ec-checkProductRole__listItemTitle {
+            margin: 8px 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: black; }
+
+        .ec-checkProductRole{
+            padding: 60px 0;
+        }
+
+        .ec-checkProductItemRole__list{
+            -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+        }
+
+        .ec-checkProductRole__listItem{
+            margin-bottom: 15px;
+            width: calc(100% / 4);
+        }
+
+        .ec-checkProductRole__listItem:not(:last-of-type){
+            margin-right: 30px;
+        }
+
+        .ec-checkProductRole__listItemTitle:nth-child(odd){
+            margin-right: 30px;
+        }
+    </style>
+{% endblock %}

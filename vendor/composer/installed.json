@@ -2081,6 +2081,32 @@
         "abandoned": true
     },
     {
+        "name": "ec-cube/CheckProduct4",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "dist": {
+            "type": "tar",
+            "url": "https://package-api.ec-cube.net/ec-cube/CheckProduct4/1.0.1/CheckProduct4-1.0.1.tgz"
+        },
+        "require": {
+            "ec-cube/plugin-installer": "~0.0.6"
+        },
+        "type": "eccube-plugin",
+        "extra": {
+            "code": "CheckProduct4",
+            "id": 1965
+        },
+        "installation-source": "dist",
+        "description": "最近チェックした商品",
+        "transport-options": {
+            "http": {
+                "header": [
+                    "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                ]
+            }
+        }
+    },
+    {
         "name": "ec-cube/GmoPaymentGateway4",
         "version": "1.0.4",
         "version_normalized": "1.0.4.0",
@@ -4194,7 +4220,8 @@
         "homepage": "https://github.com/sebastianbergmann/php-token-stream/",
         "keywords": [
             "tokenizer"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "phpunit/phpunit",

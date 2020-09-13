@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fad6f4588ee430c4e30c41d32c16f80e",
+    "content-hash": "5ecdd51e3baf5a65cd371572cc9816ea",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1658,6 +1658,30 @@
             ],
             "abandoned": true,
             "time": "2018-07-27T15:41:37+00:00"
+        },
+        {
+            "name": "ec-cube/CheckProduct4",
+            "version": "1.0.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://package-api.ec-cube.net/ec-cube/CheckProduct4/1.0.1/CheckProduct4-1.0.1.tgz"
+            },
+            "require": {
+                "ec-cube/plugin-installer": "~0.0.6"
+            },
+            "type": "eccube-plugin",
+            "extra": {
+                "code": "CheckProduct4",
+                "id": 1965
+            },
+            "description": "最近チェックした商品",
+            "transport-options": {
+                "http": {
+                    "header": [
+                        "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                    ]
+                }
+            }
         },
         {
             "name": "ec-cube/GmoPaymentGateway4",

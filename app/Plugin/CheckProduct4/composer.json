@@ -1,0 +1,1 @@
+{"name":"ec-cube\/CheckProduct4","version":"1.0.1","description":"\u6700\u8fd1\u30c1\u30a7\u30c3\u30af\u3057\u305f\u5546\u54c1","type":"eccube-plugin","require":{"ec-cube\/plugin-installer":"~0.0.6"},"extra":{"code":"CheckProduct4","id":1965}}
