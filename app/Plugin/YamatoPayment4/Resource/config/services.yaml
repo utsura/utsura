@@ -6,6 +6,12 @@ parameters:
     #決済通信タイムアウト値
     YAMATO_API_HTTP_TIMEOUT: 20
 
+    # 決済受信処理のIPアドレス制限
+    RECV_ALLOW_HOST:
+        - 127.0.0.1       # for phpunit
+        - 192.168.56.1    # for virtualbox
+        - 218.40.0.72     # for production
+
     # 支払方法 種別ID
     YAMATO_PAYID_CREDIT: 10         # クレジット支払ID
     YAMATO_PAYID_CVS: 30            # コンビニ支払ID
@@ -22,6 +28,7 @@ parameters:
     # 支払方法 種別ID
     YAMATO_PAYID:
         CREDIT: 10
+        CVS: 30
         DEFERRED: 60
         SMS_DEFERRED: 80
 
@@ -119,6 +126,7 @@ parameters:
     CREDIT_METHOD_AEON: 11          # イオンクレジット
     CREDIT_METHOD_AMEX: 12          # アメックス
     CREDIT_METHOD_TOP: 13           # TOP＆カード
+    CREDIT_METHOD_RAKUTEN: 14       # 楽天カード
     CREDIT_METHOD_OTHER: 99         # その他
 
     # コンビニ情報
@@ -208,7 +216,7 @@ parameters:
     # 予約販売商品関連
     #################################
     # 商品種別ID(リンクタイプに合わせる)
-    PRODUCT_TYPE_ID_RESERVE: 9625
+    SALE_TYPE_ID_RESERVE: 9625
     # 予約販売再与信期限(再与信日を含む10日前のため9で設定)
     YAMATO_DEADLINE_RECREDIT: 9
 

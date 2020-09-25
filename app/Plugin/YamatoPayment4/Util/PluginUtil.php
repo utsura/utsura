@@ -32,6 +32,7 @@ class PluginUtil
     {
         return [
             $this->eccubeConfig['YAMATO_PAYID_CREDIT'] => $this->eccubeConfig['YAMATO_PAYNAME_CREDIT'],
+            $this->eccubeConfig['YAMATO_PAYID_CVS'] => $this->eccubeConfig['YAMATO_PAYNAME_CVS'],
             $this->eccubeConfig['YAMATO_PAYID_DEFERRED'] => $this->eccubeConfig['YAMATO_PAYNAME_DEFERRED'],
         ];
     }
@@ -189,6 +190,18 @@ class PluginUtil
             'get_trade_info' => '取引状況取得',
             'invoice_reissue' => '請求内容変更・請求書再発行',
             'withdraw_reissue' => '請求書再発行取り下げ',
+        ];
+    }
+
+    public function getAllCvs()
+    {
+        return [
+            $this->eccubeConfig['CONVENI_ID_SEVENELEVEN'] => $this->eccubeConfig['CONVENI_NAME_SEVENELEVEN'],
+            $this->eccubeConfig['CONVENI_ID_LAWSON'] => $this->eccubeConfig['CONVENI_NAME_LAWSON'],
+            $this->eccubeConfig['CONVENI_ID_FAMILYMART'] => $this->eccubeConfig['CONVENI_NAME_FAMILYMART'],
+            $this->eccubeConfig['CONVENI_ID_SEICOMART'] => $this->eccubeConfig['CONVENI_NAME_SEICOMART'],
+            $this->eccubeConfig['CONVENI_ID_MINISTOP'] => $this->eccubeConfig['CONVENI_NAME_MINISTOP'],
+//            $this->eccubeConfig['CONVENI_ID_CIRCLEK'] => $this->eccubeConfig['CONVENI_NAME_CIRCLEK'],
         ];
     }
 }

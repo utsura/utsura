@@ -21,6 +21,29 @@ file that was distributed with this source code.
 
 {% endblock stylesheet %}
 
+{% block javascript %}
+<script>
+function getGlobalIpAddress() {
+    $.ajax({
+        url: "{{ url('yamato_payment4_admin_config_ip_address') }}",
+        type: "GET",
+    }).done(function (data) {
+        if (data.status == 'OK') {
+            $('.global_ip_address').text(data.ip_address);
+        }
+    }).fail(function (data) {
+        if (data.responseJSON.status == 'NG') {
+            data.responseJSON.error_messages.forEach(function (err) {
+                alert(err);
+            })
+        } else {
+            alert('get global ip address failed.');
+        }
+    })
+}
+</script>
+{% endblock javascript %}
+
 {% block main %}
     <form role="form" method="post">
 
@@ -80,6 +103,14 @@ file that was distributed with this source code.
                                 <div class="col mb-2">
                                     {{ form_widget(form.use_option, {'label_attr': {'class': 'radio-inline'}}) }}
                                     {{ form_errors(form.use_option) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3"><span>{{ 'yamato_payment.admin.config.advance_sale'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.advance_sale, {'label_attr': {'class': 'radio-inline'}}) }}
+                                    {{ form_errors(form.advance_sale) }}
                                 </div>
                             </div>
                         </div>
@@ -189,10 +220,32 @@ file that was distributed with this source code.
                                     <span>{{ 'yamato_payment.admin.config.result_notification_url'|trans }}</span>
                                 </div>
                                 <div class="col mb-2">
-                                    <div>{{ result_notification_url }}</div>
+                                    <div>{{ sms_result_notification_url }}</div>
                                     <div>
                                         ※クロネコ代金後払いサービス画面よりログイン頂き、「加盟店情報修正」＞判定結果のPOST受信設定で「POSTで受信する」を選択後、判定結果のPOST受信URLに設定してください。
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <span>{{ 'yamato_payment.admin.config.cvs_result_notification_url'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    <div>{{ cvs_result_notification_url }}</div>
+                                    <div>
+                                        ※クロネコwebコレクト画面よりログイン頂き、「加盟店情報・動作環境設定」＞決済結果データ受信設定で「POSTで受信する」を選択後、決済結果受取URLに設定してください。
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <span>{{ 'yamato_payment.admin.config.global_ip_address'|trans }}</span>
+                                </div>
+                                <div class="col mb-2">
+                                    <p class="global_ip_address"></p>
+                                    <button type="button" class="btn btn-ec-conversion px-5" onClick="getGlobalIpAddress();return false;">
+                                        チェック
+                                    </button>
                                 </div>
                             </div>
                         </div>

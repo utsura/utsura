@@ -98,6 +98,7 @@ table td {
                             <td>
                                 <span>{{ cardData.data }}</span>
                                 <span>カード名義：{{ cardData.cardOwner }}</span>
+                                {% if cardData.subscriptionFlg == '1' %}<span>※予約販売利用有り</span>{% endif %}
                                 <input id="card_key_{{ cardData.card_key }}_last_credit_date" type="hidden" value="{{ cardData.lastCreditDate }}" />
                             </td>
                         </tr>

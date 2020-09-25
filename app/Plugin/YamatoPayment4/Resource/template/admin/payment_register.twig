@@ -7,6 +7,8 @@
 {% if Payment.getMethodClass == 'Plugin\\YamatoPayment4\\Service\\Method\\Credit' %}
 <script>
 $(function() { $('#yamato_payment4_pay_way').appendTo($('#form1 > div.c-contentsArea__cols div.card-body')); })
+$(function() { $('#yamato_payment4_TdFlag').appendTo($('#form1 > div.c-contentsArea__cols div.card-body')); })
+$(function() { $('#yamato_payment4_autoRegist').appendTo($('#form1 > div.c-contentsArea__cols div.card-body')); })
 </script>
                             <div class="row" id="yamato_payment4_pay_way">
                                 <div class="col-3"><span>支払回数</span></div>
@@ -15,5 +17,166 @@ $(function() { $('#yamato_payment4_pay_way').appendTo($('#form1 > div.c-contents
                                     {{ form_errors(form.pay_way) }}
                                 </div>
                             </div>
+
+                            <div class="row" id="yamato_payment4_TdFlag">
+                                <div class="col-3"><span>本人認証サービス(3Dセキュア) <span class="badge badge-primary ml-1">{{ 'admin.common.required'|trans }}</span></span></div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.TdFlag) }}
+                                    {{ form_errors(form.TdFlag) }}
+                                    ※ご利用端末がPC、かつ3Dセキュア対象カードの場合、本人認証が実行されます。<br>
+                                    スマートフォンは3Dセキュア対象外となっております。<br>
+                                    ※本人認証サービスをご利用の場合は、セキュリティ管理画面のSSL制限にチェックをいれてください。
+                                </div>
+                            </div>
+
+                            {% if moduleSettings.use_option == '0' %}
+                            <div class="row" id="yamato_payment4_autoRegist">
+                                <div class="col-3"><span>自動カード登録 <span class="badge badge-primary ml-1">{{ 'admin.common.required'|trans }}</span></span></div>
+                                <div class="col mb-2">
+                                    {{ form_widget(form.autoRegist) }}
+                                    {{ form_errors(form.autoRegist) }}
+                                    ※クレジットカード決済時に自動的にクレジットカード登録をします。
+                                </div>
+                            </div>
+                            {% endif %}
+{% elseif Payment.getMethodClass == 'Plugin\\YamatoPayment4\\Service\\Method\\Cvs' %}
+<script>
+$(function() { $('#yamato_payment4_cvs').appendTo($('#form1 > div.c-contentsArea__cols div.card-body')); })
+</script>
+<div id="yamato_payment4_cvs">
+    <div class="row">
+        <div class="col-3 required">
+            コンビニ選択
+            <span class="badge badge-primary ml-1">
+                {{ 'admin.common.required'|trans }}
+            </span>
+        </div>
+        <div class="col mb-2">
+            {{ form_widget(form.conveni) }}
+            {{ form_errors(form.conveni) }}
+            ※ご契約している利用出来るコンビニを選択してください。
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            セブンイレブン<br>
+            決済完了案内タイトル
+        </div>
+
+        <div class="col mb-2">
+            {{ form_widget(form.order_mail_title_21) }}<span style="color: red;">（上限50文字）</span>
+            {{ form_errors(form.order_mail_title_21) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            セブンイレブン<br>
+            決済完了案内本文
+        </div>
+
+        <div class="col mb-2">
+            {{ form_widget(form.order_mail_body_21) }}<span style="color: red;">（上限1000文字）</span>
+            {{ form_errors(form.order_mail_body_21) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            ローソン<br>
+            決済完了案内タイトル
+        </div>
+
+        <div class="col mb-2">
+            {{ form_widget(form.order_mail_title_22) }}<span style="color: red;">（上限50文字）</span>
+            {{ form_errors(form.order_mail_title_22) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            ローソン<br>
+            決済完了案内本文
+        </div>
+
+        <div class="col mb-2">
+            {{ form_widget(form.order_mail_body_22) }}<span style="color: red;">（上限1000文字）</span>
+            {{ form_errors(form.order_mail_body_22) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            ファミリーマート<br>
+            決済完了案内タイトル
+        </div>
+
+        <div class="col mb-2">
+            {{ form_widget(form.order_mail_title_23) }}<span style="color: red;">（上限50文字）</span>
+            {{ form_errors(form.order_mail_title_23) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            ファミリーマート<br>
+            決済完了案内本文
+        </div>
+
+        <div class="col mb-2">
+            {{ form_widget(form.order_mail_body_23) }}<span style="color: red;">（上限1000文字）</span>
+            {{ form_errors(form.order_mail_body_23) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-3">
+            セイコーマート<br>
+            決済完了案内タイトル
+        </label>
+
+        <div class="col mb-2">
+            {{ form_widget(form.order_mail_title_24) }}<span style="color: red;">（上限50文字）</span>
+            {{ form_errors(form.order_mail_title_24) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            セイコーマート<br>
+            決済完了案内本文
+        </div>
+
+        <div class="col mb-2">
+            {{ form_widget(form.order_mail_body_24) }}<span style="color: red;">（上限1000文字）</span>
+            {{ form_errors(form.order_mail_body_24) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            ミニストップ<br>
+            決済完了案内タイトル
+        </div>
+
+        <div class="col mb-2">
+            {{ form_widget(form.order_mail_title_25) }}<span style="color: red;">（上限50文字）</span>
+            {{ form_errors(form.order_mail_title_25) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            ミニストップ<br>
+            決済完了案内本文
+        </div>
+
+        <div class="col mb-2">
+            {{ form_widget(form.order_mail_body_25) }}<span style="color: red;">（上限1000文字）</span>
+            {{ form_errors(form.order_mail_body_25) }}
+        </div>
+    </div>
+</div>
 {% endif %}
 {% endblock %}

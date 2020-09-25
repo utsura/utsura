@@ -1,11 +1,11 @@
 <?php
+
 namespace Plugin\YamatoPayment4\Service\Client;
 
 use Eccube\Common\EccubeConfig;
 use Eccube\Entity\Order;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-
 use Plugin\YamatoPayment4\Entity\YamatoOrder;
 use Plugin\YamatoPayment4\Repository\ConfigRepository;
 use Plugin\YamatoPayment4\Repository\YamatoOrderRepository;
@@ -13,8 +13,8 @@ use Plugin\YamatoPayment4\Repository\YamatoPaymentMethodRepository;
 use Plugin\YamatoPayment4\Util\CommonUtil;
 use Plugin\YamatoPayment4\Util\PaymentUtil;
 
-class BaseClientService {
-
+class BaseClientService
+{
     protected $eccubeConfig;
     protected $yamatoConfigRepository;
     protected $yamatoPaymentMethodRepository;
@@ -37,8 +37,7 @@ class BaseClientService {
         YamatoPaymentMethodRepository $yamatoPaymentMethodRepository,
         YamatoOrderRepository $yamatoOrderRepository,
         RouterInterface $router
-    )
-    {
+    ) {
         $this->eccubeConfig = $eccubeConfig;
         $this->yamatoConfigRepository = $yamatoConfigRepository;
         $this->userSettings = $this->yamatoConfigRepository->get()->getSubData();
@@ -48,7 +47,8 @@ class BaseClientService {
         $this->router = $router;
     }
 
-    public function setSetting(Order $Order) {
+    public function setSetting(Order $Order)
+    {
         $paymentMethodRepository = $this->yamatoPaymentMethodRepository->findOneBy(['Payment' => $Order->getPayment()]);
         $this->paymentId = $paymentMethodRepository->getPayment()->getId();
         $this->paymentMethod = $paymentMethodRepository->getPaymentMethod();
@@ -58,7 +58,7 @@ class BaseClientService {
             $this->moduleSettings['Payment'] = [
                 'paymentId' => $this->paymentId,
                 'paymentMethod' => $this->paymentMethod,
-                'paymentInfo' => $this->paymentInfo
+                'paymentInfo' => $this->paymentInfo,
             ];
         }
     }
@@ -68,11 +68,11 @@ class BaseClientService {
         $url = $this->router->generate('yamato_payment4_log', [], UrlGeneratorInterface::ABSOLUTE_URL);
 
         unset($data['error']);
-        CommonUtil::printLog("yamato_payment4_log:send",$data);
+        CommonUtil::printLog('yamato_payment4_log:send', $data);
 
         $checkKeys = ['order_id', 'status'];
         $data['hash'] = CommonUtil::getArrayToHash($data, $checkKeys);
-        $data['checkKey'] = implode(',',$checkKeys);
+        $data['checkKey'] = implode(',', $checkKeys);
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -83,10 +83,10 @@ class BaseClientService {
         $info = curl_getinfo($curl);
         $message = curl_error($curl);
         $info['message'] = $message;
-        $info['result'] = $header = substr ($result, 0, $info["header_size"]);
+        $info['result'] = $header = substr($result, 0, $info['header_size']);
         curl_close($curl);
 
-        CommonUtil::printLog("yamato_payment4_log:recv",$info);
+        CommonUtil::printLog('yamato_payment4_log:recv', $info);
     }
 
     public function setEccubeConfig($eccubeConfig)
@@ -125,7 +125,7 @@ class BaseClientService {
     }
 
     /**
-     * エラーメッセージ設定
+     * エラーメッセージ設定.
      *
      * @param string $msg
      */
@@ -133,11 +133,11 @@ class BaseClientService {
     {
         $this->error[] = $msg;
 
-        CommonUtil::printLog("setError",$msg);
+        CommonUtil::printLog('setError', $msg);
     }
 
     /**
-     * エラーメッセージ取得
+     * エラーメッセージ取得.
      *
      * @return array
      */
@@ -147,7 +147,7 @@ class BaseClientService {
     }
 
     /**
-     * 送信データ設定
+     * 送信データ設定.
      *
      * @param string $msg
      */
@@ -155,11 +155,11 @@ class BaseClientService {
     {
         $this->sendData = $data;
 
-        CommonUtil::printLog("setSendData",$data);
+        CommonUtil::printLog('setSendData', $data);
     }
 
     /**
-     * 送信データ取得
+     * 送信データ取得.
      *
      * @return array
      */
@@ -169,7 +169,7 @@ class BaseClientService {
     }
 
     /**
-     * 通信結果を設定する
+     * 通信結果を設定する.
      *
      * @param array $results
      */
@@ -177,11 +177,11 @@ class BaseClientService {
     {
         $this->results = $results;
 
-        CommonUtil::printLog("setResults",$results);
+        CommonUtil::printLog('setResults', $results);
     }
 
     /**
-     * 通信結果を設定する
+     * 通信結果を設定する.
      *
      * @return array $results
      */
@@ -191,17 +191,18 @@ class BaseClientService {
     }
 
     /**
-     * 送信・受信結果を設定する
+     * 送信・受信結果を設定する.
+     *
      * @param unknown $results
      */
     public function setSendResults($results)
     {
         $this->sendResults = $results;
-        CommonUtil::printLog("setSendResults",$results);
+        CommonUtil::printLog('setSendResults', $results);
     }
 
     /**
-     * 送信・受信結果を設定する
+     * 送信・受信結果を設定する.
      *
      * @return array $results
      */
@@ -211,14 +212,16 @@ class BaseClientService {
     }
 
     /**
-     * ヤマト決済API URLをテスト環境と本番環境に振り分ける
+     * ヤマト決済API URLをテスト環境と本番環境に振り分ける.
      *
      * @param string $code APIコード
+     *
      * @return string API URL
      */
     protected function getApiUrl($code)
     {
         $api_url = ($this->userSettings['exec_mode'] == '1') ? 'api.url' : 'api.test.gateway';
+
         return isset($this->eccubeConfig[$api_url][$code]) ? $this->eccubeConfig[$api_url][$code] : '';
     }
 
@@ -233,14 +236,14 @@ class BaseClientService {
         $this->sendData = [];
     }
 
-
     /**
-     * 送信用データ取得
+     * 送信用データ取得.
      *
-     * @param array $sendKey 送信項目
-     * @param array $listParam その他情報
-     * @param OrderExtension $OrderExtension 注文情報
+     * @param array            $sendKey          送信項目
+     * @param array            $listParam        その他情報
+     * @param OrderExtension   $OrderExtension   注文情報
      * @param PaymentExtension $PaymentExtension 支払方法情報
+     *
      * @return array
      */
     protected function getSendData(array $sendKey, array $listParam, $Order = null)
@@ -265,10 +268,10 @@ class BaseClientService {
                     $sendData[$key] = intval($Order->getPaymentTotal());
                     break;
                 case 'buyer_name_kanji':
-                    $sendData[$key] = CommonUtil::convertProhibitedChar($Order->getName01() . '　' . $Order->getName02());
+                    $sendData[$key] = CommonUtil::convertProhibitedChar($Order->getName01().'　'.$Order->getName02());
                     break;
                 case 'buyer_name_kana':
-                    $sendData[$key] = CommonUtil::convertProhibitedChar($Order->getKana01() . '　' . $Order->getKana02());
+                    $sendData[$key] = CommonUtil::convertProhibitedChar($Order->getKana01().'　'.$Order->getKana02());
                     break;
                 case 'buyer_tel':
                     $sendData[$key] = $Order->getPhoneNumber();
@@ -280,7 +283,7 @@ class BaseClientService {
                     $sendData[$key] = $this->getItemName($Order);
                     break;
                 case 'card_code_api':
-                    if(empty($listParam[$key])) {
+                    if (empty($listParam[$key])) {
                         $sendData[$key] = '9'; // 固定
                     } else {
                         $sendData[$key] = $listParam[$key];
@@ -300,7 +303,7 @@ class BaseClientService {
                     $card_exp_year = isset($listParam['card_exp_year']) ? $listParam['card_exp_year'] : '';
                     $sendData[$key] = (!empty($card_exp))
                         ? $card_exp
-                        : $card_exp_month . $card_exp_year;
+                        : $card_exp_month.$card_exp_year;
                     break;
                 //3Dセキュア用
                 case 'comp_cd':
@@ -347,29 +350,29 @@ class BaseClientService {
                     }
                     break;
             }
-
         }
+
         return $sendData;
     }
-
 
     /**
      * 注文情報リクエスト送信
      *
-     * @param string $url 宛先URL
-     * @param array $sendKey 送信項目
-     * @param integer $order_id 受注ID
-     * @param array $listParam その他情報
+     * @param string           $url              宛先URL
+     * @param array            $sendKey          送信項目
+     * @param int              $order_id         受注ID
+     * @param array            $listParam        その他情報
      * @param PaymentExtension $PaymentExtension 支払方法情報
+     *
      * @return bool
      */
     protected function sendOrderRequest($url, $sendKey, $order_id, $listParam, $Order)
     {
-        if(is_null($this->paymentInfo)) {
+        if (is_null($this->paymentInfo)) {
             $this->setSetting($Order);
         }
 
-        if(empty($Order)) {
+        if (empty($Order)) {
             return false;
         }
 
@@ -380,8 +383,8 @@ class BaseClientService {
         // リクエスト送信
         $ret = $this->sendRequest($url, $sendData);
         if ($ret) {
-            $results = (array)$this->getResults();
-            unset($results['threeDAuthHtml']);
+            $results = (array) $this->getResults();
+        //unset($results['threeDAuthHtml']);
         } else {
             $results = [];
             $results['error'] = $this->getError();
@@ -431,15 +434,17 @@ class BaseClientService {
     }
 
     /**
-     * ユーティリティリクエスト
-     * @param string $url API URL
-     * @param array $arrSendKey 送信キー
-     * @param array $Order 注文情報
-     * @param array $arrParam その他パラメタ
-     * @return boolean $ret リクエスト結果
+     * ユーティリティリクエスト.
+     *
+     * @param string $url        API URL
+     * @param array  $arrSendKey 送信キー
+     * @param array  $Order      注文情報
+     * @param array  $arrParam   その他パラメタ
+     *
+     * @return bool $ret リクエスト結果
      */
-    protected function sendUtilRequest($url, $arrSendKey, $Order, $arrParam) {
-
+    protected function sendUtilRequest($url, $arrSendKey, $Order, $arrParam)
+    {
         //リクエスト用データ取得
         $arrSendData = $this->getSendData($arrSendKey, $arrParam, $Order);
         $this->setSendedData($arrSendData);
@@ -450,13 +455,14 @@ class BaseClientService {
     /**
      * 汎用リクエスト送信
      *
-     * @param string $url 宛先URL
-     * @param array $sendParams 送信データ
+     * @param string $url        宛先URL
+     * @param array  $sendParams 送信データ
+     *
      * @return bool
      */
     protected function sendRequest($url, $sendParams)
     {
-        CommonUtil::printLog("BaseClientService::sendRequest start");
+        CommonUtil::printLog('BaseClientService::sendRequest start');
         CommonUtil::printLog('$url = '.$url);
         CommonUtil::printLog('$sendParams = ['.print_r(array($sendParams), true).']');
 
@@ -474,36 +480,38 @@ class BaseClientService {
             curl_setopt($c, CURLOPT_POSTFIELDS, http_build_query($listData));
             curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($c, CURLOPT_SSLVERSION, 0);
-            curl_setopt($c,CURLOPT_TIMEOUT,$this->eccubeConfig['YAMATO_API_HTTP_TIMEOUT']);
+            curl_setopt($c, CURLOPT_TIMEOUT, $this->eccubeConfig['YAMATO_API_HTTP_TIMEOUT']);
 
             $response = curl_exec($c);
             $info = curl_getinfo($c);
             $errno = curl_errno($c);
             $error = curl_error($c);
             curl_close($c);
-
         } catch (\Exception $e) {
-            $msg = '通信エラー: ' . $e->getMessage() . "\n";
+            $msg = '通信エラー: '.$e->getMessage()."\n";
             $msg .= $e->getTraceAsString();
             CommonUtil::printLog($msg);
             $this->setError($msg);
+
             return false;
         }
 
         // ステータス取得
         $r_code = $info['http_code'];
-        if($r_code != 200) {
-            $msg = 'HTTPレスポンスエラー:CODE:' . $r_code;
+        if ($r_code != 200) {
+            $msg = 'HTTPレスポンスエラー:CODE:'.$r_code;
             CommonUtil::printLog($msg);
             $this->setError($msg);
+
             return false;
         }
 
         // レスポンス取得
-        if (is_null($response)) {
+        if (empty($response)) {
             $msg = 'レスポンスデータエラー: レスポンスがありません。';
             CommonUtil::printLog($msg);
             $this->setError($msg);
+
             return false;
         }
 
@@ -514,20 +522,22 @@ class BaseClientService {
             return false;
         }
 
-        CommonUtil::printLog("BaseClientService::sendRequest end");
+        CommonUtil::printLog('BaseClientService::sendRequest end');
+
         return true;
     }
 
     /**
-     * レスポンスを解析する
+     * レスポンスを解析する.
      *
      * @param string $string レスポンス
+     *
      * @return array 解析結果
      */
     public function parseResponse($xml)
     {
         // XMLパーサを生成する。
-        $arrXML = json_decode(json_encode(simplexml_load_string($xml)), TRUE);
+        $arrXML = json_decode(json_encode(simplexml_load_string($xml)), true);
 
         if (isset($arrXML['errorCode']) && !empty($arrXML['errorCode'])) {
             $error_message = $this->getErrorMessageByErrorCode($arrXML['errorCode']);
@@ -538,16 +548,18 @@ class BaseClientService {
     }
 
     /**
-     * エラーコードに対応するエラーメッセージを取得する
+     * エラーコードに対応するエラーメッセージを取得する.
      *
      * @param string $errorCode エラーコード
+     *
      * @return string エラーメッセージ
      */
     public function getErrorMessageByErrorCode($errorCode)
     {
         $errMsgList = $this->eccubeConfig['yamato_error_msg'];
-        $message = isset($errMsgList[$errorCode]) ? $errMsgList[$errorCode] : "";
-        return "エラーコード: ".$errorCode ." ". $message;
+        $message = isset($errMsgList[$errorCode]) ? $errMsgList[$errorCode] : '';
+
+        return 'エラーコード: '.$errorCode.' '.$message;
     }
 
     public function getPaymentCode(\Eccube\Entity\Order $Order)
@@ -556,17 +568,18 @@ class BaseClientService {
     }
 
     /**
-     * 受注情報に決済情報をセット
+     * 受注情報に決済情報をセット.
      *
      * @param YamatoOrder $yamatoOrder 受注情報
-     * @param array $payData 決済レスポンス array('key'=>'value')
+     * @param array       $payData     決済レスポンス array('key'=>'value')
+     *
      * @return YamatoOrder
      */
     public function setOrderPayData(YamatoOrder $yamatoOrder, array $payData)
     {
         //決済情報チェック
-        CommonUtil::printLog('$payData',$payData);
-        $payData = (array)CommonUtil::checkEncode($payData);
+        CommonUtil::printLog('$payData', $payData);
+        $payData = (array) CommonUtil::checkEncode($payData);
 
         //受注情報から決済ログ取得
         $listLog = $yamatoOrder->getMemo09();
@@ -575,14 +588,14 @@ class BaseClientService {
 
         //受注情報から決済データ取得
         $paymentData = $yamatoOrder->getMemo05();
-        CommonUtil::printLog('$paymentData',$paymentData);
+        CommonUtil::printLog('$paymentData', $paymentData);
         //決済データのマージ
         foreach ($payData as $key => $val) {
             if (empty($val) && !empty($paymentData[$key])) {
                 unset($payData[$key]);
             }
         }
-        $paymentData = array_merge($paymentData, (array)$payData);
+        $paymentData = array_merge($paymentData, (array) $payData);
         $yamatoOrder->setMemo05($paymentData);
 
         //決済種別の記録
@@ -614,10 +627,11 @@ class BaseClientService {
     }
 
     /**
-     * 受注データに決済情報をセット
+     * 受注データに決済情報をセット.
      *
      * @param YamatoOrder $yamatoOrder 受注決済情報
-     * @param array $payData 決済レスポンス
+     * @param array       $payData     決済レスポンス
+     *
      * @return YamatoOrderPayment
      */
     public function setOrderPaymentViewData(YamatoOrder $yamatoOrder, array $payData)
@@ -633,7 +647,7 @@ class BaseClientService {
         // 送信日時(yyyyMMddHHmmss)
         if (isset($payData['returnDate']) && !is_null($payData['returnDate'])) {
             $listData['returnDate']['name'] = '注文日時';
-            if(isset($memo02['returnDate'])) {
+            if (isset($memo02['returnDate'])) {
                 $listData['returnDate']['value'] = $memo02['returnDate']['value'];
             } else {
                 $listData['returnDate']['value'] = CommonUtil::getDateFromNumber('Y年m月d日 H時i分s秒', $payData['returnDate']);
@@ -698,8 +712,8 @@ class BaseClientService {
 
         // 決済完了案内タイトル（コンビニ）
         if (isset($payData['cvs']) && !is_null($payData['cvs'])) {
-            $title_key = 'order_mail_title_' . $payData['cvs'];
-            $body_key = 'order_mail_body_' . $payData['cvs'];
+            $title_key = 'order_mail_title_'.$payData['cvs'];
+            $body_key = 'order_mail_body_'.$payData['cvs'];
             if (isset($arrPaymentConfig[$title_key]) && !is_null($arrPaymentConfig[$title_key])
             && isset($arrPaymentConfig[$body_key]) && !is_null($arrPaymentConfig[$body_key])
             ) {
@@ -714,15 +728,21 @@ class BaseClientService {
             $listData['title']['name'] = $this->paymentMethod;
 
             $yamatoOrder->setMemo02($listData);
+
+            if (isset($payData['cvs']) && !is_null($payData['cvs'])) {
+                // 注文完了画面および注文受付メールに付与するメッセージをセットする
+                $this->setCompleteMessageForCvs($yamatoOrder, $payData['cvs']);
+            }
         }
 
         return $yamatoOrder;
     }
 
     /**
-     * 商品名取得
+     * 商品名取得.
      *
      * @param Order $Order 受注データ
+     *
      * @return string 商品名
      */
     protected function getItemName(Order $Order)
@@ -737,5 +757,67 @@ class BaseClientService {
         $ret .= '(4.0)';
 
         return $ret;
+    }
+
+    /**
+     * 注文完了画面および注文受付メールに付与するメッセージをセットする.
+     *
+     * @param YamatoOrder $yamatoOrder
+     * @param int         $cvsId
+     */
+    protected function setCompleteMessageForCvs(YamatoOrder $yamatoOrder, $cvsId)
+    {
+        $yamatoOrderInfo = $yamatoOrder->getMemo02();
+        $completeMailMessage = <<< EOM
+***********************************************
+コンビニ決済情報
+***********************************************
+
+EOM;
+
+        $completeMessage = <<< EOM
+***********************************************<br/>
+コンビニ決済情報<br/>
+***********************************************<br/>
+<br/>
+EOM;
+
+        $keyLists = [
+            'returnDate',
+            'OrderId',
+            'billingNo',
+            'billingUrl',
+            'companyCode',
+            'orderNoF',
+            'econNo',
+            'expiredDate',
+            "order_mail_title_{$cvsId}",
+        ];
+
+        foreach ($keyLists as $key) {
+            if (isset($yamatoOrderInfo[$key]) && !is_null($yamatoOrderInfo[$key])) {
+                $target = $yamatoOrderInfo[$key];
+
+                $completeMailMessage = <<< EOM
+{$completeMailMessage}
+{$target['name']}：{$target['value']}
+EOM;
+
+                if (strpos($key, 'order_mail_title_') !== false) {
+                    // 注文完了画面で表示させるため、決済完了案内本文 の改行コードを br タグに置き換える
+                    $target['value'] = nl2br($target['value']);
+                }
+
+                $completeMessage = <<< EOM
+{$completeMessage}
+{$target['name']}：{$target['value']}<br/>
+EOM;
+            }
+        }
+
+        $yamatoOrder
+            ->getOrder()
+            ->setCompleteMailMessage($completeMailMessage)
+            ->setCompleteMessage($completeMessage);
     }
 }

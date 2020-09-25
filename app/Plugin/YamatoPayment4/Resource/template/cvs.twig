@@ -1,0 +1,48 @@
+{% block yamato_payment_credit_form %}
+{% if Order.Payment.getMethodClass == 'Plugin\\YamatoPayment4\\Service\\Method\\Cvs' %}
+<script>
+$(function() {
+    $('div.ec-rectHeading h2').each(function() {
+        if($(this).html() == 'お支払方法') {
+            $(this).closest('.ec-orderPayment').after($('#yamato_payment4_cvs'))
+            $(this).closest('.ec-orderPayment').after($('#yamato_payment4_payment'))
+        }
+    });
+})</script>
+<script id="yamatoTokenJs">
+
+    var formId = 'shopping-form';
+    var formPrefix = 'shopping_order';
+
+    /*
+     * 送信ボタン押下時に実行するJavaScript関数
+     */
+    function executePay() {
+        if (!$("input:radio[name='_shopping_order[cvs]']:checked").val()) {
+            alert("コンビニ選択が入力されていません。");
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<div class="ec-orderPayment" id="yamato_payment4_payment"></div>
+<div class="ec-borderedDefs" id="yamato_payment4_cvs">
+    <div class="ec-orderPayment">
+        <div class="ec-rectHeading">
+            <h2>コンビニ選択</h2>
+        </div>
+        <div class="ec-radio">
+            {% for key, child in form.cvs %}
+                <div style="display: block;">
+                    {{ form_widget(child) }}
+                    <img style="width: auto;" src="{{ asset('YamatoPayment4/assets/img/cvs_logo_', 'plugin') ~ child.vars.value ~ '.jpg' }}">
+                </div>
+            {% endfor %}
+            {{ form_errors(form.cvs) }}
+        </div>
+    </div>
+ </div>
+
+{% endif %}
+{% endblock %}

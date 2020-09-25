@@ -21,7 +21,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
+use Plugin\YamatoPayment4\Entity\YamatoPaymentMethod;
 use Plugin\YamatoPayment4\Repository\ConfigRepository;
+use Plugin\YamatoPayment4\Repository\YamatoPaymentMethodRepository;
 use Plugin\YamatoPayment4\Util as YamatoUtil;
 
 class SearchPaymentType extends AbstractType
@@ -35,20 +37,23 @@ class SearchPaymentType extends AbstractType
 
     protected $orderStatusRepository;
 
+    protected $yamatoPaymentMethodRepository;
+
     /**
      * RepeatedPasswordType constructor.
      *
      * @param EccubeConfig $eccubeConfig
      */
     public function __construct(
-            EccubeConfig $eccubeConfig,
-            ConfigRepository $configRepository,
-            OrderStatusRepository $orderStatusRepository
-    )
-    {
+        EccubeConfig $eccubeConfig,
+        ConfigRepository $configRepository,
+        OrderStatusRepository $orderStatusRepository,
+        YamatoPaymentMethodRepository $yamatoPaymentMethodRepository
+    ) {
         $this->eccubeConfig = $eccubeConfig;
         $this->configRepository = $configRepository;
         $this->orderStatusRepository = $orderStatusRepository;
+        $this->yamatoPaymentMethodRepository = $yamatoPaymentMethodRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -58,8 +63,8 @@ class SearchPaymentType extends AbstractType
         $paymentUtil = new YamatoUtil\PaymentUtil($this->eccubeConfig, $this->configRepository);
         $adjusts = $paymentUtil::adjustOrderStatus($this->orderStatusRepository, [$this->eccubeConfig['ORDER_SHIPPING_REGISTERED']]);
         $listOrderStatus = [];
-        if($adjusts) {
-            foreach($adjusts as $adjust) {
+        if ($adjusts) {
+            foreach ($adjusts as $adjust) {
                 $listOrderStatus[$adjust['id']] = $adjust['name'];
             }
         }
@@ -74,7 +79,7 @@ class SearchPaymentType extends AbstractType
                 'placeholder' => ['year' => '----', 'month' => '--', 'day' => '--'],
                 'attr' => [
                     'class' => 'datetimepicker-input',
-                    'data-target' => '#'.$this->getBlockPrefix().'_order_date_starts',
+                    'data-target' => '#' . $this->getBlockPrefix() . '_order_date_starts',
                     'data-toggle' => 'datetimepicker',
                 ],
             ])
@@ -87,14 +92,14 @@ class SearchPaymentType extends AbstractType
                 'placeholder' => ['year' => '----', 'month' => '--', 'day' => '--'],
                 'attr' => [
                     'class' => 'datetimepicker-input',
-                    'data-target' => '#'.$this->getBlockPrefix().'_order_date_ends',
+                    'data-target' => '#' . $this->getBlockPrefix() . '_order_date_ends',
                     'data-toggle' => 'datetimepicker',
                 ],
             ])
             ->add('OrderStatuses', ChoiceType::class, [
                 'choices' => array_flip($listOrderStatus),
-                    'expanded' => true,
-                    'multiple' => true
+                'expanded' => true,
+                'multiple' => true
             ])
             ->add('payment_status', ChoiceType::class, [
                 'choices' => array_flip($pluginUtil->getYamatoBulkPaymentStatus()),
@@ -111,20 +116,44 @@ class SearchPaymentType extends AbstractType
                 'multiple' => false
             ])
             ->add('status', ChoiceType::class, [
-                    'choices' => array_flip($listOrderStatus),
-                    'placeholder' => '-',
-                    'required' => false,
-                    'expanded' => false,
-                    'multiple' => false
+                'choices' => array_flip($listOrderStatus),
+                'placeholder' => '-',
+                'required' => false,
+                'expanded' => false,
+                'multiple' => false
             ])
-        ;
+            ->add('payment_method', ChoiceType::class, [
+                'choices' => $this->getAvailablePaymentMethod($pluginUtil),
+                'placeholder' => false,
+                'required' => false,
+                'expanded' => false,
+                'multiple' => false,
+            ]);
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function getBlockPrefix()
     {
         return 'search_payment';
+    }
+
+    /**
+     * 利用可能な決済方法を返す
+     *
+     * @param PluginUtil $pluginUtil
+     * @return array
+     */
+    public function getAvailablePaymentMethod($pluginUtil)
+    {
+        $availablePaymentMethods = [];
+        foreach ($pluginUtil->getPaymentTypeNames() as $id => $name) {
+            $YamatoPaymentMethod = $this->yamatoPaymentMethodRepository->findOneBy(['memo03' => $id]);
+            if ($YamatoPaymentMethod instanceof YamatoPaymentMethod) {
+                $availablePaymentMethods[$name] = $id;
+            }
+        }
+        return $availablePaymentMethods;
     }
 }

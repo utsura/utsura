@@ -29,7 +29,7 @@ use Eccube\Service\PurchaseFlow\ItemCollection;
      */
     class Shipping extends \Eccube\Entity\AbstractEntity
     {
-        use NameTrait, \Plugin\YamatoPayment4\Entity\ShippingTrait;
+    use NameTrait, \Plugin\YamatoPayment4\Entity\ShippingTrait;
 
         /**
          * 出荷メール未送信

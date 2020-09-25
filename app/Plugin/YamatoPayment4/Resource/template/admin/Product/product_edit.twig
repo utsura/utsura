@@ -1,0 +1,21 @@
+{#
+ Copyright(c)2016, Yamato Financial Co.,Ltd. All rights reserved.
+ Copyright(c)2016, Yamato Credit finance Co.,Ltd. All rights reserved.
+#}
+{% if use_option == '0' and advance_sale == '1' %}
+
+    <div class="row">
+        <div class="col-3">
+            <div class="d-inline-block">
+                <span>予約商品出荷予定日</span>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div>
+                {{ form_widget(form.reserve_date) }}
+                {{ form_errors(form.reserve_date) }}
+                ※販売種別『予約商品』の場合は必ず設定して下さい
+            </div>
+        </div>
+    </div>
+{% endif %}

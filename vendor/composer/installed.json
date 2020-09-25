@@ -2159,6 +2159,58 @@
         }
     },
     {
+        "name": "ec-cube/Recommend4",
+        "version": "4.0.0",
+        "version_normalized": "4.0.0.0",
+        "dist": {
+            "type": "tar",
+            "url": "https://package-api.ec-cube.net/ec-cube/Recommend4/4.0.0/Recommend4-4.0.0.tgz"
+        },
+        "require": {
+            "ec-cube/plugin-installer": "~0.0.4"
+        },
+        "type": "eccube-plugin",
+        "extra": {
+            "code": "Recommend4",
+            "id": 1757
+        },
+        "installation-source": "dist",
+        "description": "おすすめ商品管理プラグイン",
+        "transport-options": {
+            "http": {
+                "header": [
+                    "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                ]
+            }
+        }
+    },
+    {
+        "name": "ec-cube/RelatedProduct4",
+        "version": "4.0.1",
+        "version_normalized": "4.0.1.0",
+        "dist": {
+            "type": "tar",
+            "url": "https://package-api.ec-cube.net/ec-cube/RelatedProduct4/4.0.1/RelatedProduct4-4.0.1.tgz"
+        },
+        "require": {
+            "ec-cube/plugin-installer": "~0.0.6"
+        },
+        "type": "eccube-plugin",
+        "extra": {
+            "code": "RelatedProduct4",
+            "id": 1761
+        },
+        "installation-source": "dist",
+        "description": "関連商品プラグイン",
+        "transport-options": {
+            "http": {
+                "header": [
+                    "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                ]
+            }
+        }
+    },
+    {
         "name": "ec-cube/Securitychecker4",
         "version": "4.0.0",
         "version_normalized": "4.0.0.0",
@@ -2217,11 +2269,11 @@
     },
     {
         "name": "ec-cube/YamatoPayment4",
-        "version": "1.1.2",
-        "version_normalized": "1.1.2.0",
+        "version": "1.2.0",
+        "version_normalized": "1.2.0.0",
         "dist": {
             "type": "tar",
-            "url": "https://package-api.ec-cube.net/ec-cube/YamatoPayment4/1.1.2/YamatoPayment4-1.1.2.tgz"
+            "url": "https://package-api.ec-cube.net/ec-cube/YamatoPayment4/1.2.0/YamatoPayment4-1.2.0.tgz"
         },
         "require": {
             "ec-cube/plugin-installer": "~0.0.3"

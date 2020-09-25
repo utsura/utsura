@@ -11,6 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Plugin\YamatoPayment4\Entity\YamatoPaymentMethod;
 use Plugin\YamatoPayment4\Util\PaymentUtil;
 use Plugin\YamatoPayment4\Service\Method\Credit;
+use Plugin\YamatoPayment4\Service\Method\Cvs;
 use Plugin\YamatoPayment4\Service\Method\Deferred;
 use Plugin\YamatoPayment4\Service\Method\DeferredSms;
 
@@ -103,6 +104,8 @@ class YamatoConfigService
         foreach ($arrDiff as $PaymentTypeId) {
             if ($PaymentTypeId == $this->eccubeConfig['YAMATO_PAYID']['CREDIT']) {
                 $method_class = Credit::class;
+            } elseif ($PaymentTypeId == $this->eccubeConfig['YAMATO_PAYID']['CVS']) {
+                $method_class = Cvs::class;
             } elseif ($PaymentTypeId == $this->eccubeConfig['YAMATO_PAYID']['DEFERRED']) {
                 $method_class = Deferred::class;
             } elseif ($PaymentTypeId == $this->eccubeConfig['YAMATO_PAYID']['SMS_DEFERRED']) {
@@ -144,6 +147,13 @@ class YamatoConfigService
             $arrRet['rule_max'] = 50000;
         }
 
+        if ($PaymentTypeId == $this->eccubeConfig['YAMATO_PAYID']['CVS']) {
+            $arrRet['method'] = 'コンビニ決済';
+            $arrRet['method_class'] = Cvs::class;
+            $arrRet['charge']   = 0;
+            $arrRet['rule_max'] = 300000;
+        }
+
         return $arrRet;
     }
 
@@ -165,23 +175,29 @@ class YamatoConfigService
                     "TdFlag" => 0,
                     "order_mail_title" => "お支払いについて",
                     "order_mail_body" => "クレジット決済完了案内本文",
-                    "autoRegist" => 1
+                    "autoRegist" => 0
                 ];
-                $PaymentMethod->setMemo05($memo05);    
+                $PaymentMethod->setMemo05($memo05);
                 break;
-            
+
+            case Cvs::class:
+                $PaymentMethod->setPayment($Payment);
+                $PaymentMethod->setPaymentMethod($Payment->getMethod());
+                $PaymentMethod->setMemo03($this->eccubeConfig['YAMATO_PAYID']['CVS']);
+                break;
+
             case Deferred::class:
                 $PaymentMethod->setPayment($Payment);
                 $PaymentMethod->setPaymentMethod($Payment->getMethod());
                 $PaymentMethod->setMemo03($this->eccubeConfig['YAMATO_PAYID']['DEFERRED']);
                 break;
-            
+
             case DeferredSms::class:
                 $PaymentMethod->setPayment($Payment);
                 $PaymentMethod->setPaymentMethod($Payment->getMethod());
                 $PaymentMethod->setMemo03($this->eccubeConfig['YAMATO_PAYID']['SMS_DEFERRED']);
                 break;
-        
+
             default:
                 break;
         }

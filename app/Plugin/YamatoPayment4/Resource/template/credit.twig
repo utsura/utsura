@@ -47,11 +47,15 @@ $(function() {
      */
     var isJsSend = false;
     function executePay() {
-
-        {% if isPeriodic %}
+        // 自動カード登録時はチェックしない
+        {% if (isPeriodic or reservService) and autoRegist == '0' %}
             if ($('#use_registed_card').prop('checked') === false || typeof $('#use_registed_card').val() === "undefined") {
                 if ($('#'+formPrefix+'_register_card').prop('checked') === false) {
-                    alert("定期商品のご購入にはカード情報のお預かりが必須となります。");
+                    {% if isPeriodic %}
+                        alert("定期商品のご購入にはカード情報のお預かりが必須となります。");
+                    {% elseif reservService %}
+                        alert("※ 予約商品購入はカード情報お預かり、もしくは登録済カード情報でのご購入が必要です。");
+                    {% endif %}
                     return;
                 }
             }
@@ -157,6 +161,22 @@ $(function() {
             if(lastUseDate.length) {
                 isUseRegist = $('#use_registed_card').prop('checked');
             }
+
+            {% if reservService == true %}
+                // 予約商品の場合
+                isRegist = true;
+            {% endif %}
+
+            // 自動カード登録設定が「利用する」の場合
+            {% if autoRegist == '1' %}
+                // 登録済みカードを使用しない場合は登録件数チェック
+                if (!isUseRegist && fnCheckMaxRegist() == false) {
+                    isJsSend = false;
+                    return false;
+                }
+
+                isRegist = true;
+            {% endif %}
 
             if(isRegist || isUseRegist) {
                 createTokenInfo["optServDiv"] = "01";
@@ -307,15 +327,18 @@ $(function() {
         </dl>
 
 
-{% if moduleSettings.use_option == '1' %}
-        {{ form_row(form.register_card, { type: 'hidden' }) }}
+{% if moduleSettings.use_option == '1' or autoRegist == '1' %}
+        {{ form_widget(form.register_card, { type: 'hidden' }) }}
 {% else %}
         <dl id="detail_box__save_card" class="dispTarget">
-            <dt><label class="ec-label">カード情報登録</label>{% if isPeriodic %}<span class="ec-required">必須</span>{% endif %}</dt>
+            <dt><label class="ec-label">カード情報登録</label>{% if isPeriodic or reservService %}<span class="ec-required">必須</span>{% endif %}</dt>
             <dd>
                 <div class="form-group form-inline {% if form.register_card.vars.errors is not empty %}has-error{% endif %}">
-                    {{ form_row(form.register_card) }}
+                    {{ form_widget(form.register_card) }}
                     {{ form_errors(form.register_card) }}
+                    {% if reservService %}
+                        <p style="color: #DE5D50;">予約商品販売はカードお預かりが必須になります。<br /></p>
+                    {% endif %}
                     <p>カード情報を登録すると次回より入力無しで購入出来ます。<br />カード情報は当店では保管いたしません。<br />委託する決済代行会社にて安全に保管されます。</p>
                 </div>
             </dd>

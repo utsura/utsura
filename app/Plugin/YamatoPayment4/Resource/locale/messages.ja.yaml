@@ -1,6 +1,5 @@
 # nav
-yamato_payment.admin.nav.payment_list: クロネコクレジットカード決済状況一覧
-yamato_payment.admin.nav.deferred_list: クロネコ代金後払い決済状況一覧
+yamato_payment.admin.nav.payment_list: 決済状況一覧
 
 # flash messages
 yamato_payment.admin.save.success: 登録しました。
@@ -22,6 +21,8 @@ yamato_payment.admin.config.back: プラグイン一覧
 yamato_payment.admin.config.exec_mode: 動作モード
 yamato_payment.admin.config.delivery_service_code: 他社配送設定
 yamato_payment.admin.config.result_notification_url: スマホ決済判定結果通知プログラムURL
+yamato_payment.admin.config.cvs_result_notification_url: コンビニ決済判定結果通知プログラムURL
+yamato_payment.admin.config.global_ip_address: グローバルIPアドレス
 yamato_payment.admin.config.shop_id: クロネコｗｅｂコレクト加盟店コード
 yamato_payment.admin.config.ycf_str_code: クロネコ代金後払い加盟店コード
 yamato_payment.admin.config.enable_payment_type: 有効にする決済方法
@@ -41,13 +42,13 @@ yamato_payment.admin.order_edit.payment_status: 決済種別
 yamato_payment.admin.order_edit.payment_action: 決済操作
 yamato_payment.admin.order_edit.payment_action_cancel: 取消実行
 yamato_payment.admin.order_edit.payment_action_change_price: 金額変更
-yamato_payment.admin.payment_status.title: クロネコクレジットカード決済状況一覧
-yamato_payment.admin.deferred_status.title: クロネコ後払い決済状況一覧
+yamato_payment.admin.payment_status.title: 決済状況一覧
 yamato_payment.admin.payment_status.sub_title: 受注管理
 yamato_payment.admin.payment_status.search: 検索
 yamato_payment.admin.payment_status.search_result_count: 検索結果：%count%件が該当しました
 yamato_payment.admin.payment_status.search_condition_payment: 支払方法
 yamato_payment.admin.payment_status.search_condition_order_status: 対応状況
+yamato_payment.admin.payment_status.search_condition_payment_method: 決済方法
 yamato_payment.admin.payment_status.search_condition_payment_status: 決済状況
 yamato_payment.admin.payment_status.invalid_condition: 検索条件に誤りがあります
 yamato_payment.admin.payment_status.no_result: 検索条件に合致するデータが見つかりませんでした

@@ -1,0 +1,15 @@
+{% block yamato_payment_cvs_form_confirm %}
+{% if Order.Payment.method_class == 'Plugin\\YamatoPayment4\\Service\\Method\\Cvs' %}
+<script>
+$(function() {
+    $('div.ec-rectHeading h2').each(function() {
+        if($(this).html() == 'お支払方法') {
+            $(this).closest('.ec-orderPayment').after($('#yamato_payment4_payment'))
+        }
+    });
+})</script>
+<div id="yamato_payment4_payment">
+{{ form_widget(form.cvs, { type: 'hidden' }) }}
+</div>
+{% endif %}
+{% endblock %}

@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Plugin\YamatoPayment4\Util\CommonUtil;
 
 /**
- * YamatoProduct
+ * YamatoOrder
  *
  * @ORM\Table(name="plg_yamato_order")
  * @ORM\Entity(repositoryClass="Plugin\YamatoPayment4\Repository\YamatoOrderRepository")

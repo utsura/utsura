@@ -84,7 +84,10 @@ class ConfigType extends AbstractType
                         ExecutionContextInterface $context
                     ) {
                         $enable_payment_type = $context->getRoot()->get('enable_payment_type')->getData();
-                        if (in_array(10, $enable_payment_type, true) && !$objcet) {
+                        if ((in_array($this->eccubeConfig['YAMATO_PAYID_CREDIT'], $enable_payment_type, true)
+                            || in_array($this->eccubeConfig['YAMATO_PAYID_CVS'], $enable_payment_type, true))
+                            && !$objcet)
+                        {
                             $context->buildViolation('※ クロネコｗｅｂコレクト加盟店コードが入力されていません。')
                                 ->atPath('shop_id')
                                 ->addViolation()
@@ -115,7 +118,10 @@ class ConfigType extends AbstractType
                         ExecutionContextInterface $context
                     ) {
                         $enable_payment_type = $context->getRoot()->get('enable_payment_type')->getData();
-                        if (in_array(10, $enable_payment_type, true) && !$objcet) {
+                        if ((in_array($this->eccubeConfig['YAMATO_PAYID_CREDIT'], $enable_payment_type, true)
+                            || in_array($this->eccubeConfig['YAMATO_PAYID_CVS'], $enable_payment_type, true))
+                            && !$objcet)
+                        {
                             $context->buildViolation('※ アクセスキーが入力されていません。')
                                 ->atPath('access_key')
                                 ->addViolation()
@@ -137,6 +143,12 @@ class ConfigType extends AbstractType
                 'label' => 'オプションサービス',
                 'mapped' => false,
                 'choices' => array_flip($pluginUtil->getUseOption()),
+                'expanded' => true,
+            ])
+            ->add('advance_sale', FormType\ChoiceType::class, [
+                'label' => '予約販売機能',
+                'mapped' => false,
+                'choices' => array_flip($pluginUtil->getUtilization()),
                 'expanded' => true,
             ])
 
@@ -374,6 +386,11 @@ class ConfigType extends AbstractType
         // オプションサービス
         if (!isset($subdata['use_option'])) {
             $subdata['use_option'] = '1';
+        }
+
+        // 予約販売機能
+        if (!isset($subdata['advance_sale'])) {
+            $subdata['advance_sale'] = '0';
         }
 
         // 請求書の同梱

@@ -15,6 +15,8 @@ namespace Plugin\YamatoPayment4\Form\Extension;
 
 use Eccube\Common\EccubeConfig;
 use Eccube\Form\Type\Shopping\OrderType;
+use Eccube\Repository\ProductRepository;
+use Eccube\Repository\OrderRepository;
 use Eccube\Repository\PaymentRepository;
 
 use Symfony\Component\Form\AbstractTypeExtension;
@@ -25,12 +27,16 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\RouterInterface;
 
 use Plugin\YamatoPayment4\Repository\ConfigRepository;
+use Plugin\YamatoPayment4\Repository\YamatoOrderRepository;
 use Plugin\YamatoPayment4\Repository\YamatoPaymentMethodRepository;
 use Plugin\YamatoPayment4\Service\Method\Credit;
+use Plugin\YamatoPayment4\Service\Client\CreditClientService;
 use Plugin\YamatoPayment4\Util\PluginUtil;
 
 /**
@@ -39,24 +45,36 @@ use Plugin\YamatoPayment4\Util\PluginUtil;
  */
 class CreditExtention extends AbstractTypeExtension
 {
+    protected $productRepository;
+    protected $orderRepository;
     protected $paymentRepository;
     protected $eccubeConfig;
     protected $yamatoConfigRepository;
+    protected $yamatoOrderRepository;
     protected $yamatoPaymentMethodRepository;
+    protected $router;
 
     public function __construct(
         EccubeConfig $eccubeConfig,
+        ProductRepository $productRepository,
+        OrderRepository $orderRepository,
         PaymentRepository $paymentRepository,
         ConfigRepository $yamatoConfigRepository,
+        YamatoOrderRepository $yamatoOrderRepository,
         YamatoPaymentMethodRepository $yamatoPaymentMethodRepository,
-        RequestStack $requestStack
+        RequestStack $requestStack,
+        RouterInterface $router
     )
     {
-        $this->paymentRepository = $paymentRepository;
         $this->eccubeConfig = $eccubeConfig;
+        $this->productRepository = $productRepository;
+        $this->orderRepository = $orderRepository;
+        $this->paymentRepository = $paymentRepository;
         $this->yamatoConfigRepository = $yamatoConfigRepository;
+        $this->yamatoOrderRepository = $yamatoOrderRepository;
         $this->yamatoPaymentMethodRepository = $yamatoPaymentMethodRepository;
         $this->requestStack = $requestStack;
+        $this->router = $router;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -274,6 +292,41 @@ class CreditExtention extends AbstractTypeExtension
                 ->remove('use_registed_card')
                 ->remove('card_key')
                 ->remove('webcollectToken');
+            }
+        });
+
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function(FormEvent $event) {
+            $options = $event->getForm()->getConfig()->getOptions();
+
+            // 注文確認->注文処理時はフォームは定義されない.
+            if ($options['skip_add_form']) {
+                return;
+            }
+
+            $Payment = $this->paymentRepository->findOneBy(['method_class' => Credit::class]);
+            if($Payment === null) {
+                return;
+            }
+
+            $data = $event->getData();
+            $form = $event->getForm();
+
+            //予約商品存在確認
+            $client = new CreditClientService(
+                $this->eccubeConfig,
+                $this->productRepository,
+                $this->orderRepository,
+                $this->yamatoConfigRepository,
+                $this->yamatoPaymentMethodRepository,
+                $this->yamatoOrderRepository,
+                $this->router
+            );
+
+            if ($client->isReservedOrder($data)) {
+                // 登録済みカード利用または、カード情報登録が必須
+                if ($form['register_card']->getData() != true && $form['use_registed_card']->getData() != true) {
+                    $form['register_card']->addError(new FormError('※ 予約商品購入はカード情報お預かり、もしくは登録済カード情報でのご購入が必要です。'));
+                }
             }
         });
     }

@@ -414,6 +414,56 @@ class UtilClientService extends BaseClientService
     }
 
     /**
+     * 出荷予定日変更(予約商品購入のみ)
+     *
+     * @param Order $Order 注文情報
+     * @param \DateTime $scheduled_shipping_date 出荷予定日
+     * @return bool
+     */
+    public function doChangeDate($Order, $scheduled_shipping_date)
+    {
+        $YamatoOrder = $this->yamatoOrderRepository->findOneBy(['Order' => $Order]);
+
+        //クレジットカード決済以外、予約商品未購入注文は対象外
+        if ($YamatoOrder->getMemo03() != $this->eccubeConfig['YAMATO_PAYID_CREDIT']
+            || !$Order->getScheduledShippingDate()
+        ) {
+            $msg = '出荷予定日変更に対応していない注文です。';
+            $this->setError($msg);
+            return false;
+        }
+
+        //決済設定情報取得
+        $this->setSetting($Order);
+
+        //API設定
+        $function_div = 'E03';
+        $server_url = $this->getApiUrl($function_div);
+
+        //送信キー
+        $listSendKey = array(
+            'function_div',
+            'trader_code',
+            'order_no',
+            'scheduled_shipping_date'
+        );
+
+        //個別パラメタ
+        $listParam = array();
+        $listParam['function_div'] = $function_div;
+        $listParam['scheduled_shipping_date'] = $scheduled_shipping_date->format('Ymd');
+
+        // リクエスト送信
+        return $this->sendOrderRequest(
+            $server_url,
+            $listSendKey,
+            $Order->getId(),
+            $listParam,
+            $Order
+        );
+    }
+
+    /**
      * グローバルＩＰアドレス照会
      *
      * @return false|strings

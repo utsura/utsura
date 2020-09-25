@@ -14,6 +14,8 @@ class YamatoPaymentTwigBlock implements EccubeTwigBlock
         return [
             '@YamatoPayment4/credit.twig',
             '@YamatoPayment4/credit_confirm.twig',
+            '@YamatoPayment4/cvs.twig',
+            '@YamatoPayment4/cvs_confirm.twig',
             '@YamatoPayment4/admin/payment_register.twig',
         ];
     }

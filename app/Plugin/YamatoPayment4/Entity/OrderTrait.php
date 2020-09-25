@@ -33,6 +33,13 @@ trait OrderTrait
     private $yamatoOrderStatus;
 
     /**
+     * @var \DateTime 予約商品出荷予定日
+     * 
+     * @ORM\Column(name="scheduled_shipping_date", type="date", nullable=true)
+     */
+    private $scheduled_shipping_date;
+
+    /**
      * {@inheritdoc}
      */
     public function setYamatoOrder(\Plugin\YamatoPayment4\Entity\YamatoOrder $YamatoOrder = null)
@@ -87,5 +94,23 @@ trait OrderTrait
     public function getYamatoOrderStatus()
     {
         return $this->yamatoOrderStatus;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setScheduledShippingDate($scheduled_shipping_date)
+    {
+        $this->scheduled_shipping_date = $scheduled_shipping_date;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getScheduledShippingDate()
+    {
+        return $this->scheduled_shipping_date;
     }
 }

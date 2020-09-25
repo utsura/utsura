@@ -123,9 +123,25 @@ class CreditController extends AbstractController
         $paymentInfo = $CreditPaymentMethod->getMemo05();
         $this->creditClientService->setPaymentInfo($paymentInfo);
 
-        $result = $this->creditClientService->doDeleteCard($Customer->getId(), $arrParam);
-        if($result == false) {
-            $errMessage = implode("\n", $this->creditClientService->getError());
+        list($moduleSettings, $creditCardList) = $this->getViewData($Customer, $paymentInfo);
+
+        //削除対象のカード情報セット
+        $deleteCardData = array();
+        foreach ($creditCardList['cardData'] as $cardData) {
+            if ($cardData['cardKey'] == $arrParam['card_key']) {
+                $deleteCardData = $cardData;
+                break;
+            }
+        }
+
+        //削除対象が予約販売利用有りの場合はエラーで返す
+        if (isset($deleteCardData['subscriptionFlg']) && $deleteCardData['subscriptionFlg'] == '1') {
+            $errMessage = '※ 予約販売利用有りのカード情報は削除できません。';
+        } else {
+            $result = $this->creditClientService->doDeleteCard($Customer->getId(), $arrParam);
+            if($result == false) {
+                $errMessage = implode("\n", $this->creditClientService->getError());
+            }
         }
 
         if($errMessage) {

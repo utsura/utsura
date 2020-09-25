@@ -21,6 +21,7 @@ file that was distributed with this source code.
 {% endblock stylesheet %}
 
 {% block javascript %}
+
     <script>
         $(function () {
             if ($('[type="date"]').prop('type') != 'date') {
@@ -49,8 +50,19 @@ file that was distributed with this source code.
                             showClose: true
                         }
                     });
+
+                    $('input[id^=scheduled_shipping_date]').datetimepicker({
+                        locale: '{{ eccube_config.locale }}',
+                        format: 'YYYY-MM-DD',
+                        useCurrent: false,
+                        buttons: {
+                            showToday: true,
+                            showClose: true
+                        }
+                    });
                 });
             }
+
             // 登録チェックボックス
             $('#check_all').on('change', function() {
                 var checked = $(this).prop('checked');
@@ -84,18 +96,37 @@ file that was distributed with this source code.
                     alert("チェックボックスが選択されていません");
                     return false;
                 }
-                if($('#search_payment_payment_status').val().length == 0) {
+                $payment_status_selector = getPaymentStatusSelector();
+                if ($payment_status_selector == null) {
+                    return false;
+                }
+                if ($payment_status_selector.val().length == 0) {
                     alert("決済処理が選択されていません");
                     return false;
                 }
-                if(confirm('決済処理を行います。よろしいですか？')) {
+                if (confirm('決済処理を行います。よろしいですか？')) {
                     $('#yamato_request').val('change_payment_status');
-                    $('#yamato_mode').val($('#search_payment_payment_status').val());
+                    $('#yamato_mode').val($payment_status_selector.val());
                     $('#form_bulk').submit();
                 }
             });
+
+            // コンビニ決済の場合は決済処理から取引照会以外の選択肢を削除する
+            if ($('#search_payment_payment_method').val() == '{{ eccube_config.YAMATO_PAYID_CVS }}') {
+                $payment_status = $('#search_payment_payment_status');
+                $payment_status.children().each(function () {
+                    if ($(this).val() === '') {
+                        // プレースホルダーはスキップ
+                        return;
+                    }
+                    if ($(this).val() !== 'inquiry') {
+                        // 取引照会以外はremove
+                        $(this).remove();
+                    }
+                })
+            }
         });
-        
+
         function countCheck() {
             var check_count = 0;
             $('input[id^="yamato_check_"]').each(function(){
@@ -104,6 +135,25 @@ file that was distributed with this source code.
                 }
             });
             return check_count;
+        }
+
+        function getPaymentStatusSelector() {
+            if ($('#search_payment_payment_status').length > 0) {
+                return $('#search_payment_payment_status');
+            }
+            if ($('#search_payment_deferred_status').length > 0) {
+                return $('#search_payment_deferred_status');
+            }
+            return null;
+        }
+
+        function fnChangeScheduledShippingDate(order_id) {
+            if(confirm('出荷予定日を変更します。よろしいですか？')) {
+                $('#yamato_request').val('change_scheduled_shipping_date');
+                $('#order_id').val(order_id);
+                $('#scheduled_shipping_date').val($('#scheduled_shipping_date--' + order_id).val());
+                $('#form_bulk').submit();
+            }
         }
     </script>
 {% endblock javascript %}
@@ -147,6 +197,19 @@ file that was distributed with this source code.
             </div>
             <div class="c-outsideBlock__contents">
                 <div class="row">
+                    <div class="col-6">
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <p class="col-form-label">{{ 'yamato_payment.admin.payment_status.search_condition_payment_method'|trans }}</p>
+                                {{ form_widget(searchForm.payment_method) }}
+                                {{ form_errors(searchForm.payment_method) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="c-outsideBlock__contents">
+                <div class="row">
                     <div class="mb-4">
                         <div class="col-12">
                             <button class="btn btn-ec-conversion px-5" type="submit">検索</button>
@@ -179,7 +242,11 @@ file that was distributed with this source code.
                                     <td class="text-center" style="background-color: #f9f9f9;">
                                         <label class="control-label required ">決済処理</label>
                                     </td>
-                                    <td>{{ form_widget(searchForm.payment_status) }}</td>
+                                    {% if payment_method == eccube_config.YAMATO_PAYID_CREDIT or payment_method == eccube_config.YAMATO_PAYID_CVS %}
+                                        <td>{{ form_widget(searchForm.payment_status) }}</td>
+                                    {% else %}
+                                        <td>{{ form_widget(searchForm.deferred_status) }}</td>
+                                    {% endif %}
                                     <td><a href="#" class="btn btn-success" id="change_payment_status">一括処理</a></td>
                                 </tr>
                             </table>
@@ -199,7 +266,10 @@ file that was distributed with this source code.
                     <form id="form_bulk" method="POST" action="{{ url('yamato_payment4_admin_payment_status_request') }}">
                         <input type="hidden" name="yamato_request" id="yamato_request" value="" />
                         <input type="hidden" name="yamato_mode" id="yamato_mode" value="" />
+                        <input type="hidden" name="order_id" id="order_id" value="" />
+                        <input type="hidden" name="scheduled_shipping_date" id="scheduled_shipping_date" value="" />
                         <input type="hidden" name="{{ constant('Eccube\\Common\\Constant::TOKEN_NAME') }}" value="{{ csrf_token(constant('Eccube\\Common\\Constant::TOKEN_NAME')) }}">
+                        <input type="hidden" name="yamato_payment_method" id="yamato_payment_method" value="{{ payment_method }}" />
                         <div class="row justify-content-between mb-2">
                             <div class="col-6"></div>
                             <div class="col-5 text-right">
@@ -231,41 +301,13 @@ file that was distributed with this source code.
                                         <th class="border-top-0 pt-2 pb-2 text-center">{{ 'yamato_payment.admin.payment_status.col_order_staus'|trans }}</th>
                                         <th class="border-top-0 pt-2 pb-2 text-center">決済状況</th>
                                         <th class="border-top-0 pt-2 pb-2 text-center">与信承認日</th>
+                                        {% if payment_method == eccube_config.YAMATO_PAYID_CREDIT %}
+                                            <th class="border-top-0 pt-2 pb-2 text-center">出荷予定日</th>
+                                            <th class="border-top-0 pt-2 pb-2 text-center">出荷予定日変更</th>
+                                        {% endif %}
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% set cssClassStatus = {
-                                        (constant('Eccube\\Entity\\Master\\OrderStatus::NEW')): "badge-ec-blue",
-                                        (constant('Eccube\\Entity\\Master\\OrderStatus::CANCEL')): "badge-ec-glay",
-                                        (constant('Eccube\\Entity\\Master\\OrderStatus::IN_PROGRESS')): "badge-ec-blue",
-                                        (constant('Eccube\\Entity\\Master\\OrderStatus::DELIVERED')): "badge-ec-glay",
-                                        (constant('Eccube\\Entity\\Master\\OrderStatus::PAID')): "badge-ec-green",
-                                        (constant('Eccube\\Entity\\Master\\OrderStatus::PROCESSING')): "badge-ec-yellow",
-                                        (constant('Eccube\\Entity\\Master\\OrderStatus::RETURNED')): "badge-ec-glay",
-                                    }
-                                    %}
-                                    {% set yamatoCreditStatus = {
-                                        0: "決済依頼済み",
-                                        1: "決済申込完了",
-                                        2: "入金完了（速報）",
-                                        3: "入金完了（確報）",
-                                        4: "与信完了",
-                                        5: "予約受付完了",
-                                        11: "購入者都合エラー",
-                                        12: "加盟店都合エラー",
-                                        13: "決済機関都合エラー",
-                                        14: "その他システムエラー",
-                                        15: "予約販売与信エラー",
-                                        16: "決済依頼取消エラー",
-                                        17: "金額変更NG",
-                                        20: "決済中断",
-                                        21: "決済手続き中",
-                                        30: "精算確定待ち",
-                                        31: "精算確定",
-                                        40: "取消",
-                                        50: "3Dセキュア認証中",
-                                    }
-                                    %}
                                     {% for Order in pagination %}
                                         <tr>
                                             <td class="align-middle text-center pl-3">
@@ -286,12 +328,14 @@ file that was distributed with this source code.
 
                                             </td>
                                             <td class="align-middle text-center"  id="order_status--{{ Order.id }}">
-                                                <span class="badge {{ attribute(cssClassStatus, Order.OrderStatus.id) }}">{{ Order.OrderStatus }}</span>
+                                                <span class="badge {{ getCssWithOrderStatus(Order.OrderStatus.id) }}">{{ Order.OrderStatus }}</span>
                                             </td>
                                             <td class="align-middle text-center"  id="order_yamato_status--{{ Order.id }}">
                                             {% for yamato in Order.YamatoOrder %}
-                                                {% if yamato.memo03 == "10" %}
-                                                    {{ attribute(yamatoCreditStatus, yamato.memo04) }}
+                                                {% if payment_method == eccube_config.YAMATO_PAYID_CREDIT or payment_method == eccube_config.YAMATO_PAYID_CVS %}
+                                                    {{ getYamatoCreditStatusName(yamato.memo04) }}
+                                                {% elseif payment_method == eccube_config.YAMATO_PAYID_DEFERRED %}
+                                                    {{ getYamatoDefferedStatusName(yamato.memo04) }}
                                                 {% else %}
                                                     不明
                                                 {% endif %}
@@ -300,6 +344,26 @@ file that was distributed with this source code.
                                             <td class="align-middle text-center"  id="order_yamato_auth_datetime--{{ Order.id }}">
                                                 {{ attribute(lastAuthDates, Order.id)|date_min }}
                                             </td>
+                                            {% if payment_method == eccube_config.YAMATO_PAYID_CREDIT %}
+                                                <td class="align-middle" align="center">
+                                                    {% if Order.scheduled_shipping_date %}
+                                                        {% for yamato in Order.YamatoOrder %}
+                                                            {% if yamato.memo04 == "5" %}
+                                                                <input id="scheduled_shipping_date--{{ Order.id }}" class="datetimepicker-input form-control" data-toggle="datetimepicker" type="date" style="width:auto;" value="{{ Order.scheduled_shipping_date|date('Y-m-d') }}"/>
+                                                            {% else %}
+                                                                {{ Order.scheduled_shipping_date|date('Y/m/d') }}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    {% for yamato in Order.YamatoOrder %}
+                                                        {% if yamato.memo04 == "5" %}
+                                                            <button class="btn btn-success" onclick="fnChangeScheduledShippingDate({{ Order.id }}); return false;">出荷予定日変更</button>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </td>
+                                            {% endif %}
                                         </tr>
                                     {% endfor %}
                                     </tbody>
