@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "74492ad95b57a484d57e3281fcfcff11",
+    "content-hash": "ba14caa2adcc8aeac79808ed4ed63893",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1660,6 +1660,30 @@
             "time": "2018-07-27T15:41:37+00:00"
         },
         {
+            "name": "ec-cube/CategoryExtensionB",
+            "version": "1.0.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://package-api.ec-cube.net/ec-cube/CategoryExtensionB/1.0.1/CategoryExtensionB-1.0.1.tgz"
+            },
+            "require": {
+                "ec-cube/plugin-installer": "~0.0.6"
+            },
+            "type": "eccube-plugin",
+            "extra": {
+                "code": "CategoryExtensionB",
+                "id": 1807
+            },
+            "description": "カテゴリページ／コンテンツ追加 for EC-CUBE4",
+            "transport-options": {
+                "http": {
+                    "header": [
+                        "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                    ]
+                }
+            }
+        },
+        {
             "name": "ec-cube/CheckProduct4",
             "version": "1.0.1",
             "dist": {
@@ -1675,30 +1699,6 @@
                 "id": 1965
             },
             "description": "最近チェックした商品",
-            "transport-options": {
-                "http": {
-                    "header": [
-                        "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "ec-cube/GmoPaymentGateway4",
-            "version": "1.0.4",
-            "dist": {
-                "type": "tar",
-                "url": "https://package-api.ec-cube.net/ec-cube/GmoPaymentGateway4/1.0.4/GmoPaymentGateway4-1.0.4.tgz"
-            },
-            "require": {
-                "ec-cube/plugin-installer": "~0.0.6"
-            },
-            "type": "eccube-plugin",
-            "extra": {
-                "code": "GmoPaymentGateway4",
-                "id": 1797
-            },
-            "description": "PGマルチペイメントサービス決済プラグイン",
             "transport-options": {
                 "http": {
                     "header": [

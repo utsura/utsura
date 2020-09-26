@@ -1,0 +1,21 @@
+{% if Category is not empty %}
+<script>
+    $(function () {
+
+        $('#category_extension_b_header_contents').prependTo( $('.ec-layoutRole__main').first() );
+        $('#category_extension_b_footer_contents').appendTo( $('.ec-layoutRole__main').first() );
+        $('#category_extension_b_template').remove();
+
+    });
+</script>
+
+<div id="category_extension_b_template" style="display: none;">
+    <div id="category_extension_b_header_contents">
+        <p style="">{{ Category.header_contents|raw|nl2br }}</p>
+    </div>
+
+    <div id="category_extension_b_footer_contents">
+        <p style="">{{ Category.footer_contents|raw|nl2br }}</p>
+    </div>
+</div>
+{% endif %}

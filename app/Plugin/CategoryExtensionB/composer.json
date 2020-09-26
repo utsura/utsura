@@ -1,0 +1,1 @@
+{"name":"ec-cube\/CategoryExtensionB","version":"1.0.1","description":"\u30ab\u30c6\u30b4\u30ea\u30da\u30fc\u30b8\uff0f\u30b3\u30f3\u30c6\u30f3\u30c4\u8ffd\u52a0 for EC-CUBE4","type":"eccube-plugin","require":{"ec-cube\/plugin-installer":"~0.0.6"},"extra":{"code":"CategoryExtensionB","id":1807}}

@@ -1,0 +1,4 @@
+category_extension_b.admin.header_contents.title: ヘッダーコンテンツ
+category_extension_b.admin.header_contents.placeholder: ヘッダーコンテンツを入力してください(HTMLタグ使用可、上限4,000文字)。
+category_extension_b.admin.footer_contents.title: フッターコンテンツ
+category_extension_b.admin.footer_contents.placeholder: フッターコンテンツを入力してください(HTMLタグ使用可、上限4,000文字)。

@@ -1,0 +1,38 @@
+{% if Categories|length > 0 %}
+    {% for Category in Categories %}
+        {% if Category.id != TargetCategory.id %}
+
+            <script>
+                $(function () {
+                    $('#header_contents_{{ Category.id }}').appendTo($('#category_{{ Category.id }}_name').closest('form'));
+                    $('#footer_contents_{{ Category.id }}').appendTo($('#category_{{ Category.id }}_name').closest('form'));
+                    $('#category_extension_b_template_{{ Category.id }}').remove();
+                });
+            </script>
+
+            <div id="category_extension_b_template_{{ Category.id }}" style="display: none;">
+
+                <div id="header_contents_{{ Category.id }}" class="col-auto align-items-center" style="width:90%; padding-top: 10px;" >
+                    <div class="row">
+                        <div class="col-3">{{ 'category_extension_b.admin.header_contents.title'|trans }}</div>
+                        <div class="col-9">
+                            {{ form_widget(forms[Category.id].header_contents, {'attr': {'data-origin-value': forms[Category.id].header_contents.vars.value}}) }}
+                            {{ form_errors(forms[Category.id].header_contents) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div id="footer_contents_{{ Category.id }}" class="col-auto align-items-center" style="width:90%; padding-top: 10px;">
+                    <div class="row">
+                        <div class="col-3">{{ 'category_extension_b.admin.footer_contents.title'|trans }}</div>
+                        <div class="col-9">
+                            {{ form_widget(forms[Category.id].footer_contents, {'attr': {'data-origin-value': forms[Category.id].footer_contents.vars.value}}) }}
+                            {{ form_errors(forms[Category.id].footer_contents) }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
