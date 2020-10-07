@@ -1,0 +1,43 @@
+{% block stylesheet %}
+    <link rel="stylesheet" href="/html/user_data/assets/css/customize.css">
+{% endblock %}
+
+{% set Categories = repository('Eccube\\Entity\\Category').getList() %}
+
+<section class="secCategory">
+    <div class="secMain">
+        {% macro tree(Category) %}
+        {% from _self import tree %}
+            <a class="ec-itemNav__navItemAnchor" href="{{ url('product_list') }}?category_id={{ Category.id }}">
+                {{ Category.name }}
+            </a>
+            {% if Category.children|length > 0 %}
+                <ul class="ec-itemNav__children">
+                    {% for ChildCategory in Category.children %}
+                        <li class="ec-itemNav__childrenItem">
+                            {{ tree(ChildCategory) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endmacro %}
+
+        {# @see https://github.com/bolt/bolt/pull/2388 #}
+        {% from _self import tree %}
+
+        <div class="section_CategoryArea">
+            <div class="section_headerCategoryArea">
+                <p>{{ 'カテゴリーから探す'|trans }}</p>
+            </div>
+            <div class="ec-itemNav">
+                <ul class="ec-itemNav__nav">
+                    {% for Category in Categories %}
+                        <li>
+                            {{ tree(Category) }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

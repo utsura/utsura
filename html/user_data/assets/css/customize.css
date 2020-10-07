@@ -93,6 +93,24 @@
     line-height: 2.4;
 }
 
+/* category_section.twig */
+.secCategory {
+    display: none;
+    margin: 20px;
+}
+
+.secCategory > .secMain {
+    margin-top: 0;
+
+}
+
+.secMain > ul{
+
+}
+
+.secMain > ul > li{
+    list-style: none;
+}
 
 
 
@@ -180,6 +198,18 @@
     .aboutOther{
         text-align: left;
     }
+
+    /* category_section.twig */
+    .secCategory{
+        display: block;
+    }
+
+    .section_CategoryArea p{
+        font-size: 24px;
+        font-weight: 600;
+        color: #000;
+    }
+
 }
 
 /* IPad Design */
