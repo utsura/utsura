@@ -113,6 +113,18 @@ $(function() {
         }
     });
 
+    $('.secItemNav ul a').click(function () {
+        var child = $(this).siblings();
+        if (child.length > 0) {
+            if (child.is(':visible')) {
+                return true;
+            } else {
+                child.slideToggle();
+                return false;
+            }
+        }
+    });
+
     // イベント実行時のオーバーレイ処理
     // classに「load-overlay」が記述されていると画面がオーバーレイされる
     $('.load-overlay').on({
