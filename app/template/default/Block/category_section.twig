@@ -1,5 +1,88 @@
 {% block stylesheet %}
-    <link rel="stylesheet" href="/html/user_data/assets/css/customize.css">
+    <style>
+        .secCategory{
+            display: none;
+            margin: 20px;
+        }
+
+        .secCategory .secMain {
+            margin-top: 0;
+        }
+
+        .secMain ul li {
+            list-style: none;
+        }
+
+        @media screen and (max-width: 480px) {
+            .secCategory{
+                display: block;
+            }
+
+            .section_CategoryArea p{
+                font-size: 24px;
+                font-weight: 600;
+                color: #000;
+            }
+
+            .secItemNav{
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+            }
+
+            .secItemNav__nav{
+                display: block;
+                margin: 0 auto;
+                padding: 0;
+                width: auto;
+                height: auto;
+                list-style-type: none;
+                text-align: center;
+            }
+
+            .secItemNav__navItemAnchor{
+                display: block;
+                border-bottom: 1px solid #e8e8e8;
+                margin: 0;
+                padding: 16px;
+                height: auto;
+                color: #2e3233;
+                font-size: 16px;
+                font-weight: bold;
+                line-height: 20px;
+                text-decoration: none;
+                text-align: left;
+                background: #fff;
+                border-bottom: 1px solid #e8e8e8;
+            }
+
+            .secItemNav__nav ul li a{
+                font-weight: 400;
+                background: #F2F2F2
+            }
+
+            .secItemNav__children{
+                display: none;
+                z-index: 0;
+                margin: 0;
+                padding: 0;
+                min-width: 200px;
+                list-style: none;
+                position: static;
+                top: 100%;
+                left: 0;
+            }
+
+            .secItemNav__childrenItem{
+                overflow: hidden;
+                width: 100%;
+                height: auto;
+                transition: 0.3s;
+            }
+        }
+    </style>
 {% endblock %}
 
 {% set Categories = repository('Eccube\\Entity\\Category').getList() %}
@@ -8,13 +91,13 @@
     <div class="secMain">
         {% macro tree(Category) %}
         {% from _self import tree %}
-            <a class="ec-itemNav__navItemAnchor" href="{{ url('product_list') }}?category_id={{ Category.id }}">
+            <a class="secItemNav__navItemAnchor" href="{{ url('product_list') }}?category_id={{ Category.id }}">
                 {{ Category.name }}
             </a>
             {% if Category.children|length > 0 %}
-                <ul class="ec-itemNav__children">
+                <ul class="secItemNav__children">
                     {% for ChildCategory in Category.children %}
-                        <li class="ec-itemNav__childrenItem">
+                        <li class="secItemNav__childrenItem">
                             {{ tree(ChildCategory) }}
                         </li>
                     {% endfor %}
@@ -29,8 +112,8 @@
             <div class="section_headerCategoryArea">
                 <p>{{ 'カテゴリーから探す'|trans }}</p>
             </div>
-            <div class="ec-itemNav">
-                <ul class="ec-itemNav__nav">
+            <div class="secItemNav">
+                <ul class="secItemNav__nav">
                     {% for Category in Categories %}
                         <li>
                             {{ tree(Category) }}
