@@ -8,22 +8,27 @@ http://www.ec-cube.co.jp/
 For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 #}
-<div class="ec-footerRole">
+<div id="footer" class="ec-footerRole">
 	<div class="ec-footerRole__inner">
 		<div class="ec-footerTitle">
-			<div class="ec-footerTitle__logo">
-				<a href="{{ url('homepage') }}">{{ BaseInfo.shop_name }}</a>
-			</div>
+			<h3 class="footerTitle footerTitle__sp">つながる</h3>
 			<a class="ec-footerTitle__sns" href="https://www.instagram.com/yuheioono/?hl=ja" target="_blank">
-				<i class="fab fa-instagram fa-lg"></i>
+				<i class="fab fa-instagram"></i>
 			</a>
 			<a class="ec-footerTitle__sns" href="https://www.facebook.com/UTSURAofficial/" target="_blank">
-				<i class="fab fa-facebook-square fa-lg"></i>
+				<i class="fab fa-facebook-square"></i>
 			</a>
+			<a class="ec-footerTitle__sns" href="https://twitter.com/UTSURA3?s=20" target="_blank">
+				<i class="fab fa-twitter"></i>
+			</a>
+			<h4 class="footerTitle__sp">
+				公式SNSアカウント
+			</h4>
+			<p class="footerTitle__sp">Twitter、facebook、Instagramの</br>公式アカウント。</p>
 		</div>
 		<ul class="ec-footerNavi">
 			<li class="ec-footerNavi__title">
-				<span>お買い物ガイド</span>
+				<h3 class="footerTitle">お買い物ガイド</h3>
 			</li>
 			<li class="ec-footerNavi__link">
 				<a href="{{ url('help_about') }}">{{ '当サイトについて'|trans }}</a>
@@ -46,9 +51,14 @@ file that was distributed with this source code.
 				<a href="{{ url('help_tradelaw') }}">{{ '特定商取引法に基づく表記'|trans }}</a>
 			</li>
 			<li class="ec-footerNotice__copyright">
-				copyright (c)
-				{{ BaseInfo.shop_name }}
-				all rights reserved.
+				<a class="ec-footerTitle__logo" href="{{ url('homepage') }}">
+					{{ BaseInfo.shop_name }}
+				</a>
+				<span>
+					copyright (c)
+					{{ BaseInfo.shop_name }}
+					all rights reserved.
+				</span>
 			</li>
 		</ul>
 	</div>
