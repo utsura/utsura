@@ -37,6 +37,7 @@
         "ec-cube/PayPalCheckout": "1.0.6",
         "ec-cube/Recommend4": "^4.0",
         "ec-cube/RelatedProduct4": "^4.0",
+        "ec-cube/SameCategoryProduct": "^1.0",
         "ec-cube/Securitychecker4": "^4.0",
         "ec-cube/StockShow4": "^1.0",
         "ec-cube/YamatoPayment4": "1.2.0",

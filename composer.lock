@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba14caa2adcc8aeac79808ed4ed63893",
+    "content-hash": "bbb25adc9ba1585988967f5d8611364e",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -1771,6 +1771,30 @@
                 "id": 1761
             },
             "description": "関連商品プラグイン",
+            "transport-options": {
+                "http": {
+                    "header": [
+                        "X-ECCUBE-KEY: 8CnUBUtP6kLSCSy1K2nuavbm6LpE27WUzTsDDx4v"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "ec-cube/SameCategoryProduct",
+            "version": "1.0.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://package-api.ec-cube.net/ec-cube/SameCategoryProduct/1.0.0/SameCategoryProduct-1.0.0.tgz"
+            },
+            "require": {
+                "ec-cube/plugin-installer": "~0.0.7"
+            },
+            "type": "eccube-plugin",
+            "extra": {
+                "code": "SameCategoryProduct",
+                "id": 2130
+            },
+            "description": "同カテゴリ商品表示",
             "transport-options": {
                 "http": {
                     "header": [
@@ -7588,6 +7612,7 @@
                 "i18n",
                 "text"
             ],
+            "abandoned": true,
             "time": "2018-12-05T18:34:18+00:00"
         },
         {
