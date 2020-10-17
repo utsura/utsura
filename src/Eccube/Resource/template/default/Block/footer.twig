@@ -8,7 +8,82 @@ http://www.ec-cube.co.jp/
 For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 #}
+{% block javascript %}
+	<script type="text/javascript">
+		function loopTopSlider(){
+			var sliderSize = $('.brandloop .brandloop__wrap ul').width();
+			$('.brandloop .brandloop__wrap').css({'width':sliderSize*2+'px'});
+			$('.brandloop .brandloop__wrap').find('ul').clone().appendTo('.brandloop .brandloop__wrap');
+		};
+
+		function loopsliderPosition(){
+			var sliderSize = $('.brandloop .brandloop__wrap ul:first-of-type').width();
+			$('.brandloop_wrap').css({left:'0'});
+			$('.brandloop_wrap').stop().animate({left:'-'+(sliderSize)+'px'},60000,'linear');
+			setTimeout(function(){
+				loopsliderPosition();
+			},60000);
+		};
+		$(function () {
+			loopTopSlider();
+			loopsliderPosition();
+		});
+	</script>
+{% endblock %}
+
+
 <div id="footer" class="ec-footerRole">
+	<div class="brandloop">
+		<div id="loop" class="brandloop__wrap">
+			<ul>
+				<li>
+					<a href="{{ url('product_list') }}?category_id=24">
+						<img src="{{ asset('assets/img/common/audience.jpg','user_data') }}" alt="audience">
+					</a>
+				</li>
+				<li>
+					<a href="{{ url('product_list') }}?category_id=61">
+						<img src="{{ asset('assets/img/common/BuzzRicksons.jpg','user_data') }}" alt="BuzzRicksons">
+					</a>
+				</li>
+				<li>
+					<a href="{{ url('product_list') }}?category_id=16">
+						<img src="{{ asset('assets/img/common/modemdesign.jpg','user_data') }}" alt="modemdesign">
+					</a>
+				</li>
+				<li>
+					<a href="{{ url('product_list') }}?category_id=50">
+						<img src="{{ asset('assets/img/common/HOUSTON.jpg','user_data') }}" alt="HOUSTON">
+					</a>
+				</li>
+				<li>
+					<a href="{{ url('product_list') }}?category_id=63">
+						<img src="{{ asset('assets/img/common/Champion.jpg','user_data') }}" alt="Champion">
+					</a>
+				</li>
+				<li>
+					<a href="{{ url('product_list') }}?category_id=18">
+						<img src="{{ asset('assets/img/common/BENDS.jpg','user_data') }}" alt="bend(s)">
+					</a>
+				</li>
+				<li>
+					<a href="{{ url('product_list') }}?category_id=6">
+						<img src="{{ asset('assets/img/common/Johnbull.jpg','user_data') }}" alt="Johnbull">
+					</a>
+				</li>
+				<li>
+					<a href="{{ url('product_list') }}?category_id=44">
+						<img src="{{ asset('assets/img/common/SugarCane.jpg','user_data') }}" alt="SugarCane">
+					</a>
+				</li>
+				<li>
+					<a href="{{ url('product_list') }}?category_id=62">
+						<img src="{{ asset('assets/img/common/SugarCaneLight.jpg','user_data') }}" alt="SugarCaneLignt">
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 	<div class="ec-footerRole__inner">
 		<div class="ec-footerTitle">
 			<h3 class="footerTitle footerTitle__sp">つながる</h3>
@@ -63,3 +138,4 @@ file that was distributed with this source code.
 		</ul>
 	</div>
 </div>
+

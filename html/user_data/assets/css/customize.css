@@ -130,6 +130,33 @@
     margin-left: auto;
 }
 
+/* 無限ループアニメーション */
+.brandloop {
+    height: 230px;
+    overflow: hidden;
+    position: relative;
+}
+
+.brandloop .brandloop__wrap {
+    height: 230px;
+    display: -webkit-flex;
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.brandloop .brandloop__wrap ul {
+    display: -webkit-flex;
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.brandloop .brandloop_wrap ul li {
+    width: 324px;
+}
+
 /* SP Design */
 @media screen and (max-width: 480px) {
     /* header-navi.twig */
