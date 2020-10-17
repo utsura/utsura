@@ -132,29 +132,62 @@
 
 /* 無限ループアニメーション */
 .brandloop {
-    height: 230px;
+    display: flex;
+    display: -webkit-flex;
+    width: 4000px;
+}
+
+.brandloop .brandloop__inner {
     overflow: hidden;
-    position: relative;
-}
-
-.brandloop .brandloop__wrap {
-    height: 230px;
     display: -webkit-flex;
     display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
 }
 
-.brandloop .brandloop__wrap ul {
-    display: -webkit-flex;
-    display: flex;
-    list-style: none;
-    padding: 0;
+.brandloop .brandloop__inner .brandloop__item {
+    width: 100%;
 }
 
-.brandloop .brandloop_wrap ul li {
-    width: 324px;
+.brandloop .brandloop__inner .brandloop__item img{
+    width: 100px;
+}
+
+.brandloop__inner:first-child {
+    animation: loop 90s linear infinite;
+}
+
+.brandloop__inner:nth-child(2) {
+    animation: loop2 90s -60s linear infinite;
+}
+
+.brandloop__inner:last-child {
+    animation: loop3 90s -30s linear infinite;
+}
+
+@keyframes loop {
+    0% {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(200%);
+    }
+}
+
+@keyframes loop2 {
+    0% {
+        transform: translateX(-200%);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes loop3 {
+    0% {
+        transform: translateX(-300%);
+    }
+    to {
+        transform: translateX(0%);
+    }
 }
 
 /* SP Design */

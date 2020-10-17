@@ -226,19 +226,3 @@ $(function() {
         $form.submit();
     });
 });
-
-// 無限ループアニメーション関数
-function loopTopSlider(){
-	var sliderSize = $('.brandloop .brandloop__wrap ul').width();
-	$('.brandloop .brandloop__wrap').css({'width':sliderSize*2+'px'});
-	$('.brandloop .brandloop__wrap').find('ul').clone().appendTo('.brandloop .brandloop__wrap');
-};
-
-function loopsliderPosition(){
-	var sliderSize = $('.brandloop .brandloop__wrap ul:first-of-type').width();
-	$('.brandloop_wrap').css({left:'0'});
-	$('.brandloop_wrap').stop().animate({left:'-'+(sliderSize)+'px'},60000,'linear');
-	setTimeout(function(){
-		loopsliderPosition();
-	},60000);
-};
