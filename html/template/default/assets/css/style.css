@@ -12,9 +12,20 @@
    ========================================================================== */
 
 html {
-  font-family: sans-serif;
+  font-family:
+  "Noto Sans JP",
+  MyYuGothicM,
+  "游ゴシック",
+  "Yu Gothic",
+  YuGothic,
+  "ヒラギノ角ゴ ProN",
+  "Hiragino Kaku Gothic ProN",
+  "メイリオ",
+  Meiryo,
+  serif;
   /* 1 */
   line-height: 1.15;
+  overflow: auto;
   /* 2 */
   -ms-text-size-adjust: 100%;
   /* 3 */
@@ -31,6 +42,8 @@ html {
 
 body {
   margin: 0;
+  overflow: hidden;
+  min-width: 300px;
 }
 
 /**
@@ -11063,7 +11076,6 @@ Styleguide 22.1
   }
 
   .ec-footerRole {
-    padding-top: 40px;
     margin-top: 100px;
   }
 
@@ -11125,7 +11137,7 @@ Styleguide 22.1
   }
 
   .ec-footerTitle {
-    padding: 16px 50px 0 0;
+    padding: 30px 50px 0 0;
     text-align: left;
   }
 

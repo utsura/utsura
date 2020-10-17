@@ -130,6 +130,66 @@
     margin-left: auto;
 }
 
+/* 無限ループアニメーション */
+.brandloop {
+    display: flex;
+    display: -webkit-flex;
+    width: 4000px;
+}
+
+.brandloop .brandloop__inner {
+    overflow: hidden;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.brandloop .brandloop__inner .brandloop__item {
+    width: 100%;
+}
+
+.brandloop .brandloop__inner .brandloop__item img{
+    width: 100px;
+}
+
+.brandloop__inner:first-child {
+    animation: loop 90s linear infinite;
+}
+
+.brandloop__inner:nth-child(2) {
+    animation: loop2 90s -60s linear infinite;
+}
+
+.brandloop__inner:last-child {
+    animation: loop3 90s -30s linear infinite;
+}
+
+@keyframes loop {
+    0% {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(200%);
+    }
+}
+
+@keyframes loop2 {
+    0% {
+        transform: translateX(-200%);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes loop3 {
+    0% {
+        transform: translateX(-300%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
 /* SP Design */
 @media screen and (max-width: 480px) {
     /* header-navi.twig */

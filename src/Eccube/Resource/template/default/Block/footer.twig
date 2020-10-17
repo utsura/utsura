@@ -8,7 +8,97 @@ http://www.ec-cube.co.jp/
 For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 #}
+{% block javascript %}
+	<script>
+	    // 無限ループアニメーション関数
+		$(function(){
+			$('.brandloop__inner').each(function(){
+				var sliderWidth = $(this).width();
+
+				$(this).clone(true).insertBefore(this);
+				$(this).clone(true).insertAfter(this);
+
+				$('.brandloop').css('width', sliderWidth*3);
+			});
+		});
+	</script>
+{% endblock %}
+
 <div id="footer" class="ec-footerRole">
+	<div class="brandloop">
+		<div class="brandloop__inner">
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=24">
+					<img src="{{ asset('assets/img/common/audience.jpg','user_data') }}" alt="audience">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=61">
+					<img src="{{ asset('assets/img/common/BuzzRicksons.jpg','user_data') }}" alt="BuzzRicksons">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=16">
+					<img src="{{ asset('assets/img/common/modemdesign.jpg','user_data') }}" alt="modemdesign">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=50">
+					<img src="{{ asset('assets/img/common/HOUSTON.jpg','user_data') }}" alt="HOUSTON">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=63">
+					<img src="{{ asset('assets/img/common/Champion.jpg','user_data') }}" alt="Champion">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=18">
+					<img src="{{ asset('assets/img/common/BENDS.jpg','user_data') }}" alt="bend(s)">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=6">
+					<img src="{{ asset('assets/img/common/Johnbull.jpg','user_data') }}" alt="Johnbull">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=44">
+					<img src="{{ asset('assets/img/common/SugarCane.jpg','user_data') }}" alt="SugarCane">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=62">
+					<img src="{{ asset('assets/img/common/SugarCaneLight.jpg','user_data') }}" alt="SugarCaneLignt">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=60">
+					<img src="{{ asset('assets/img/common/SunSurf.jpg','user_data') }}" alt="SunSurf">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=91">
+					<img src="{{ asset('assets/img/common/PLESIC.jpg','user_data') }}" alt="PLESIC">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=66">
+					<img src="{{ asset('assets/img/common/Leminor.jpg','user_data') }}" alt="Leminor">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=67">
+					<img src="{{ asset('assets/img/common/thrasher.jpg','user_data') }}" alt="THRASHER">
+				</a>
+			</div>
+			<div class="brandloop__item">
+				<a href="{{ url('product_list') }}?category_id=64">
+					<img src="{{ asset('assets/img/common/SLICK.jpg','user_data') }}" alt="SLICK">
+				</a>
+			</div>
+		</div>
+	</div>
 	<div class="ec-footerRole__inner">
 		<div class="ec-footerTitle">
 			<h3 class="footerTitle footerTitle__sp">つながる</h3>
@@ -63,3 +153,4 @@ file that was distributed with this source code.
 		</ul>
 	</div>
 </div>
+
