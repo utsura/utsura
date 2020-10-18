@@ -131,7 +131,7 @@
 }
 
 /* 無限ループアニメーション */
-.brandloop {
+.ec-footerRole .brandloop {
     display: flex;
     display: -webkit-flex;
     width: 4000px;
