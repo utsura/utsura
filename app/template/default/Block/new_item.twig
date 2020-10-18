@@ -8,20 +8,20 @@
 {% set Products = CustomizeNewProduct() %}
 {% if Products|length > 0 %}
 <div class="ec-role">
-    <div class="ec-newItemRole">
-        <div class="ec-newItemRole__wrapper">
-            <div class="ec-newItemRole__listItemHeading ec-secHeading--tandem">
+    <div class="ec-sectionItemRole">
+        <div class="ec-sectionItemRole__wrapper">
+            <div class="ec-sectionItemRole__listItemHeading ec-secHeading--tandem">
                 <span class="ec-secHeading__en">{{ 'front.block.new_item.title__en'|trans }}</span>
                 <span class="ec-secHeading__ja">{{ 'front.block.new_item.title__ja'|trans }}</span>
             </div>
         </div>
-        <div class="ec-newItemRole__list">
+        <div class="ec-sectionItemRole__list">
             {% for Product in Products %}
-            <div class="ec-newItemRole__listItem">
+            <div class="ec-sectionItemRole__listItem">
                 <a href="{{ url('product_detail', {'id': Product.id}) }}">
                     <img class="lazyload" data-src="{{ asset(Product.main_list_image|no_image_product, 'save_image') }}">
-                    <p class="ec-newItemRole__listItemTitle">{{ Product.name }}</p>
-                    <p class="ec-newItemRole__listItemPrice">
+                    <p class="ec-sectionItemRole__listItemTitle">{{ Product.name }}</p>
+                    <p class="ec-sectionItemRole__listItemPrice">
                     {% if Product.hasProductClass %}
                         {% if Product.getPrice02Min == Product.getPrice02Max %}
                             {{ Product.getPrice02IncTaxMin|price }}

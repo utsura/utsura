@@ -6503,7 +6503,7 @@ Styleguide 11.2.3
   display: inline-block;
   margin-right: 10px;
   margin-left: 10px;
-  font-size: 18px;
+  font-size: 24px;
   color: black;
 }
 
@@ -7752,12 +7752,12 @@ sg-wrapper:
 
 Styleguide 12.6.1
 */
-.ec-newItemRole {
+.ec-sectionItemRole {
   padding: 0 0 40px 0;
   text-align: center;
 }
 
-.ec-newItemRole .ec-newItemRole__list {
+.ec-sectionItemRole .ec-sectionItemRole__list {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -7765,24 +7765,24 @@ Styleguide 12.6.1
   margin-bottom: 16px;
 }
 
-.ec-newItemRole .ec-newItemRole__listItem {
+.ec-sectionItemRole .ec-sectionItemRole__listItem {
   width: 50%;
   height: auto;
   padding: 8px;
 }
 
-.ec-newItemRole .ec-newItemRole__listItemHeading {
+.ec-sectionItemRole .ec-sectionItemRole__listItemHeading {
   margin-top: 16px;
 }
 
-.ec-newItemRole .ec-newItemRole__listItemTitle {
+.ec-sectionItemRole .ec-sectionItemRole__listItemTitle {
   margin: 8px 0;
   font-size: 14px;
   font-weight: bold;
   color: black;
 }
 
-.ec-newItemRole .ec-newItemRole__listItemPrice {
+.ec-sectionItemRole .ec-sectionItemRole__listItemPrice {
   font-size: 12px;
   color: black;
 }
@@ -10957,7 +10957,7 @@ Styleguide 22.1
 
   .ec-headerNav .ec-headerNav__itemIcon {
     margin-right: 0;
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .ec-headerNav .ec-headerNav__itemLink {
@@ -11201,22 +11201,22 @@ Styleguide 22.1
     margin-top: 1em;
   }
 
-  .ec-newItemRole {
+  .ec-sectionItemRole {
     padding: 32px 0;
   }
 
-  .ec-newItemRole .ec-newItemRole__list {
+  .ec-sectionItemRole .ec-sectionItemRole__list {
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
   }
 
-  .ec-newItemRole .ec-newItemRole__listItem {
+  .ec-sectionItemRole .ec-sectionItemRole__listItem {
     margin-bottom: 15px;
     width: 25%;
     padding: 16px;
   }
 
-  .ec-newItemRole .ec-newItemRole__listItemTitle {
+  .ec-sectionItemRole .ec-sectionItemRole__listItemTitle {
     margin: 20px 0 10px;
   }
 

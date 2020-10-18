@@ -10,21 +10,21 @@
 
 <!-- ▼item_list▼ -->
 <div class="ec-role">
-    <div class="ec-newItemRole">
-        <div class="ec-newItemRole__wrapper">
-            <div class="ec-newItemRole__listItemHeading ec-secHeading--tandem">
+    <div class="ec-sectionItemRole">
+        <div class="ec-sectionItemRole__wrapper">
+            <div class="ec-sectionItemRole__listItemHeading ec-secHeading--tandem">
                 <span class="ec-secHeading__en">Pick Up</span>
                 <span class="ec-secHeading__ja">ピックアップ</span>
             </div>
         </div>
-        <div class="ec-newItemRole__list">
+        <div class="ec-sectionItemRole__list">
             {% for RecommendProduct in recommend_products %}
-                <div class="ec-newItemRole__listItem">
+                <div class="ec-sectionItemRole__listItem">
                     <a href="{{ url('product_detail', {'id': RecommendProduct.Product.id}) }}">
                         <img src="{{ asset(RecommendProduct.Product.mainFileName|no_image_product, "save_image") }}">
                         {#<p>{{ RecommendProduct.comment|raw|nl2br }}</p>#}
-                        <p class="ec-newItemRole__listItemTitle">{{ RecommendProduct.Product.name }}</p>
-                        <p class="ec-newItemRole__listItemPrice">
+                        <p class="ec-sectionItemRole__listItemTitle">{{ RecommendProduct.Product.name }}</p>
+                        <p class="ec-sectionItemRole__listItemPrice">
                             {% if RecommendProduct.Product.hasProductClass %}
                             {% if RecommendProduct.Product.getPrice02Min == RecommendProduct.Product.getPrice02Max %}
                                 {{ RecommendProduct.Product.getPrice02IncTaxMin|price }}
