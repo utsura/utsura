@@ -135,6 +135,7 @@
     display: flex;
     display: -webkit-flex;
     width: 4000px;
+    background: #fff
 }
 
 .brandloop .brandloop__inner {
@@ -187,6 +188,371 @@
     }
     to {
         transform: translateX(0%);
+    }
+}
+
+/* SP Design */
+@media screen and (max-width: 480px) {
+    /* header-navi.twig */
+    .header-banner{
+        display: none;
+    }
+
+    /* sp__banner.twig */
+    .sp__banner{
+        display: block;
+        width: auto;
+    }
+
+    .sp__banner a img{
+        width: 100%;
+    }
+
+
+    /* ロゴ */
+    .ec-headerTitle img {
+        width: 120px;
+        margin-top: 8px;
+    }
+
+    .ec-sliderRole-Img {
+        width: 335px;
+    }
+
+    /* about.twig */
+    .aboutLead{
+        font-size: 16px;
+    }
+
+    .ec-pageImg__sub{
+        display: block;
+    }
+
+    .ec-pageImg__main{
+        width: 95%;
+    }
+
+    .ec-about__profile{
+        display: block;
+    }
+
+    .profile__text{
+        width: 100%;
+    }
+
+    .profile__text h2{
+        padding: 0;
+    }
+
+    /* guide.twig */
+    .guideSideNave{
+        display: none;
+    }
+
+    .guideMain{
+        width: 100%;
+        padding-left: 16px;
+    }
+
+    .aboutInfo{
+        display: block;
+    }
+
+    .aboutInfo__text{
+        display: block;
+        width: 100%;
+    }
+
+    .aboutInfo__text dt{
+        width: 100%;
+        padding: 0;
+    }
+
+    .aboutInfo__text dd{
+        width: 100%;
+    }
+
+    .aboutOther{
+        text-align: left;
+    }
+
+    /* footer.twig */
+
+    .ec-footerTitle .footerTitle__sp {
+        display: block;
+    }
+
+    .footerTitle {
+        padding: 8px 0;
+    }
+
+    .ec-footerNavi {
+        padding-bottom: 0;
+    }
+
+    .ec-footerNavi .ec-footerNavi__title {
+        padding: 16px 0 0 0;
+    }
+
+    .ec-footerNotice {
+        display: block;
+    }
+
+    .ec-footerNotice__link {
+        margin: 16px 0;
+    }
+
+    .ec-footerNotice .ec-footerNotice__copyright {
+        padding-top: 16px;
+    }
+
+}
+
+/* IPad Design */
+@media only screen and (max-width: 1024px) {
+    /* header-navi.twig */
+    .header-banner{
+        display: none;
+    }
+
+    /* guide.twig */
+    .guideSideNave{
+        display: none;
+    }
+}
+/* カスタマイズ用CSS */
+/* header.twig */
+.header-banner{
+    width: auto;
+}
+
+.header-banner a:hover{
+    opacity: 0.6;
+}
+
+.header-banner a img{
+    width: 100%;
+}
+
+/* sp__banner.twig */
+.sp__banner{
+    display: none;
+}
+
+
+.ec-cartRole__totaiTextBottom {
+    font-size: 13px;
+}
+
+.ec-sectionItemRole__wrapper {
+    margin: auto;
+}
+
+
+/* about.twig */
+
+/* guide.twig */
+.guide-pageItem{
+
+}
+
+.guideSideNave{
+    display: block;
+    position: fixed;
+    top: 220px;
+    left: 40px;
+}
+
+.guideMain{
+    margin: 0 auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #000;
+    -webkit-text-size-adjust: 100%;
+    width: 100%;
+    max-width: 740px;
+}
+
+.guide-pageItem{
+    padding-top: 16px;
+}
+
+.guide-pageItem h2{
+    padding-bottom: 8px;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border-bottom: 1px  solid #ccc;
+}
+
+.guide-pageItem h3{
+    font-size: 16px;
+    font-weight: 700;
+    padding-left: 8px;
+}
+
+.guide-pageItem span{
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    line-height: 1.6;
+}
+
+.guideItem{
+    display: block;
+}
+
+.guideItem__Fram {
+    display: block;
+    padding: 16px 20px;
+    background: #F8F8F8;
+    margin: 24px 0;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    font-weight: 700;
+    line-height: 2.4;
+}
+
+/* footer.twig */
+.ec-footerNavi .ec-footerNavi__title {
+    padding: 0 0 32px;
+    font-weight: bold;
+}
+
+.ec-footerTitle .footerTitle__sp {
+    display: none;
+}
+
+.footerTitle {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.ec-footerNotice .ec-footerTitle__logo {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: inherit;
+    text-decoration: none;
+    padding-bottom: 16px;
+    font-size: 32px;
+}
+
+.ec-footerNotice .ec-footerTitle__logo:hover {
+    text-decoration: none;
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+}
+
+.ec-footerNotice .ec-footerNotice__copyright {
+    color: white;
+    margin-left: auto;
+}
+
+/* 無限ループアニメーション */
+.brandloop {
+    display: flex;
+    display: -webkit-flex;
+    width: 4000px;
+}
+
+.brandloop .brandloop__inner {
+    overflow: hidden;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.brandloop .brandloop__inner .brandloop__item {
+    width: 100%;
+}
+
+.brandloop .brandloop__inner .brandloop__item img{
+    width: 100px;
+}
+
+.slider__left:first-child {
+    animation: loop-l 90s linear infinite;
+}
+
+.slider__left:nth-child(2) {
+    animation: loop-l2 90s -60s linear infinite;
+}
+
+.slider__left:last-child {
+    animation: loop-l3 90s -30s linear infinite;
+}
+
+/* 左から右へのアニメーション */
+@keyframes loop-l {
+    0% {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(200%);
+    }
+}
+
+@keyframes loop-l2 {
+    0% {
+        transform: translateX(-200%);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes loop-l3 {
+    0% {
+        transform: translateX(-300%);
+    }
+    to {
+        transform: translateX(0%);
+    }
+}
+
+/* 右から左へのアニメーション */
+.slider__right:first-child {
+    animation: loop-r 90s linear infinite;
+}
+
+.slider__right:nth-child(2) {
+    animation: loop-r2 90s -60s linear infinite;
+}
+
+.slider__right:last-child {
+    animation: loop-r3 90s -30s linear infinite;
+}
+
+@keyframes loop-r {
+    0% {
+        transform: translateX(200%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes loop-r2 {
+    0% {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-200%);
+    }
+}
+
+@keyframes loop-r3 {
+    0% {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-300%);
     }
 }
 
