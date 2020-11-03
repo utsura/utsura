@@ -146,6 +146,7 @@
 
 .brandloop .brandloop__inner .brandloop__item {
     width: 100%;
+    margin-right: 16px;
 }
 
 .brandloop .brandloop__inner .brandloop__item img{
