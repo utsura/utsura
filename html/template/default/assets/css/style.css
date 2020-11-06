@@ -5234,7 +5234,6 @@ Styleguide 7.3.5
 
 .ec-cartNavi {
   display: inline-block;
-  padding: 10px 0 0 20px;
   width: auto;
   color: black;
   background: transparent;
@@ -6179,6 +6178,7 @@ Styleguide 11.2
   display: flex;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
+  padding-top: 80px;
 }
 
 .ec-layoutRole .ec-layoutRole__main {
@@ -6259,10 +6259,6 @@ Styleguide 11.2
   display: none;
 }
 
-.ec-headerRole .ec-headerRole__title {
-  width: 100%;
-}
-
 .ec-headerRole .ec-headerRole__navSP {
   display: block;
   position: absolute;
@@ -6273,6 +6269,7 @@ Styleguide 11.2
 }
 
 .ec-headerNaviRole {
+  left: 0;
   margin: 0 auto;
   padding-left: 20px;
   padding-right: 20px;
@@ -6282,14 +6279,14 @@ Styleguide 11.2
   color: #525263;
   -webkit-text-size-adjust: 100%;
   width: 100%;
-  max-width: 1130px;
-  display: -ms-flexbox;
-  display: flex;
   -ms-flex-pack: justify;
   justify-content: space-between;
   -ms-flex-align: center;
   align-items: center;
-  padding-top: 15px;
+  padding-top: 0px;
+  height: 80px;
+  z-index: 999;
+  background-color: #fff;
 }
 
 .ec-headerNaviRole:after {
@@ -6325,7 +6322,7 @@ Styleguide 11.2
 }
 
 .ec-headerNaviRole .ec-headerNaviRole__left {
-  width: calc(100% / 3);
+  position: relative;
 }
 
 .ec-headerNaviRole .ec-headerNaviRole__search {
@@ -6337,7 +6334,8 @@ Styleguide 11.2
 }
 
 .ec-headerNaviRole .ec-headerNaviRole__right {
-  width: calc(100% * 2 / 3);
+  margin-left: auto;
+  position: relative;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: end;
@@ -6404,69 +6402,22 @@ include /assets/tmpl/elements/11.2.header.pug
 
 Styleguide 11.2.1
 */
-.ec-headerTitle {
-  font-size: 16px;
-  line-height: 1.4;
-  color: #525263;
-  -webkit-text-size-adjust: 100%;
-}
-
-.ec-headerTitle textarea {
-  /* for chrome fontsize bug */
-  font-family: sans-serif;
-}
-
-.ec-headerTitle img {
-  max-width: 100%;
-}
-
-.ec-headerTitle html {
-  box-sizing: border-box;
-}
-
-.ec-headerTitle *,
-.ec-headerTitle *:before,
-.ec-headerTitle *:after {
-  box-sizing: inherit;
-}
-
-.ec-headerTitle img {
-  width: 230px;
-}
-
-.ec-headerTitle .ec-headerTitle__title {
-  text-align: center;
-}
-
-.ec-headerTitle .ec-headerTitle__title h1 {
+.ec-headerNaviRole h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
   margin: 0;
   padding: 0;
 }
 
-.ec-headerTitle .ec-headerTitle__title a {
+.ec-headerNaviRole h1 a {
   display: inline-block;
-  margin-bottom: 10px;
   text-decoration: none;
-  font-size: 20px;
-  font-weight: bold;
-  color: black;
 }
 
-.ec-headerTitle .ec-headerTitle__title a:hover {
+.ec-headerNaviRole h1 a:hover {
   opacity: 0.8;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
-}
-
-.ec-headerTitle .ec-headerTitle__subtitle {
-  font-size: 10px;
-  text-align: center;
-}
-
-.ec-headerTitle .ec-headerTitle__subtitle a {
-  display: inline-block;
-  color: #0092c4;
-  text-decoration: none;
-  cursor: pointer;
 }
 
 /*
@@ -6661,6 +6612,7 @@ Styleguide 11.2.5
 */
 .ec-categoryNaviRole {
   margin: 0 auto;
+  padding-top: 110px;
   padding-left: 20px;
   padding-right: 20px;
   box-sizing: border-box;
@@ -10885,6 +10837,10 @@ Styleguide 22.1
     width: 25%;
   }
 
+  .ec-layoutRole .ec-layoutRole__contents {
+    padding-top: 0px;
+  }
+
   .ec-headerRole:after {
     content: " ";
     display: table;
@@ -10913,6 +10869,9 @@ Styleguide 22.1
 
   .ec-headerNaviRole {
     padding-bottom: 15px;
+    height: 120px;
+    position: relative;
+    padding-top: 15px;
   }
 
   .ec-headerNaviRole .ec-headerNaviRole__search {
@@ -10946,13 +10905,8 @@ Styleguide 22.1
     display: none;
   }
 
-  .ec-headerTitle .ec-headerTitle__title a {
+  .ec-headerNaviRole h1 a {
     font-size: 40px;
-  }
-
-  .ec-headerTitle .ec-headerTitle__subtitle {
-    font-size: 16px;
-    margin-bottom: 10px;
   }
 
   .ec-headerNav .ec-headerNav__itemIcon {

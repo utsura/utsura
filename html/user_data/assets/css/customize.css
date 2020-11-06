@@ -12,6 +12,51 @@
     width: 100%;
 }
 
+/* transition */
+#top-head,
+#top-head:after,
+#top-head .ec-headerTitle__img {
+    transition-duration: 240ms;
+    transition-timing-function: cubic-bezier(.165, .84, .44, 1);
+}
+
+#top-head {
+    position: fixed;
+}
+
+#top-head.fixed {
+    height: 70px;
+    background: rgba(255, 255, 255, .7);
+}
+
+#top-head.fixed .ec-headerTitle__img img {
+    height: 48px;
+    width: auto;
+}
+
+.ec-headerNaviRole h1 {
+    transform: translate(-50%, -50%);
+    z-index: 30;
+}
+
+.ec-headerTitle__img img {
+    width: auto;
+    height: 80px;
+}
+
+.ec-headerNavi__global {
+    display: -webkit-flex;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    max-width: 1200px;
+    z-index: 10;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+}
 /* sp__banner.twig */
 .sp__banner{
     display: none;
@@ -211,13 +256,25 @@
 
 
     /* ロゴ */
-    .ec-headerTitle img {
-        width: 120px;
-        margin-top: 8px;
+    .ec-headerTitle__img img {
+        width: auto;
+        height: 48px;
+    }
+
+    .ec-headerNaviRole__right .ec-headerNaviRole__nav {
+        display: none;
+    }
+
+    .ec-headerNaviRole__right .ec-headerRole__cart {
+        padding-right: 20px;
     }
 
     .ec-sliderRole-Img {
         width: 335px;
+    }
+
+    .ec-headerNaviRole .ec-headerNaviRole__right {
+        width: 70%;
     }
 
     /* about.twig */
@@ -572,6 +629,15 @@
 
     .sp__banner a img{
         width: 100%;
+    }
+
+    #top-head.fixed {
+        height: 50px;
+    }
+
+    #top-head.fixed .ec-headerTitle__img img {
+        height: 32px;
+        width: auto;
     }
 
 
